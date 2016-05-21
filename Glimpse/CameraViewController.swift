@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import ALCameraViewController
 
-class DataViewController: UIViewController {
+class CameraViewController: UIViewController {
 
     var dataObject: String = ""
 
@@ -16,6 +17,11 @@ class DataViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let cameraVC = ALCameraViewController(croppingEnabled: false) { (finishedImage) in
+            print("* Done.");
+        }
+        
+        presentViewController(cameraVC, animated: true, completion: nil);
     }
 
     override func viewWillAppear(animated: Bool) {

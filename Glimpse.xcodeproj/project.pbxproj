@@ -9,23 +9,27 @@
 /* Begin PBXBuildFile section */
 		376E89621CECDF57009B78D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376E89611CECDF57009B78D5 /* AppDelegate.swift */; };
 		376E89641CECDF57009B78D5 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376E89631CECDF57009B78D5 /* RootViewController.swift */; };
-		376E89661CECDF57009B78D5 /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376E89651CECDF57009B78D5 /* DataViewController.swift */; };
+		376E89661CECDF57009B78D5 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376E89651CECDF57009B78D5 /* CameraViewController.swift */; };
 		376E89681CECDF57009B78D5 /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376E89671CECDF57009B78D5 /* ModelController.swift */; };
 		376E896B1CECDF57009B78D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376E89691CECDF57009B78D5 /* Main.storyboard */; };
 		376E896D1CECDF57009B78D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 376E896C1CECDF57009B78D5 /* Assets.xcassets */; };
 		376E89701CECDF57009B78D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376E896E1CECDF57009B78D5 /* LaunchScreen.storyboard */; };
+		71676F0A63C6B0AFEB98AC81 /* Pods_Glimpse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C14782C769C88009BAA68C61 /* Pods_Glimpse.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		249ABC413236CE142DC03933 /* Pods-Glimpse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glimpse.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Glimpse/Pods-Glimpse.debug.xcconfig"; sourceTree = "<group>"; };
 		376E895E1CECDF57009B78D5 /* Glimpse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Glimpse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		376E89611CECDF57009B78D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		376E89631CECDF57009B78D5 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		376E89651CECDF57009B78D5 /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
+		376E89651CECDF57009B78D5 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		376E89671CECDF57009B78D5 /* ModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
 		376E896A1CECDF57009B78D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		376E896C1CECDF57009B78D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		376E896F1CECDF57009B78D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		376E89711CECDF57009B78D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B82C5E50ECF9B926E3FBFFAB /* Pods-Glimpse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glimpse.release.xcconfig"; path = "Pods/Target Support Files/Pods-Glimpse/Pods-Glimpse.release.xcconfig"; sourceTree = "<group>"; };
+		C14782C769C88009BAA68C61 /* Pods_Glimpse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glimpse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +37,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71676F0A63C6B0AFEB98AC81 /* Pods_Glimpse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		149EE995003B0B3986C08E77 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C14782C769C88009BAA68C61 /* Pods_Glimpse.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		376E89551CECDF57009B78D5 = {
 			isa = PBXGroup;
 			children = (
 				376E89601CECDF57009B78D5 /* Glimpse */,
 				376E895F1CECDF57009B78D5 /* Products */,
+				F864E15339885F92BF95A81F /* Pods */,
+				149EE995003B0B3986C08E77 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,7 +75,7 @@
 			children = (
 				376E89611CECDF57009B78D5 /* AppDelegate.swift */,
 				376E89631CECDF57009B78D5 /* RootViewController.swift */,
-				376E89651CECDF57009B78D5 /* DataViewController.swift */,
+				376E89651CECDF57009B78D5 /* CameraViewController.swift */,
 				376E89671CECDF57009B78D5 /* ModelController.swift */,
 				376E89691CECDF57009B78D5 /* Main.storyboard */,
 				376E896C1CECDF57009B78D5 /* Assets.xcassets */,
@@ -70,6 +85,15 @@
 			path = Glimpse;
 			sourceTree = "<group>";
 		};
+		F864E15339885F92BF95A81F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				249ABC413236CE142DC03933 /* Pods-Glimpse.debug.xcconfig */,
+				B82C5E50ECF9B926E3FBFFAB /* Pods-Glimpse.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,9 +101,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 376E89741CECDF57009B78D5 /* Build configuration list for PBXNativeTarget "Glimpse" */;
 			buildPhases = (
+				2D520532E3682E0FBA5048A7 /* 📦 Check Pods Manifest.lock */,
 				376E895A1CECDF57009B78D5 /* Sources */,
 				376E895B1CECDF57009B78D5 /* Frameworks */,
 				376E895C1CECDF57009B78D5 /* Resources */,
+				00BE0F00695A141F6E1831C8 /* 📦 Embed Pods Frameworks */,
+				2C667331D475426035581452 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -136,6 +163,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		00BE0F00695A141F6E1831C8 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Glimpse/Pods-Glimpse-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2C667331D475426035581452 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Glimpse/Pods-Glimpse-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2D520532E3682E0FBA5048A7 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		376E895A1CECDF57009B78D5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -143,7 +218,7 @@
 			files = (
 				376E89641CECDF57009B78D5 /* RootViewController.swift in Sources */,
 				376E89681CECDF57009B78D5 /* ModelController.swift in Sources */,
-				376E89661CECDF57009B78D5 /* DataViewController.swift in Sources */,
+				376E89661CECDF57009B78D5 /* CameraViewController.swift in Sources */,
 				376E89621CECDF57009B78D5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,6 +330,7 @@
 		};
 		376E89751CECDF57009B78D5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 249ABC413236CE142DC03933 /* Pods-Glimpse.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Glimpse/Info.plist;
@@ -266,6 +342,7 @@
 		};
 		376E89761CECDF57009B78D5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B82C5E50ECF9B926E3FBFFAB /* Pods-Glimpse.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Glimpse/Info.plist;
@@ -294,6 +371,7 @@
 				376E89761CECDF57009B78D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
