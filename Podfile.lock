@@ -1,12 +1,15 @@
 PODS:
   - ALCameraViewController (1.1.2)
+  - LayerKit (0.21.0)
 
 DEPENDENCIES:
   - ALCameraViewController
+  - LayerKit
 
 SPEC CHECKSUMS:
   ALCameraViewController: 3439c8bb72f766c0225305e6dbfdc1d1aaa22d96
+  LayerKit: 1c1d3efd7dd1eb432230bd56253ab3ef36a25637
 
-PODFILE CHECKSUM: 588f28a32d9f4fcd3ec8e0987930bcc6ce5f639d
+PODFILE CHECKSUM: 53430edaeeafaab617e4b5bc2ed2dc32b46c17b0
 
 COCOAPODS: 1.0.0

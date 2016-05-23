@@ -24,7 +24,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="company" translatesAutoresizingMaskIntoConstraints="NO" id="Bdi-wg-qfi">
-                                <rect key="frame" x="147" y="213" width="80" height="82"/>
+                                <rect key="frame" x="147" y="204" width="80" height="82"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>

@@ -7,28 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1469899713DE147D7E5AF6A889D85CAD /* ALCameraViewController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E993E55132074CBB51573F9B5FE526 /* ALCameraViewController-dummy.m */; };
-		193EA299FF067C9BD52DD52D3E494155 /* ALImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0344EB9503CA55D2C31A2564CECDFF7 /* ALImageExtensions.swift */; };
+		1469899713DE147D7E5AF6A889D85CAD /* ALCameraViewController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE3CC407F06440F9F6191D088F618F1 /* ALCameraViewController-dummy.m */; };
+		193EA299FF067C9BD52DD52D3E494155 /* ALImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8AF8BA9B91835363673C84A3C21816 /* ALImageExtensions.swift */; };
 		2CC65BE70D149941B5EADCE3AFCA5BBB /* Pods-Glimpse-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F45FDBAA30E38F400CC20614DE9CED58 /* Pods-Glimpse-dummy.m */; };
-		3549919DFB699FD1F2F3EDAC717D9F3B /* ALCameraShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F46B1914C7EA51AC029A39CD4527980 /* ALCameraShot.swift */; };
-		4DD31CEE35CDE9004D60FC77A622F782 /* ALImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503EDA91B7D21653305BC7F180CDBA82 /* ALImageModel.swift */; };
-		5CE1777434431F010C97206913082B3E /* ALImagePickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C38CEC585A2E54E8ADFB84CA2ADA6B4 /* ALImagePickerViewDelegate.swift */; };
-		5CFBF85102C21F1F3A245367D68730C3 /* ALConfirmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 713BB7D6D79245BC6537F44E23F863F7 /* ALConfirmViewController.xib */; };
-		654D85EDD64A5CA0D7C26DCE8C56F118 /* ALImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0234E4DCCA065136B816D79235FF0D75 /* ALImageCell.swift */; };
-		662C536BBCEADBA6980FCC6BFB0C16CD /* ALCropOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D58F29B6C0CA696587B2EB9FF180BB3 /* ALCropOverlay.swift */; };
-		6CD090AA02531CF1A7B63D106C03C246 /* ALCameraViewAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E2ECC0BBB5687D4ED8675AC1CC03B52 /* ALCameraViewAssets.xcassets */; };
+		3549919DFB699FD1F2F3EDAC717D9F3B /* ALCameraShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3B7EB2E2C628EC7E757582A66B47F4 /* ALCameraShot.swift */; };
+		4DD31CEE35CDE9004D60FC77A622F782 /* ALImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDBCA316693586F5591A6134620312D /* ALImageModel.swift */; };
+		5CE1777434431F010C97206913082B3E /* ALImagePickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371D8DF2D7EB58132E8D70140E00E355 /* ALImagePickerViewDelegate.swift */; };
+		5CFBF85102C21F1F3A245367D68730C3 /* ALConfirmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA7103D25A8955EA1B6D7525350199D7 /* ALConfirmViewController.xib */; };
+		654D85EDD64A5CA0D7C26DCE8C56F118 /* ALImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1932EDF1C8CAD04215A48E4E442477 /* ALImageCell.swift */; };
+		662C536BBCEADBA6980FCC6BFB0C16CD /* ALCropOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8362828E9F3D9D4E504310AC4B4C21A8 /* ALCropOverlay.swift */; };
+		6CD090AA02531CF1A7B63D106C03C246 /* ALCameraViewAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5AC91CCE9508CE705F35A983C45B22A /* ALCameraViewAssets.xcassets */; };
 		77AD5789E8D1C3DA9CF00176D3BE70CA /* Pods-Glimpse-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 63C86586FC3DE5040AF5DC2108D1E22F /* Pods-Glimpse-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		97FAFEDC35E67D865B635BCA0629315C /* ALImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF015450AAB5D462B85F7E6998020A03 /* ALImagePickerViewController.swift */; };
-		A482C49031CC235A39DAF984ED03CCBE /* ALPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62380726541FCEC8B01C30688EE29DBA /* ALPermissionsView.swift */; };
-		A6282795B5B1F680D418311550D06084 /* ALImageFetchingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDCA6D82EC8F98FCDCA58A4179F2EDA /* ALImageFetchingInteractor.swift */; };
+		97FAFEDC35E67D865B635BCA0629315C /* ALImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2DF55ECB2E51A09C0C0D6E85732861 /* ALImagePickerViewController.swift */; };
+		A482C49031CC235A39DAF984ED03CCBE /* ALPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5544EFD6E5D0F94F4060B05F48A4513 /* ALPermissionsView.swift */; };
+		A6282795B5B1F680D418311550D06084 /* ALImageFetchingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382CF48F46BBD7EFEC1D545CDF480EA4 /* ALImageFetchingInteractor.swift */; };
 		A977AB8FB0C34AD3D56221A27803BAF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		B32F8EB1F34FB3B884CAAC7EA0316BE3 /* ALUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18B398012B54B6DEC9AEB5FC097A59F /* ALUtilities.swift */; };
-		B333CF8E1F82624581BAC3DD3AC91C0B /* ALConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894914081036642E2D0BAF94F219D727 /* ALConfirmViewController.swift */; };
-		BB2B9C18D82854478B6380874B9F6C53 /* ALCameraView.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8A1E4138749D98D0C3C5A0BEDC51B6BA /* ALCameraView.strings */; };
-		CFC9038E02F36BD83B5EBC1722B0BF2A /* ALCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D77BE52984755D4F8C6250D85BEB9F /* ALCameraView.swift */; };
-		D2D5ACB75EA3DB626D319122AA55999C /* ALCameraViewController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 007BEB885DDB2621CADCAAF82F2F1D4F /* ALCameraViewController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B32F8EB1F34FB3B884CAAC7EA0316BE3 /* ALUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B442BDEC0B288405A65D97C29062514F /* ALUtilities.swift */; };
+		B333CF8E1F82624581BAC3DD3AC91C0B /* ALConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C79835483A3DABAB0763635D21251C /* ALConfirmViewController.swift */; };
+		BB2B9C18D82854478B6380874B9F6C53 /* ALCameraView.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3863E012A3E53C2D3BAB0245EB781EE7 /* ALCameraView.strings */; };
+		CFC9038E02F36BD83B5EBC1722B0BF2A /* ALCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FA7165E77584894101B38E48A7C9F8 /* ALCameraView.swift */; };
+		D2D5ACB75EA3DB626D319122AA55999C /* ALCameraViewController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 261CFCDDF980EC98EE0345A5FE8BE41E /* ALCameraViewController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D70CB1C221C52123B5E72CAEF0EA32BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		E770DBC7A9C08B534D513DE6397C45DA /* ALCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B028E3F8F5B17F66CD8AC585ACA5F /* ALCameraViewController.swift */; };
+		E770DBC7A9C08B534D513DE6397C45DA /* ALCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729A30921B5B1680221C70EF6668244E /* ALCameraViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,42 +42,43 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		007BEB885DDB2621CADCAAF82F2F1D4F /* ALCameraViewController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ALCameraViewController-umbrella.h"; sourceTree = "<group>"; };
-		0234E4DCCA065136B816D79235FF0D75 /* ALImageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALImageCell.swift; path = ALCameraViewController/Views/ALImageCell.swift; sourceTree = "<group>"; };
-		0F46B1914C7EA51AC029A39CD4527980 /* ALCameraShot.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALCameraShot.swift; path = ALCameraViewController/Utilities/ALCameraShot.swift; sourceTree = "<group>"; };
+		0CDBCA316693586F5591A6134620312D /* ALImageModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALImageModel.swift; path = ALCameraViewController/Models/ALImageModel.swift; sourceTree = "<group>"; };
+		119593DDFAD8994217A72443B09A534F /* LayerKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LayerKit.framework; sourceTree = "<group>"; };
 		22698B4A5FE30912278E9B8DAFB50D6E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23C79835483A3DABAB0763635D21251C /* ALConfirmViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALConfirmViewController.swift; path = ALCameraViewController/ViewController/ALConfirmViewController.swift; sourceTree = "<group>"; };
+		261CFCDDF980EC98EE0345A5FE8BE41E /* ALCameraViewController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ALCameraViewController-umbrella.h"; sourceTree = "<group>"; };
+		371D8DF2D7EB58132E8D70140E00E355 /* ALImagePickerViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALImagePickerViewDelegate.swift; path = ALCameraViewController/ViewController/ALImagePickerViewDelegate.swift; sourceTree = "<group>"; };
+		382CF48F46BBD7EFEC1D545CDF480EA4 /* ALImageFetchingInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALImageFetchingInteractor.swift; path = ALCameraViewController/Utilities/ALImageFetchingInteractor.swift; sourceTree = "<group>"; };
+		3863E012A3E53C2D3BAB0245EB781EE7 /* ALCameraView.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ALCameraView.strings; path = ALCameraViewController/ALCameraView.strings; sourceTree = "<group>"; };
 		3A18589BA9717FC872FC30D371AD86F4 /* Pods-Glimpse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Glimpse.release.xcconfig"; sourceTree = "<group>"; };
-		4BDCA6D82EC8F98FCDCA58A4179F2EDA /* ALImageFetchingInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALImageFetchingInteractor.swift; path = ALCameraViewController/Utilities/ALImageFetchingInteractor.swift; sourceTree = "<group>"; };
-		4E2ECC0BBB5687D4ED8675AC1CC03B52 /* ALCameraViewAssets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = ALCameraViewAssets.xcassets; path = ALCameraViewController/ALCameraViewAssets.xcassets; sourceTree = "<group>"; };
+		4D1932EDF1C8CAD04215A48E4E442477 /* ALImageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALImageCell.swift; path = ALCameraViewController/Views/ALImageCell.swift; sourceTree = "<group>"; };
+		4E2DF55ECB2E51A09C0C0D6E85732861 /* ALImagePickerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALImagePickerViewController.swift; path = ALCameraViewController/ViewController/ALImagePickerViewController.swift; sourceTree = "<group>"; };
 		4FDAE7388FA404CB2909F9D6C360C3E6 /* Pods-Glimpse-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Glimpse-frameworks.sh"; sourceTree = "<group>"; };
-		503EDA91B7D21653305BC7F180CDBA82 /* ALImageModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALImageModel.swift; path = ALCameraViewController/Models/ALImageModel.swift; sourceTree = "<group>"; };
-		5A8B028E3F8F5B17F66CD8AC585ACA5F /* ALCameraViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALCameraViewController.swift; path = ALCameraViewController/ViewController/ALCameraViewController.swift; sourceTree = "<group>"; };
-		62380726541FCEC8B01C30688EE29DBA /* ALPermissionsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALPermissionsView.swift; path = ALCameraViewController/Views/ALPermissionsView.swift; sourceTree = "<group>"; };
+		51394C4470E47557D249BF78AD1C04DE /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63C86586FC3DE5040AF5DC2108D1E22F /* Pods-Glimpse-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Glimpse-umbrella.h"; sourceTree = "<group>"; };
-		66D77BE52984755D4F8C6250D85BEB9F /* ALCameraView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALCameraView.swift; path = ALCameraViewController/Views/ALCameraView.swift; sourceTree = "<group>"; };
-		672944E8CED3D106FD5003A39CB7DC3B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6529E32ACD1CE7B59A70076D20DB5971 /* ALCameraViewController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = ALCameraViewController.modulemap; sourceTree = "<group>"; };
 		6BA2B5F8AAFA6B144DC037824FAD5D80 /* Pods-Glimpse-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Glimpse-acknowledgements.plist"; sourceTree = "<group>"; };
-		713BB7D6D79245BC6537F44E23F863F7 /* ALConfirmViewController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = ALConfirmViewController.xib; path = ALCameraViewController/ViewController/ALConfirmViewController.xib; sourceTree = "<group>"; };
+		729A30921B5B1680221C70EF6668244E /* ALCameraViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALCameraViewController.swift; path = ALCameraViewController/ViewController/ALCameraViewController.swift; sourceTree = "<group>"; };
 		7DE637C2BCADAF0355C2CCEE5512F775 /* ALCameraViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ALCameraViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		811A99A024C97B872AC97BC2165317EB /* Pods-Glimpse-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Glimpse-resources.sh"; sourceTree = "<group>"; };
-		8835FD0BAD70944ABE0025549B9BF22D /* ALCameraViewController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ALCameraViewController-prefix.pch"; sourceTree = "<group>"; };
-		894914081036642E2D0BAF94F219D727 /* ALConfirmViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALConfirmViewController.swift; path = ALCameraViewController/ViewController/ALConfirmViewController.swift; sourceTree = "<group>"; };
-		8A1E4138749D98D0C3C5A0BEDC51B6BA /* ALCameraView.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ALCameraView.strings; path = ALCameraViewController/ALCameraView.strings; sourceTree = "<group>"; };
-		92E993E55132074CBB51573F9B5FE526 /* ALCameraViewController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ALCameraViewController-dummy.m"; sourceTree = "<group>"; };
+		8362828E9F3D9D4E504310AC4B4C21A8 /* ALCropOverlay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALCropOverlay.swift; path = ALCameraViewController/Views/ALCropOverlay.swift; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9C38CEC585A2E54E8ADFB84CA2ADA6B4 /* ALImagePickerViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALImagePickerViewDelegate.swift; path = ALCameraViewController/ViewController/ALImagePickerViewDelegate.swift; sourceTree = "<group>"; };
-		9D58F29B6C0CA696587B2EB9FF180BB3 /* ALCropOverlay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALCropOverlay.swift; path = ALCameraViewController/Views/ALCropOverlay.swift; sourceTree = "<group>"; };
-		A0344EB9503CA55D2C31A2564CECDFF7 /* ALImageExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALImageExtensions.swift; path = ALCameraViewController/Utilities/ALImageExtensions.swift; sourceTree = "<group>"; };
+		973F569650CDCB59D9C0DD79AD4B2EB3 /* ALCameraViewController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ALCameraViewController.xcconfig; sourceTree = "<group>"; };
+		A5AC91CCE9508CE705F35A983C45B22A /* ALCameraViewAssets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = ALCameraViewAssets.xcassets; path = ALCameraViewController/ALCameraViewAssets.xcassets; sourceTree = "<group>"; };
+		B442BDEC0B288405A65D97C29062514F /* ALUtilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALUtilities.swift; path = ALCameraViewController/Utilities/ALUtilities.swift; sourceTree = "<group>"; };
+		B5544EFD6E5D0F94F4060B05F48A4513 /* ALPermissionsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALPermissionsView.swift; path = ALCameraViewController/Views/ALPermissionsView.swift; sourceTree = "<group>"; };
+		BBAEB05EFE0742074B9B614E9B484A89 /* ALCameraViewController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ALCameraViewController-prefix.pch"; sourceTree = "<group>"; };
 		BD8A2721F250D0625997BC8028D8F054 /* Pods-Glimpse-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Glimpse-acknowledgements.markdown"; sourceTree = "<group>"; };
-		C18B398012B54B6DEC9AEB5FC097A59F /* ALUtilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALUtilities.swift; path = ALCameraViewController/Utilities/ALUtilities.swift; sourceTree = "<group>"; };
-		C579878DF333318607A6702E3DB37A39 /* ALCameraViewController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ALCameraViewController.xcconfig; sourceTree = "<group>"; };
+		CD3B7EB2E2C628EC7E757582A66B47F4 /* ALCameraShot.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALCameraShot.swift; path = ALCameraViewController/Utilities/ALCameraShot.swift; sourceTree = "<group>"; };
 		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		D3C6AD1438FFFDFF4E0565EC76F8280D /* ALCameraViewController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = ALCameraViewController.modulemap; sourceTree = "<group>"; };
+		DA7103D25A8955EA1B6D7525350199D7 /* ALConfirmViewController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = ALConfirmViewController.xib; path = ALCameraViewController/ViewController/ALConfirmViewController.xib; sourceTree = "<group>"; };
 		E221D3110B6FA75AB8637FA8829B12D5 /* Pods_Glimpse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glimpse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E26447681956CA15E220C9A84F6B375A /* Pods-Glimpse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Glimpse.debug.xcconfig"; sourceTree = "<group>"; };
 		E448C5CA7C7BC5B68B3F63D2DDD29761 /* Pods-Glimpse.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Glimpse.modulemap"; sourceTree = "<group>"; };
+		EA8AF8BA9B91835363673C84A3C21816 /* ALImageExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALImageExtensions.swift; path = ALCameraViewController/Utilities/ALImageExtensions.swift; sourceTree = "<group>"; };
+		EAE3CC407F06440F9F6191D088F618F1 /* ALCameraViewController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ALCameraViewController-dummy.m"; sourceTree = "<group>"; };
 		F45FDBAA30E38F400CC20614DE9CED58 /* Pods-Glimpse-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Glimpse-dummy.m"; sourceTree = "<group>"; };
-		FF015450AAB5D462B85F7E6998020A03 /* ALImagePickerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALImagePickerViewController.swift; path = ALCameraViewController/ViewController/ALImagePickerViewController.swift; sourceTree = "<group>"; };
+		F5FA7165E77584894101B38E48A7C9F8 /* ALCameraView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALCameraView.swift; path = ALCameraViewController/Views/ALCameraView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,38 +101,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		01DCB23CB35B87422B923279A68E45E6 /* ALCameraViewController */ = {
-			isa = PBXGroup;
-			children = (
-				0F46B1914C7EA51AC029A39CD4527980 /* ALCameraShot.swift */,
-				66D77BE52984755D4F8C6250D85BEB9F /* ALCameraView.swift */,
-				5A8B028E3F8F5B17F66CD8AC585ACA5F /* ALCameraViewController.swift */,
-				894914081036642E2D0BAF94F219D727 /* ALConfirmViewController.swift */,
-				9D58F29B6C0CA696587B2EB9FF180BB3 /* ALCropOverlay.swift */,
-				0234E4DCCA065136B816D79235FF0D75 /* ALImageCell.swift */,
-				A0344EB9503CA55D2C31A2564CECDFF7 /* ALImageExtensions.swift */,
-				4BDCA6D82EC8F98FCDCA58A4179F2EDA /* ALImageFetchingInteractor.swift */,
-				503EDA91B7D21653305BC7F180CDBA82 /* ALImageModel.swift */,
-				FF015450AAB5D462B85F7E6998020A03 /* ALImagePickerViewController.swift */,
-				9C38CEC585A2E54E8ADFB84CA2ADA6B4 /* ALImagePickerViewDelegate.swift */,
-				62380726541FCEC8B01C30688EE29DBA /* ALPermissionsView.swift */,
-				C18B398012B54B6DEC9AEB5FC097A59F /* ALUtilities.swift */,
-				1B44679EBCF0B0180368379C1ECD7265 /* Resources */,
-				FF01AC7C5D50E8BDD4DAC3508B2D44F0 /* Support Files */,
-			);
-			path = ALCameraViewController;
-			sourceTree = "<group>";
-		};
-		1B44679EBCF0B0180368379C1ECD7265 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				8A1E4138749D98D0C3C5A0BEDC51B6BA /* ALCameraView.strings */,
-				4E2ECC0BBB5687D4ED8675AC1CC03B52 /* ALCameraViewAssets.xcassets */,
-				713BB7D6D79245BC6537F44E23F863F7 /* ALConfirmViewController.xib */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		201C7372DD0AA52284E155B6BB586719 /* Pods-Glimpse */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,23 +136,63 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		47F9191D5B7B6FDB628AB496609F4746 /* LayerKit */ = {
+			isa = PBXGroup;
+			children = (
+				72499338148AF04AD3F3910A75A7E254 /* Frameworks */,
+			);
+			path = LayerKit;
+			sourceTree = "<group>";
+		};
+		72499338148AF04AD3F3910A75A7E254 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				119593DDFAD8994217A72443B09A534F /* LayerKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				9872C7A37EE9BAD71FD1306FBA9ABF9D /* Pods */,
+				CD0D69A13DEC41024E78D3F853D56080 /* Pods */,
 				39B7879C809EC7697A5A37AAA99AA30A /* Products */,
 				C5EFCE7E52B594DFDCE36935241BC35B /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		9872C7A37EE9BAD71FD1306FBA9ABF9D /* Pods */ = {
+		97452E89CFAFF6993408BDBF9E2985CB /* ALCameraViewController */ = {
 			isa = PBXGroup;
 			children = (
-				01DCB23CB35B87422B923279A68E45E6 /* ALCameraViewController */,
+				CD3B7EB2E2C628EC7E757582A66B47F4 /* ALCameraShot.swift */,
+				F5FA7165E77584894101B38E48A7C9F8 /* ALCameraView.swift */,
+				729A30921B5B1680221C70EF6668244E /* ALCameraViewController.swift */,
+				23C79835483A3DABAB0763635D21251C /* ALConfirmViewController.swift */,
+				8362828E9F3D9D4E504310AC4B4C21A8 /* ALCropOverlay.swift */,
+				4D1932EDF1C8CAD04215A48E4E442477 /* ALImageCell.swift */,
+				EA8AF8BA9B91835363673C84A3C21816 /* ALImageExtensions.swift */,
+				382CF48F46BBD7EFEC1D545CDF480EA4 /* ALImageFetchingInteractor.swift */,
+				0CDBCA316693586F5591A6134620312D /* ALImageModel.swift */,
+				4E2DF55ECB2E51A09C0C0D6E85732861 /* ALImagePickerViewController.swift */,
+				371D8DF2D7EB58132E8D70140E00E355 /* ALImagePickerViewDelegate.swift */,
+				B5544EFD6E5D0F94F4060B05F48A4513 /* ALPermissionsView.swift */,
+				B442BDEC0B288405A65D97C29062514F /* ALUtilities.swift */,
+				9E7AC70D704B4DD183AE6F0D211895DD /* Resources */,
+				DC17FD13874D113B335B152EB12BB32F /* Support Files */,
 			);
-			name = Pods;
+			path = ALCameraViewController;
+			sourceTree = "<group>";
+		};
+		9E7AC70D704B4DD183AE6F0D211895DD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3863E012A3E53C2D3BAB0245EB781EE7 /* ALCameraView.strings */,
+				A5AC91CCE9508CE705F35A983C45B22A /* ALCameraViewAssets.xcassets */,
+				DA7103D25A8955EA1B6D7525350199D7 /* ALConfirmViewController.xib */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -202,15 +211,24 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		FF01AC7C5D50E8BDD4DAC3508B2D44F0 /* Support Files */ = {
+		CD0D69A13DEC41024E78D3F853D56080 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D3C6AD1438FFFDFF4E0565EC76F8280D /* ALCameraViewController.modulemap */,
-				C579878DF333318607A6702E3DB37A39 /* ALCameraViewController.xcconfig */,
-				92E993E55132074CBB51573F9B5FE526 /* ALCameraViewController-dummy.m */,
-				8835FD0BAD70944ABE0025549B9BF22D /* ALCameraViewController-prefix.pch */,
-				007BEB885DDB2621CADCAAF82F2F1D4F /* ALCameraViewController-umbrella.h */,
-				672944E8CED3D106FD5003A39CB7DC3B /* Info.plist */,
+				97452E89CFAFF6993408BDBF9E2985CB /* ALCameraViewController */,
+				47F9191D5B7B6FDB628AB496609F4746 /* LayerKit */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DC17FD13874D113B335B152EB12BB32F /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				6529E32ACD1CE7B59A70076D20DB5971 /* ALCameraViewController.modulemap */,
+				973F569650CDCB59D9C0DD79AD4B2EB3 /* ALCameraViewController.xcconfig */,
+				EAE3CC407F06440F9F6191D088F618F1 /* ALCameraViewController-dummy.m */,
+				BBAEB05EFE0742074B9B614E9B484A89 /* ALCameraViewController-prefix.pch */,
+				261CFCDDF980EC98EE0345A5FE8BE41E /* ALCameraViewController-umbrella.h */,
+				51394C4470E47557D249BF78AD1C04DE /* Info.plist */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/ALCameraViewController";
@@ -358,7 +376,7 @@
 /* Begin XCBuildConfiguration section */
 		06CA686067FEE704C768737FD55F1D19 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C579878DF333318607A6702E3DB37A39 /* ALCameraViewController.xcconfig */;
+			baseConfigurationReference = 973F569650CDCB59D9C0DD79AD4B2EB3 /* ALCameraViewController.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -535,7 +553,7 @@
 		};
 		E18FB8C0669AA1D60A1992641F2550F2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C579878DF333318607A6702E3DB37A39 /* ALCameraViewController.xcconfig */;
+			baseConfigurationReference = 973F569650CDCB59D9C0DD79AD4B2EB3 /* ALCameraViewController.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ALCameraViewController
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let cameraVC = ALCameraViewController(croppingEnabled: true) { (image:UIImage?) in
+            print("Image Captured");
+        }
+        
+        window!.rootViewController = cameraVC;
+        window!.makeKeyAndVisible();
+        
         return true
     }
 

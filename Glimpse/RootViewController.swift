@@ -18,10 +18,6 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let cameraVC = ALCameraViewController(croppingEnabled: false) { (final) in
-            print("* Done");
-        }
-
         
         /*
         // Configure the page view controller and add it as a child view controller.
