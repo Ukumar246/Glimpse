@@ -8,15 +8,55 @@
 
 import UIKit
 import ALCameraViewController
+import CoreLocation
 
-class RootViewController: UIViewController, UIPageViewControllerDelegate {
+class RootViewController: UIViewController, UIPageViewControllerDelegate, CLLocationManagerDelegate {
 
     var pageViewController: UIPageViewController?
 
+    //MARK: Private API
+    // Location
+    var locationManager:CLLocationManager!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        locationManager  = CLLocationManager()
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled()
+        {
+            locationManager.delegate = self;
+            locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;         // Use best possible location
+            locationManager.startUpdatingLocation()
+        }
+        
+        // Show an alert if application is active
+        if UIApplication.sharedApplication().applicationState == .Active {
+            print("* Currently Active State");
+        }
+        
+        
+        // Otherwise present a local notification
+        let notification = UILocalNotification()
+        notification.alertBody = "Karsh says Hi";
+        notification.soundName = UILocalNotificationDefaultSoundName;
+        
+        // Fire Date
+        var fireDate = NSDate().dateByAddingTimeInterval(10);       // 10 sec from now
+        notification.fireDate = fireDate;
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        
+        /*
+            //CAMERA VC
+            let cameraVC = ALCameraViewController(croppingEnabled: true) { (image:UIImage?) in
+                print("Image Captured");
+            }
+         
+        */
         
         
         /*
@@ -44,11 +84,14 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
         */
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK: - Location Manager
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("Location = \(locValue.latitude) \(locValue.longitude)");
+        
     }
-
+    
+    
     var modelController: ModelController {
         // Return the model controller object, creating it if necessary.
         // In more complex implementations, the model controller may be passed to the view controller.

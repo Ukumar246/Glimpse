@@ -7,5 +7,6 @@ target 'Glimpse' do
 
 # Pods for Glimpse
 pod 'ALCameraViewController'
-
+pod 'Parse'
+ 
 end

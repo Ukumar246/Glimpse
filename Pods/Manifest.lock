@@ -1,15 +1,18 @@
 PODS:
   - ALCameraViewController (1.1.2)
-  - LayerKit (0.21.0)
+  - Bolts/Tasks (1.7.0)
+  - Parse (1.13.0):
+    - Bolts/Tasks (~> 1.6)
 
 DEPENDENCIES:
   - ALCameraViewController
-  - LayerKit
+  - Parse
 
 SPEC CHECKSUMS:
   ALCameraViewController: 3439c8bb72f766c0225305e6dbfdc1d1aaa22d96
-  LayerKit: 1c1d3efd7dd1eb432230bd56253ab3ef36a25637
+  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
+  Parse: f51c24d2feb412e4b2d6cc73d37cb24e8d0089bc
 
-PODFILE CHECKSUM: 53430edaeeafaab617e4b5bc2ed2dc32b46c17b0
+PODFILE CHECKSUM: bddc97a285497f34acbc7d48a9510e4fa91af3e5
 
 COCOAPODS: 1.0.0
