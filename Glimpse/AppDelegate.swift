@@ -66,10 +66,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization();
         
-        /*
-        window?.rootViewController = cameraVC;
-        window?.makeKeyAndVisible();
-        */
+        
+        // Parse User Login
+        if PFUser.currentUser() == nil{
+            // User is NOT logged in
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil);
+            let loginVC:LoginViewController = storyBoard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController;
+            
+            
+            window?.rootViewController = loginVC;
+            window?.makeKeyAndVisible();
+        }
+        
         return true
     }
 
