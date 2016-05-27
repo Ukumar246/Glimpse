@@ -9,6 +9,7 @@
 import UIKit
 import ParseUI
 import Parse
+import CSStickyHeaderFlowLayout
 
 class StoryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -27,8 +28,21 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
         super.viewDidLoad()
         
         fetchPosts();
+        setupViews();
     }
 
+    // MARK: - Setup Views
+    func setupViews() -> Void {
+        let layout:CSStickyHeaderFlowLayout = collectionView.collectionViewLayout as! CSStickyHeaderFlowLayout;
+        
+        // Locate the nib and register it to your collection view
+        let headerNib = UINib(nibName: "StickyHeader", bundle: nil);
+        collectionView.registerNib(headerNib, forSupplementaryViewOfKind: CSStickyHeaderParallaxHeader, withReuseIdentifier: "stickyHeader");
+        
+        let width = CGRectGetWidth(self.view.frame);
+        layout.parallaxHeaderReferenceSize = CGSizeMake(width, 300);
+    }
+    
     
     // MARK: - Database Operations
     
@@ -52,6 +66,10 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     // MARK: - Collection View
     // MARK: Datasource
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1;
+    }
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if posts == nil{
             return 0;
@@ -64,7 +82,7 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         // Appearance
         let imageView = cell.viewWithTag(ImageViewCELLTAG) as! PFImageView;
-        imageView.layer.cornerRadius = 5;
+        imageView.layer.cornerRadius = 7;
         imageView.layer.masksToBounds = true;
         imageView.clipsToBounds = true;
     }
@@ -83,13 +101,35 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         
-        let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "header", forIndexPath: indexPath);
+        var view:UICollectionReusableView!
+        
+        if (kind == UICollectionElementKindSectionHeader){
+            view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "header", forIndexPath: indexPath);
+        }
+        else if (kind == CSStickyHeaderParallaxHeader){
+            view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "stickyHeader", forIndexPath: indexPath)
+        }
+        else{
+            print("Collection View Error");
+        }
         
         return view;
     }
     
     // MARK: Delegates
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if posts == nil || posts?.count == 0{
+            return;
+        }
+        print("* Selected Image", indexPath.row);
+        
+        // Fetch the post
+        let post:PFObject = posts![indexPath.row];
+        
+        if let imageFile = post["picture"] as? PFFile{
+            print("* File: ", imageFile);
+        }
+        
         
     }
     

@@ -20,7 +20,7 @@ class ProfileViewController: UIViewController {
         assert(PFUser.currentUser() != nil);
 
         // View Setup
-        profileImageView.layer.cornerRadius = 5;
+        profileImageView.layer.cornerRadius = CGRectGetWidth(profileImageView.frame) / 2;
         
         //let currentUser = PFUser.currentUser()!
         titleLabel.text = "Name";

@@ -10,7 +10,7 @@ import UIKit
 //import ALCameraViewController
 import Parse
 
-class CaptureViewController: UIViewController, CACameraSessionDelegate
+class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFieldDelegate
 {
     
     //MARK: Private API
@@ -20,11 +20,15 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate
     @IBOutlet weak var imagePreview: UIImageView!
     @IBOutlet weak var restartCamera: UIButton!
     @IBOutlet weak var postButton: UIButton!
+    @IBOutlet weak var commentVisualEffectView: UIVisualEffectView!
+    @IBOutlet weak var commentTextField: UITextField!
     
     var user:PFUser{
         return PFUser.currentUser()!;
     }
     
+    // Constants:
+    let characterLimit:Int = 140;
     
     // MARK: - Lifecycle
     override func viewDidDisappear(animated: Bool) {
@@ -54,6 +58,13 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate
         // Rounded Buttons
         postButton.layer.cornerRadius = CGRectGetWidth(postButton.frame) / 2;
         restartCamera.layer.cornerRadius = CGRectGetWidth(restartCamera.frame) / 2;
+        
+        commentVisualEffectView.layer.cornerRadius = 7;
+        commentVisualEffectView.layer.masksToBounds = true;
+        commentVisualEffectView.clipsToBounds = true;
+        
+        let attribute:[String: AnyObject] = [NSForegroundColorAttributeName: Helper.getGlimpseOrangeColor()];
+        commentTextField.attributedPlaceholder = NSAttributedString(string: "Comment", attributes: attribute);
     }
     
     // MARK: - Camera
@@ -112,6 +123,9 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate
         restartCamera.hidden = false;
         postButton.hidden = false;
         
+        commentVisualEffectView.hidden = false;
+        commentTextField.text = nil;
+        
         imagePreview.hidden = false;
         imagePreview.image = image;
 
@@ -153,7 +167,7 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate
             print("!! Error: Cannot determine location :(");
             return;
         }
-        post["comment"] = "Test/Glimpse/1.0/iOSApp";
+        post["comment"] = commentTextField.text
         post["user"] = user;
         
         post.saveInBackgroundWithBlock { (success:Bool, error:NSError?) in
@@ -171,6 +185,18 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate
             
             self.startCamera();
         }
+    }
+    
+    // MARK: - Actions
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder();
+        return false;
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let newLength = text.characters.count + string.characters.count - range.length
+        return newLength <= characterLimit
     }
 }
 

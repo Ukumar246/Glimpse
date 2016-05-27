@@ -10,6 +10,7 @@
 		373D868E1CF793AE008FC7D6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373D868D1CF793AE008FC7D6 /* LoginViewController.swift */; };
 		373D86901CF7CFDD008FC7D6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373D868F1CF7CFDD008FC7D6 /* ProfileViewController.swift */; };
 		373D86921CF7D44C008FC7D6 /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373D86911CF7D44C008FC7D6 /* StoryViewController.swift */; };
+		373D86941CF8C811008FC7D6 /* StickyHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 373D86931CF8C811008FC7D6 /* StickyHeader.xib */; };
 		376E89621CECDF57009B78D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376E89611CECDF57009B78D5 /* AppDelegate.swift */; };
 		376E89641CECDF57009B78D5 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376E89631CECDF57009B78D5 /* RootViewController.swift */; };
 		376E89661CECDF57009B78D5 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376E89651CECDF57009B78D5 /* CaptureViewController.swift */; };
@@ -53,6 +54,7 @@
 		373D868D1CF793AE008FC7D6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		373D868F1CF7CFDD008FC7D6 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		373D86911CF7D44C008FC7D6 /* StoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
+		373D86931CF8C811008FC7D6 /* StickyHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StickyHeader.xib; sourceTree = "<group>"; };
 		374D7A1A1CF0F66F0091EBC2 /* Glimpse-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Glimpse-Bridging-Header.h"; sourceTree = "<group>"; };
 		376E895E1CECDF57009B78D5 /* Glimpse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Glimpse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		376E89611CECDF57009B78D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				373D868D1CF793AE008FC7D6 /* LoginViewController.swift */,
 				373D868F1CF7CFDD008FC7D6 /* ProfileViewController.swift */,
 				373D86911CF7D44C008FC7D6 /* StoryViewController.swift */,
+				373D86931CF8C811008FC7D6 /* StickyHeader.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				376E89701CECDF57009B78D5 /* LaunchScreen.storyboard in Resources */,
+				373D86941CF8C811008FC7D6 /* StickyHeader.xib in Resources */,
 				376E896D1CECDF57009B78D5 /* Assets.xcassets in Resources */,
 				37EB5E8E1CF6363D006F9935 /* PaintCodeFile.pcvd in Resources */,
 				37EB5E8D1CF6363D006F9935 /* Cool Camera Mockup.sketch in Resources */,
