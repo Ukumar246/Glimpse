@@ -1,15 +1,21 @@
 PODS:
   - ALCameraViewController (1.1.2)
+  - CSStickyHeaderFlowLayout (0.2.10)
   - EZSwipeController (0.5)
+  - Fusuma (0.4.1)
 
 DEPENDENCIES:
   - ALCameraViewController
+  - CSStickyHeaderFlowLayout
   - EZSwipeController
+  - Fusuma
 
 SPEC CHECKSUMS:
   ALCameraViewController: 3439c8bb72f766c0225305e6dbfdc1d1aaa22d96
+  CSStickyHeaderFlowLayout: 5366582779d8b7c9ba9b9cc729c218cc23888776
   EZSwipeController: 01cc43b319e133b6dbfb25bfdc78617a1560e952
+  Fusuma: 4dbaa05a2a20ab11a41f8dedbe650c904ea99625
 
-PODFILE CHECKSUM: a4068197bd62e8cdbee1aa2e610e01f485242cdb
+PODFILE CHECKSUM: 1a67de5abea9b5eb634ab41decb9421a1535fe2b
 
 COCOAPODS: 1.0.0

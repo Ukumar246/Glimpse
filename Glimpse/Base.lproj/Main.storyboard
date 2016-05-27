@@ -17,44 +17,89 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Glimpse" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vvW-l4-Q3u">
-                                <rect key="frame" x="20" y="115" width="335" height="114"/>
-                                <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="50"/>
-                                <color key="textColor" red="0.91764705882352937" green="0.32156862745098036" blue="0.078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="password" placeholder="password" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5iC-Zq-uhO">
-                                <rect key="frame" x="81" y="319" width="212" height="30"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done" secureTextEntry="YES"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="euf-aL-p5a">
-                                <rect key="frame" x="147" y="402" width="80" height="80"/>
-                                <color key="backgroundColor" red="0.91927928839999995" green="0.32034484860000001" blue="0.078049726999999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Glimpse">
-                                    <color key="titleColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="93t-wr-wAy">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QMT-G2-9RR">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Glimpse" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vvW-l4-Q3u">
+                                                <rect key="frame" x="8" y="130" width="359" height="114"/>
+                                                <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="50"/>
+                                                <color key="textColor" red="0.91764705882352937" green="0.32156862745098036" blue="0.078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="password" placeholder="password" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5iC-Zq-uhO">
+                                                <rect key="frame" x="81" y="319" width="212" height="30"/>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done" secureTextEntry="YES"/>
+                                                <connections>
+                                                    <action selector="editingBegan:" destination="FV4-nI-xOd" eventType="editingDidBegin" id="iF0-xY-EZm"/>
+                                                    <outlet property="delegate" destination="FV4-nI-xOd" id="o7U-JO-C9m"/>
+                                                </connections>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="euf-aL-p5a">
+                                                <rect key="frame" x="147" y="398" width="80" height="80"/>
+                                                <color key="backgroundColor" red="0.91927928839999995" green="0.32034484860000001" blue="0.078049726999999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Glimpse">
+                                                    <color key="titleColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="loginAction:" destination="FV4-nI-xOd" eventType="touchUpInside" id="wVj-Bo-7LM"/>
+                                                </connections>
+                                            </button>
+                                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="email" placeholder="email" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aKS-5B-fel">
+                                                <rect key="frame" x="81" y="267" width="212" height="30"/>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="next"/>
+                                                <connections>
+                                                    <action selector="editingBegan:" destination="FV4-nI-xOd" eventType="editingDidBegin" id="ZAW-Yz-JVT"/>
+                                                    <outlet property="delegate" destination="FV4-nI-xOd" id="n8f-ba-leC"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="QMT-G2-9RR" firstAttribute="top" secondItem="93t-wr-wAy" secondAttribute="top" id="43S-uT-wWY"/>
+                                    <constraint firstAttribute="bottom" secondItem="QMT-G2-9RR" secondAttribute="bottom" id="BML-Bl-g3l"/>
+                                    <constraint firstItem="QMT-G2-9RR" firstAttribute="centerY" secondItem="93t-wr-wAy" secondAttribute="centerY" id="E5s-5m-ESH"/>
+                                    <constraint firstItem="QMT-G2-9RR" firstAttribute="height" secondItem="93t-wr-wAy" secondAttribute="height" id="MzR-L4-fRZ"/>
+                                    <constraint firstItem="QMT-G2-9RR" firstAttribute="leading" secondItem="93t-wr-wAy" secondAttribute="leading" id="Vht-J3-vTo"/>
+                                    <constraint firstItem="QMT-G2-9RR" firstAttribute="width" secondItem="93t-wr-wAy" secondAttribute="width" id="bXi-B5-e2P"/>
+                                    <constraint firstAttribute="trailing" secondItem="QMT-G2-9RR" secondAttribute="trailing" id="gMe-M4-3Ie"/>
+                                    <constraint firstItem="QMT-G2-9RR" firstAttribute="centerX" secondItem="93t-wr-wAy" secondAttribute="centerX" id="st8-VF-mn2"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="MzR-L4-fRZ"/>
+                                        <exclude reference="bXi-B5-e2P"/>
+                                    </mask>
+                                </variation>
                                 <connections>
-                                    <action selector="loginAction:" destination="FV4-nI-xOd" eventType="touchUpInside" id="wVj-Bo-7LM"/>
+                                    <outlet property="delegate" destination="FV4-nI-xOd" id="hQG-XY-IAC"/>
                                 </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="email" placeholder="email" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aKS-5B-fel">
-                                <rect key="frame" x="81" y="265" width="212" height="30"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="next"/>
-                            </textField>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="93t-wr-wAy" firstAttribute="leading" secondItem="Ilp-8q-rmU" secondAttribute="leading" id="QsS-Yv-JHq"/>
+                            <constraint firstAttribute="trailing" secondItem="93t-wr-wAy" secondAttribute="trailing" id="SYh-DJ-QWg"/>
+                            <constraint firstItem="93t-wr-wAy" firstAttribute="top" secondItem="Ilp-8q-rmU" secondAttribute="top" id="UxY-Un-BCZ"/>
+                            <constraint firstItem="93t-wr-wAy" firstAttribute="bottom" secondItem="9uw-Wg-x2O" secondAttribute="top" id="cAT-d4-ymG"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="emailTextField" destination="aKS-5B-fel" id="IEN-uj-Nju"/>
                         <outlet property="glimpseButton" destination="euf-aL-p5a" id="YGK-q0-F1I"/>
                         <outlet property="passwordTextField" destination="5iC-Zq-uhO" id="FhJ-aW-3am"/>
+                        <outlet property="scrollView" destination="93t-wr-wAy" id="LvH-UO-FFS"/>
                         <segue destination="703-4V-yAM" kind="presentation" identifier="segue_LoginVC_RootVC" id="VoL-22-QFK"/>
                     </connections>
                 </viewController>
@@ -146,6 +191,10 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Glimpse Logo Digital" translatesAutoresizingMaskIntoConstraints="NO" id="m8H-iO-8iN">
                                 <rect key="frame" x="37" y="72" width="300" height="300"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="k3S-k1-ThL" appends="YES" id="fVQ-gJ-Fza"/>
+                                    <outletCollection property="gestureRecognizers" destination="xDT-oy-idg" appends="YES" id="iTx-za-6NC"/>
+                                </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.91927928839999995" green="0.32034484860000001" blue="0.078049726999999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -179,6 +228,18 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CqT-D9-NWS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="k3S-k1-ThL">
+                    <connections>
+                        <action selector="tappedImage:" destination="i9h-90-YUv" id="h1y-du-btX"/>
+                        <outlet property="delegate" destination="i9h-90-YUv" id="WhP-2K-tQt"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="xDT-oy-idg">
+                    <connections>
+                        <action selector="longPressedImage:" destination="i9h-90-YUv" id="JKi-cX-fyp"/>
+                        <outlet property="delegate" destination="i9h-90-YUv" id="NcD-T8-ize"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1583.5" y="-250.5"/>
         </scene>
@@ -197,28 +258,63 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RuS-CI-Rrx">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.91764705879999997" green="0.32156862749999998" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Pyp-GH-Cdp">
-                                    <size key="itemSize" width="360" height="321"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="itemSize" width="367.5" height="375"/>
+                                    <size key="headerReferenceSize" width="375" height="100"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCellIdentifer" id="7fQ-e9-Zey">
-                                        <rect key="frame" x="7.5" y="64" width="360" height="321"/>
+                                        <rect key="frame" x="4" y="174" width="367.5" height="375"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="360" height="321"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="367.5" height="375"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ASh-UY-pE1" customClass="PFImageView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="360" height="321"/>
+                                                    <rect key="frame" x="3" y="38" width="360" height="300"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="UG0-CW-KFY">
+                                    <rect key="frame" x="0.0" y="64" width="375" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SOv-IF-Wkn">
+                                            <rect key="frame" x="30" y="7" width="85" height="85"/>
+                                            <color key="backgroundColor" red="0.91764705879999997" green="0.32156862749999998" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                            <color key="tintColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <state key="normal" title="1">
+                                                <color key="titleColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                        </button>
+                                        <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HTj-aN-pku">
+                                            <rect key="frame" x="150" y="7" width="85" height="85"/>
+                                            <color key="backgroundColor" red="0.91764705879999997" green="0.32156862749999998" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                            <color key="tintColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <state key="normal" title="2">
+                                                <color key="titleColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                        </button>
+                                        <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rfq-S8-7Mm">
+                                            <rect key="frame" x="264" y="7" width="85" height="85"/>
+                                            <color key="backgroundColor" red="0.91764705879999997" green="0.32156862749999998" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                            <color key="tintColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <state key="normal" title="3">
+                                                <color key="titleColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="K7F-90-WcH" id="AxK-nm-YiN"/>
                                     <outlet property="delegate" destination="K7F-90-WcH" id="laY-no-pwF"/>

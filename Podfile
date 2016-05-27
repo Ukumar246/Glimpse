@@ -8,5 +8,6 @@ target 'Glimpse' do
 # Pods for Glimpse
 pod 'ALCameraViewController'
 pod 'EZSwipeController'
-
+pod 'Fusuma'
+pod 'CSStickyHeaderFlowLayout'
 end

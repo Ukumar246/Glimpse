@@ -21,6 +21,11 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate
     @IBOutlet weak var restartCamera: UIButton!
     @IBOutlet weak var postButton: UIButton!
     
+    var user:PFUser{
+        return PFUser.currentUser()!;
+    }
+    
+    
     // MARK: - Lifecycle
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated);
@@ -111,6 +116,9 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate
         imagePreview.image = image;
 
         capturedImage = image;
+        
+        postButton.setTitle("Post", forState: .Normal);
+        postButton.enabled = true;
     }
     
     func hidePreview() -> Void {
@@ -126,6 +134,9 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate
     @IBAction func postAction(sender: UIButton) {
         assert(capturedImage != nil);
         
+        // Disable Mulitple Posting
+        postButton.setTitle("Posting..", forState: .Normal);
+        postButton.enabled = false;
         postImageToParse(capturedImage!);
     }
     
@@ -143,12 +154,21 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate
             return;
         }
         post["comment"] = "Test/Glimpse/1.0/iOSApp";
+        post["user"] = user;
         
         post.saveInBackgroundWithBlock { (success:Bool, error:NSError?) in
-            print("* Post Uploaded Successfully!");
             
-            // Alert then start camera again
-            Helper.showQuickAlert("Posted!", message: "", viewController: self);
+            if success{
+                print("* Post Uploaded Successfully!");
+                // Alert then start camera again
+                Helper.showQuickAlert("Posted!", message: "", viewController: self);
+            }
+            else{
+                print("! Error Posting: ", error!.description);
+                // Alert then start camera again
+                Helper.showQuickAlert("Error!", message: error!.description, viewController: self);
+            }
+            
             self.startCamera();
         }
     }

@@ -9,16 +9,19 @@
 import UIKit
 import Parse
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: Private API
     let SegueIdentifier_RootVC:String = "segue_LoginVC_RootVC";
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
     @IBOutlet weak var glimpseButton: UIButton!
     
+    // Constants
+    let scrollViewOffset:CGPoint = CGPointMake(0, 60);
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +32,9 @@ class LoginViewController: UIViewController {
     //MARK: - UI Setup
     /// Sets up Apperance for the Views
     func setupViews() -> Void {
+        // Scroll View
+        scrollView.contentSize = view.frame.size;
+        scrollView.contentOffset = CGPointMake(0, 0);
         
         // Layer Setup
         glimpseButton.layer.cornerRadius = CGRectGetWidth(glimpseButton.frame) / 2;
@@ -56,6 +62,19 @@ class LoginViewController: UIViewController {
         border.borderWidth = width
         textField.layer.addSublayer(border)
         textField.layer.masksToBounds = true
+    }
+    
+    @IBAction func editingBegan(sender: UITextField) {
+        if sender.tag == 1{
+            if scrollView.contentOffset == CGPointMake(0, 0){
+                scrollView.setContentOffset(scrollViewOffset, animated: true);
+            }
+        }
+        else if sender.tag == 2{
+            if scrollView.contentOffset == CGPointMake(0, 0){
+                scrollView.setContentOffset(scrollViewOffset, animated: true);
+            }
+        }
     }
     
     
@@ -96,6 +115,12 @@ class LoginViewController: UIViewController {
         
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluateWithObject(testStr)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        scrollView.setContentOffset(CGPointMake(0, 0), animated: true);
+        textField.resignFirstResponder();
+        return false;
     }
     
     

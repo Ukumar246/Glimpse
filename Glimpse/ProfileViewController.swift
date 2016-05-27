@@ -42,9 +42,16 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    @IBAction func tappedImage(sender: UITapGestureRecognizer) {
+        
+    }
+    
+    @IBAction func longPressedImage(sender: UILongPressGestureRecognizer) {
+        print("* Long Pressed Image");
+    }
+    
     
     // MARK: - Navigation
-
     func gotoLoginScreen() -> Void {
         let loginVC_Identifier:String = "LoginViewController";
         let storyBoard = UIStoryboard(name: "Main", bundle: nil);

@@ -17,17 +17,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Glimpse" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJ7-sK-H8V">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Glimpse" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJ7-sK-H8V">
                                 <rect key="frame" x="20" y="267" width="335" height="133"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="335" id="fYm-aX-rKj"/>
+                                    <constraint firstAttribute="height" constant="133" id="rzh-qF-bSs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="45"/>
                                 <color key="textColor" red="0.88810820253434342" green="0.30948253840895845" blue="0.075403202960614243" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Glimpse Logo Digital" translatesAutoresizingMaskIntoConstraints="NO" id="Bdi-wg-qfi">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Glimpse Logo Digital" translatesAutoresizingMaskIntoConstraints="NO" id="Bdi-wg-qfi">
                                 <rect key="frame" x="142" y="206" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="AjS-we-xNQ"/>
+                                    <constraint firstAttribute="height" constant="90" id="TUE-eU-578"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Bdi-wg-qfi" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="186" id="4fs-e9-cRP"/>
+                            <constraint firstItem="zJ7-sK-H8V" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="8pj-OW-Xtv"/>
+                            <constraint firstItem="zJ7-sK-H8V" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="bks-Wc-mXw"/>
+                            <constraint firstItem="Bdi-wg-qfi" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="tSv-Gh-1wk"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>

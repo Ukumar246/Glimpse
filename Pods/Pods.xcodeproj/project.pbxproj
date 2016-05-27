@@ -7,112 +7,176 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1469899713DE147D7E5AF6A889D85CAD /* ALCameraViewController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6965BE358021B180250D080BD6488A /* ALCameraViewController-dummy.m */; };
-		193EA299FF067C9BD52DD52D3E494155 /* ALImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343021F877418B8FA52035B605FC0EED /* ALImageExtensions.swift */; };
-		31ED0B55A7E417ADEE29CC50E008F415 /* Pods-Glimpse-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F45FDBAA30E38F400CC20614DE9CED58 /* Pods-Glimpse-dummy.m */; };
-		3549919DFB699FD1F2F3EDAC717D9F3B /* ALCameraShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B3EDF0AD7FDBFDD9F0B14FC3D012BD /* ALCameraShot.swift */; };
+		021E51C45E8C85E8D2A2B58E732686E5 /* FSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828F26CABCE9B02138AC3D66A8F3337C /* FSConstants.swift */; };
+		071BF5F9A3D162F11C72D6654C4A92A5 /* FSCameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5446BED371269B2F87484FB640C25DB /* FSCameraView.xib */; };
+		07AFF06C8B4AE2737036729F7373E8F6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		095187D19D92E711C84D41157070C767 /* CSStickyHeaderFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DCAB5400A9F33870BD58F12C0FFF3259 /* CSStickyHeaderFlowLayout.m */; };
+		1283FF810941EED86E367EAE06B1DE2D /* CSStickyHeaderFlowLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = FAF866C67AB82991DEF6E7A6AE58665D /* CSStickyHeaderFlowLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		140645840FCF30434382568B5B6F7AAE /* FSAlbumViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDCEE97BABE253AE9E4D32F61ABE69D2 /* FSAlbumViewCell.xib */; };
+		1469899713DE147D7E5AF6A889D85CAD /* ALCameraViewController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B0C01B60BE863F9ADEAB4AB84FA147 /* ALCameraViewController-dummy.m */; };
+		193EA299FF067C9BD52DD52D3E494155 /* ALImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF71F0A205618D1D31E37DAEDA22D930 /* ALImageExtensions.swift */; };
+		32E454EF4A53D527BB669AF7724BC730 /* FSCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09875575BE63A81266BCA308EB91A846 /* FSCameraView.swift */; };
+		3549919DFB699FD1F2F3EDAC717D9F3B /* ALCameraShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A7C10EF4F01B55371DB278AA3B75A7 /* ALCameraShot.swift */; };
+		392CBD55D7E631BCB89F4DA95CD9712B /* FSAlbumViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F6701890EF48D8A92D9FECA90581EB /* FSAlbumViewCell.swift */; };
 		3C247C875321A4E9A2ABFEBE1C4DB42C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		42C2E583ECAC07035E4E87DDF2DF3CB7 /* EZSwipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116B0E196686599FBE82C6D3B02425B7 /* EZSwipeController.swift */; };
-		4DD31CEE35CDE9004D60FC77A622F782 /* ALImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E13031193156B4E2B6CB80A6E2D228F /* ALImageModel.swift */; };
-		5CE1777434431F010C97206913082B3E /* ALImagePickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E3DB00B60035F1F36D14061CA07483 /* ALImagePickerViewDelegate.swift */; };
-		5CFBF85102C21F1F3A245367D68730C3 /* ALConfirmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 614D2CC7C758738163FC6B92F5498695 /* ALConfirmViewController.xib */; };
-		654D85EDD64A5CA0D7C26DCE8C56F118 /* ALImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50E1A0C9611353D130472C6DDB78073 /* ALImageCell.swift */; };
-		662C536BBCEADBA6980FCC6BFB0C16CD /* ALCropOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B843EA86F2CB494935D1106BA50FB8 /* ALCropOverlay.swift */; };
-		6CD090AA02531CF1A7B63D106C03C246 /* ALCameraViewAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E66DEA33629FD5E28B3D34FDC101B9D3 /* ALCameraViewAssets.xcassets */; };
-		8BBCCF7E9700049AC5BBBE9E5DEF63B0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		95478BD66E9C2E5DC19B9F3594FF89FB /* EZSwipeController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 366D32A3757256814BA88F5E0DBA2935 /* EZSwipeController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		97FAFEDC35E67D865B635BCA0629315C /* ALImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C01F193CA26DA37F0BA38B10CD4CB6E /* ALImagePickerViewController.swift */; };
-		A482C49031CC235A39DAF984ED03CCBE /* ALPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CCC9A285AE129862439A96E1820164 /* ALPermissionsView.swift */; };
-		A6282795B5B1F680D418311550D06084 /* ALImageFetchingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771C9ADDA09ED879C62E2715D4DEB4C3 /* ALImageFetchingInteractor.swift */; };
+		41F1113CAB35415461A635192E3BA801 /* Fusuma-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 486E78FCEE7E48FE8A83A3E803CEF7F9 /* Fusuma-dummy.m */; };
+		42C2E583ECAC07035E4E87DDF2DF3CB7 /* EZSwipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7506786A8F16691F93D2AC355BCA92 /* EZSwipeController.swift */; };
+		47D4C5AFDC0CBB822D4CF998461BADDC /* FSAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AA1E12B226E3FF639CD40D33164E51 /* FSAlbumView.swift */; };
+		4A16FB228E50FD6F5936363C11A20066 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		4DD31CEE35CDE9004D60FC77A622F782 /* ALImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0FFCAF27BFB07158D882F2FC55F03C /* ALImageModel.swift */; };
+		567BDEA0D15A2E9B281D33907F16899C /* CSStickyHeaderFlowLayoutAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CEADB6203CEDF865057C7290E098E06 /* CSStickyHeaderFlowLayoutAttributes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5A7B0492885F86CBEF9D0D71416E6D26 /* FSImageCropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10006686D2B01E59AF83639D4C81CEDB /* FSImageCropView.swift */; };
+		5C2826330EF1E5859DF4B641B69233A0 /* FusumaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1025E7B69A7679B00A2290FB0A645B1A /* FusumaViewController.xib */; };
+		5CE1777434431F010C97206913082B3E /* ALImagePickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374FB81F7C18E25C4B9E6BCE73C31D24 /* ALImagePickerViewDelegate.swift */; };
+		5CFBF85102C21F1F3A245367D68730C3 /* ALConfirmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2641533DD821C398834A0335ABF86EDC /* ALConfirmViewController.xib */; };
+		654D85EDD64A5CA0D7C26DCE8C56F118 /* ALImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7188552481E00DB3F43D4CF6EC382BF0 /* ALImageCell.swift */; };
+		662C536BBCEADBA6980FCC6BFB0C16CD /* ALCropOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D2D1CB432643A1CCDBC2D8F690D040 /* ALCropOverlay.swift */; };
+		67460C9EDF1325A06D500977B2B46AE2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		6CD090AA02531CF1A7B63D106C03C246 /* ALCameraViewAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2711AC411A1C497F24D9BF251F50CB51 /* ALCameraViewAssets.xcassets */; };
+		8BA292C9EA7F3180606EE6722850780A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4B8476CB5481C19479C45B0810813A2 /* Assets.xcassets */; };
+		95478BD66E9C2E5DC19B9F3594FF89FB /* EZSwipeController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D25C1A74E009896944E799BB968F2A4C /* EZSwipeController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		957A78BB28A5BF105D75F5EACFFAE5B0 /* FSAlbumView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D11BA089FBAB5923B8F37359724B4B24 /* FSAlbumView.xib */; };
+		97FAFEDC35E67D865B635BCA0629315C /* ALImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB48E827827F407213EFFAC11E5ACB0 /* ALImagePickerViewController.swift */; };
+		A008AFE1365F22DAE27DAACC48FFDF9F /* Pods-Glimpse-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 63C86586FC3DE5040AF5DC2108D1E22F /* Pods-Glimpse-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A482C49031CC235A39DAF984ED03CCBE /* ALPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB460EEE512A02ED9D8F1372545B07B1 /* ALPermissionsView.swift */; };
+		A6282795B5B1F680D418311550D06084 /* ALImageFetchingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5C48F27C966C44A5A6EA9880962C47 /* ALImageFetchingInteractor.swift */; };
 		A977AB8FB0C34AD3D56221A27803BAF2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		B32F8EB1F34FB3B884CAAC7EA0316BE3 /* ALUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA03D7800056A55023F5201B609AAC4E /* ALUtilities.swift */; };
-		B333CF8E1F82624581BAC3DD3AC91C0B /* ALConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC8D339F15239E4534F84B98A93342E /* ALConfirmViewController.swift */; };
-		BB2B9C18D82854478B6380874B9F6C53 /* ALCameraView.strings in Resources */ = {isa = PBXBuildFile; fileRef = 71203E8D0C82AA1F0C22AE510875185B /* ALCameraView.strings */; };
-		C266178B1554011E1429289C4C1B006D /* EZSwipeController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9085061CC8FF38CB5233C63579F495 /* EZSwipeController-dummy.m */; };
-		CFC9038E02F36BD83B5EBC1722B0BF2A /* ALCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7ABAC0AB3A02FA794C60692BA14F5 /* ALCameraView.swift */; };
-		D2D5ACB75EA3DB626D319122AA55999C /* ALCameraViewController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 90D275E20D513D4AE2584EBFC2940B25 /* ALCameraViewController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E0CED312C9265AA8EA9507BC7C566F59 /* Pods-Glimpse-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 63C86586FC3DE5040AF5DC2108D1E22F /* Pods-Glimpse-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E770DBC7A9C08B534D513DE6397C45DA /* ALCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F906519FD4DBD7A392B0CF2E40F63D18 /* ALCameraViewController.swift */; };
+		AC909F21BD5C748CD4372C0457CF3F1A /* CSStickyHeaderFlowLayoutAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = A5009825618CE43E08CCD004214EE092 /* CSStickyHeaderFlowLayoutAttributes.m */; };
+		B32F8EB1F34FB3B884CAAC7EA0316BE3 /* ALUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D253EE56FEA2B2B337B6D4A76E789E5 /* ALUtilities.swift */; };
+		B333CF8E1F82624581BAC3DD3AC91C0B /* ALConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA772CAC4936A4AD4B5D88674CBE95A6 /* ALConfirmViewController.swift */; };
+		BB2B9C18D82854478B6380874B9F6C53 /* ALCameraView.strings in Resources */ = {isa = PBXBuildFile; fileRef = 576EACEAE60994D00F1688BEF425ED7C /* ALCameraView.strings */; };
+		C266178B1554011E1429289C4C1B006D /* EZSwipeController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D1D3519F5109A60F3A64B34D412A2727 /* EZSwipeController-dummy.m */; };
+		C4ABDF207C548E58E309B2B34E433434 /* CSStickyHeaderFlowLayout-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F02939EF8D8C2BE85F0EB9675F50B39 /* CSStickyHeaderFlowLayout-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C775FBB08DBA6936822E2BC00F18AF4C /* CSStickyHeaderFlowLayout-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DE7EA759E1D5E16EB91B88F347ECEB /* CSStickyHeaderFlowLayout-dummy.m */; };
+		CAF5C9A210F8C61D30176FD2FDD7E246 /* FusumaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B1593A84224FA226AAD8CEA3D1454F /* FusumaViewController.swift */; };
+		CFC9038E02F36BD83B5EBC1722B0BF2A /* ALCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E82AA55564071B80329906DC50CBA5 /* ALCameraView.swift */; };
+		D2D5ACB75EA3DB626D319122AA55999C /* ALCameraViewController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B3074B03AFCA765AF472D6505C74E4B /* ALCameraViewController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D65A4DF004341CFFB1699A61B289600F /* Fusuma-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AAD9D879C6C1ED578E5DF4C3659D9A17 /* Fusuma-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E326F62C29B9A5FB5CB7918F17D09C81 /* Pods-Glimpse-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F45FDBAA30E38F400CC20614DE9CED58 /* Pods-Glimpse-dummy.m */; };
+		E770DBC7A9C08B534D513DE6397C45DA /* ALCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8644AF2060A7133DB8347C2F5D6A92 /* ALCameraViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5F00B8A99B48E85CEF7972495C0AC713 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D168A90FC275B7C8B0DDF59974BBE8BE;
-			remoteInfo = EZSwipeController;
-		};
-		68D4E7DACBD7B2185D7A9A89C298D426 /* PBXContainerItemProxy */ = {
+		194F978F147F187D66A2F46B8DFACB30 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 6B9DF4776A5114EA56DC8E036C668D15;
 			remoteInfo = ALCameraViewController;
 		};
+		9E963C721DEA943834FEC33FAC10E17E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 30C445E6D8703D94CB06D42EB47820DE;
+			remoteInfo = CSStickyHeaderFlowLayout;
+		};
+		D8F0B96C246073FD3D8911D41799E0BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D168A90FC275B7C8B0DDF59974BBE8BE;
+			remoteInfo = EZSwipeController;
+		};
+		DD0142402E61497C220592C22DE856EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DFA5878F438E022805BFFB1CD6120E2C;
+			remoteInfo = Fusuma;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		116B0E196686599FBE82C6D3B02425B7 /* EZSwipeController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EZSwipeController.swift; sourceTree = "<group>"; };
-		1C065BC7187C0822FFE3CC3566461C50 /* EZSwipeController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EZSwipeController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		21B843EA86F2CB494935D1106BA50FB8 /* ALCropOverlay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALCropOverlay.swift; path = ALCameraViewController/Views/ALCropOverlay.swift; sourceTree = "<group>"; };
+		00A7C10EF4F01B55371DB278AA3B75A7 /* ALCameraShot.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALCameraShot.swift; path = ALCameraViewController/Utilities/ALCameraShot.swift; sourceTree = "<group>"; };
+		09875575BE63A81266BCA308EB91A846 /* FSCameraView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FSCameraView.swift; path = Sources/FSCameraView.swift; sourceTree = "<group>"; };
+		0F02939EF8D8C2BE85F0EB9675F50B39 /* CSStickyHeaderFlowLayout-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CSStickyHeaderFlowLayout-umbrella.h"; sourceTree = "<group>"; };
+		10006686D2B01E59AF83639D4C81CEDB /* FSImageCropView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FSImageCropView.swift; path = Sources/FSImageCropView.swift; sourceTree = "<group>"; };
+		1025E7B69A7679B00A2290FB0A645B1A /* FusumaViewController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = FusumaViewController.xib; path = Sources/FusumaViewController.xib; sourceTree = "<group>"; };
+		14DE7EA759E1D5E16EB91B88F347ECEB /* CSStickyHeaderFlowLayout-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CSStickyHeaderFlowLayout-dummy.m"; sourceTree = "<group>"; };
+		168A171F40DEDB149955FF2088053479 /* ALCameraViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ALCameraViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DB48E827827F407213EFFAC11E5ACB0 /* ALImagePickerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALImagePickerViewController.swift; path = ALCameraViewController/ViewController/ALImagePickerViewController.swift; sourceTree = "<group>"; };
 		22698B4A5FE30912278E9B8DAFB50D6E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3090A0321E3B5B0B534C3FD29DBE88D9 /* Pods_Glimpse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glimpse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		343021F877418B8FA52035B605FC0EED /* ALImageExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALImageExtensions.swift; path = ALCameraViewController/Utilities/ALImageExtensions.swift; sourceTree = "<group>"; };
-		366D32A3757256814BA88F5E0DBA2935 /* EZSwipeController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EZSwipeController-umbrella.h"; sourceTree = "<group>"; };
+		2641533DD821C398834A0335ABF86EDC /* ALConfirmViewController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = ALConfirmViewController.xib; path = ALCameraViewController/ViewController/ALConfirmViewController.xib; sourceTree = "<group>"; };
+		2711AC411A1C497F24D9BF251F50CB51 /* ALCameraViewAssets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = ALCameraViewAssets.xcassets; path = ALCameraViewController/ALCameraViewAssets.xcassets; sourceTree = "<group>"; };
+		28D74D5F659D0EF168E60BD6D15F0E4B /* EZSwipeController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = EZSwipeController.modulemap; sourceTree = "<group>"; };
+		2B3074B03AFCA765AF472D6505C74E4B /* ALCameraViewController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ALCameraViewController-umbrella.h"; sourceTree = "<group>"; };
+		32956D9AC0477A191A92B93578EF1B90 /* ALCameraViewController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ALCameraViewController.xcconfig; sourceTree = "<group>"; };
+		35B1593A84224FA226AAD8CEA3D1454F /* FusumaViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FusumaViewController.swift; path = Sources/FusumaViewController.swift; sourceTree = "<group>"; };
+		374FB81F7C18E25C4B9E6BCE73C31D24 /* ALImagePickerViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALImagePickerViewDelegate.swift; path = ALCameraViewController/ViewController/ALImagePickerViewDelegate.swift; sourceTree = "<group>"; };
+		390010B8DAA2E58DC2FB792E0014D10C /* ALCameraViewController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = ALCameraViewController.modulemap; sourceTree = "<group>"; };
 		3A18589BA9717FC872FC30D371AD86F4 /* Pods-Glimpse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Glimpse.release.xcconfig"; sourceTree = "<group>"; };
-		3F9085061CC8FF38CB5233C63579F495 /* EZSwipeController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EZSwipeController-dummy.m"; sourceTree = "<group>"; };
-		42B3EDF0AD7FDBFDD9F0B14FC3D012BD /* ALCameraShot.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALCameraShot.swift; path = ALCameraViewController/Utilities/ALCameraShot.swift; sourceTree = "<group>"; };
-		4E13031193156B4E2B6CB80A6E2D228F /* ALImageModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALImageModel.swift; path = ALCameraViewController/Models/ALImageModel.swift; sourceTree = "<group>"; };
+		3D253EE56FEA2B2B337B6D4A76E789E5 /* ALUtilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALUtilities.swift; path = ALCameraViewController/Utilities/ALUtilities.swift; sourceTree = "<group>"; };
+		44F6701890EF48D8A92D9FECA90581EB /* FSAlbumViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FSAlbumViewCell.swift; path = Sources/FSAlbumViewCell.swift; sourceTree = "<group>"; };
+		45D2D1CB432643A1CCDBC2D8F690D040 /* ALCropOverlay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALCropOverlay.swift; path = ALCameraViewController/Views/ALCropOverlay.swift; sourceTree = "<group>"; };
+		486E78FCEE7E48FE8A83A3E803CEF7F9 /* Fusuma-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Fusuma-dummy.m"; sourceTree = "<group>"; };
+		4C7506786A8F16691F93D2AC355BCA92 /* EZSwipeController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EZSwipeController.swift; sourceTree = "<group>"; };
+		4CC5B729C82B998C93560039C50AFE90 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FDAE7388FA404CB2909F9D6C360C3E6 /* Pods-Glimpse-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Glimpse-frameworks.sh"; sourceTree = "<group>"; };
-		55101CE27487E8171B9E1D74D058EAC4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5C01F193CA26DA37F0BA38B10CD4CB6E /* ALImagePickerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALImagePickerViewController.swift; path = ALCameraViewController/ViewController/ALImagePickerViewController.swift; sourceTree = "<group>"; };
-		5E6965BE358021B180250D080BD6488A /* ALCameraViewController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ALCameraViewController-dummy.m"; sourceTree = "<group>"; };
-		614D2CC7C758738163FC6B92F5498695 /* ALConfirmViewController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = ALConfirmViewController.xib; path = ALCameraViewController/ViewController/ALConfirmViewController.xib; sourceTree = "<group>"; };
+		5225022EA8F64E35A1340E41DCC3D4CE /* CSStickyHeaderFlowLayout.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = CSStickyHeaderFlowLayout.modulemap; sourceTree = "<group>"; };
+		576EACEAE60994D00F1688BEF425ED7C /* ALCameraView.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ALCameraView.strings; path = ALCameraViewController/ALCameraView.strings; sourceTree = "<group>"; };
+		59B2F9778935468839527E7966939486 /* Fusuma.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Fusuma.xcconfig; sourceTree = "<group>"; };
+		5F1AAA8533BFE3CF654049A9A6EFF5A4 /* EZSwipeController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EZSwipeController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63C86586FC3DE5040AF5DC2108D1E22F /* Pods-Glimpse-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Glimpse-umbrella.h"; sourceTree = "<group>"; };
-		67C6257699C040E8188B23D6151E1249 /* EZSwipeController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EZSwipeController.xcconfig; sourceTree = "<group>"; };
+		68CCE62B24BD779CA79B89FD362675FD /* ALCameraViewController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ALCameraViewController-prefix.pch"; sourceTree = "<group>"; };
 		6BA2B5F8AAFA6B144DC037824FAD5D80 /* Pods-Glimpse-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Glimpse-acknowledgements.plist"; sourceTree = "<group>"; };
-		6C48AB080D34094051299F535C50A39E /* EZSwipeController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = EZSwipeController.modulemap; sourceTree = "<group>"; };
-		6EE302064E8E605E99B5D51F9ADD1674 /* ALCameraViewController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ALCameraViewController-prefix.pch"; sourceTree = "<group>"; };
-		71203E8D0C82AA1F0C22AE510875185B /* ALCameraView.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = ALCameraView.strings; path = ALCameraViewController/ALCameraView.strings; sourceTree = "<group>"; };
-		766BB63411CF6A5EA46C637706FF5018 /* ALCameraViewController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = ALCameraViewController.modulemap; sourceTree = "<group>"; };
-		771C9ADDA09ED879C62E2715D4DEB4C3 /* ALImageFetchingInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALImageFetchingInteractor.swift; path = ALCameraViewController/Utilities/ALImageFetchingInteractor.swift; sourceTree = "<group>"; };
+		7188552481E00DB3F43D4CF6EC382BF0 /* ALImageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALImageCell.swift; path = ALCameraViewController/Views/ALImageCell.swift; sourceTree = "<group>"; };
+		75E82AA55564071B80329906DC50CBA5 /* ALCameraView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALCameraView.swift; path = ALCameraViewController/Views/ALCameraView.swift; sourceTree = "<group>"; };
+		76B0C01B60BE863F9ADEAB4AB84FA147 /* ALCameraViewController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ALCameraViewController-dummy.m"; sourceTree = "<group>"; };
+		7A4E4C6D2B29F200EB2C4F1D129FFFE7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7C3F23758D5FE23B0C8BEB844B865DDB /* Pods_Glimpse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glimpse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		811A99A024C97B872AC97BC2165317EB /* Pods-Glimpse-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Glimpse-resources.sh"; sourceTree = "<group>"; };
-		90D275E20D513D4AE2584EBFC2940B25 /* ALCameraViewController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ALCameraViewController-umbrella.h"; sourceTree = "<group>"; };
+		828F26CABCE9B02138AC3D66A8F3337C /* FSConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FSConstants.swift; path = Sources/FSConstants.swift; sourceTree = "<group>"; };
+		84AA1E12B226E3FF639CD40D33164E51 /* FSAlbumView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FSAlbumView.swift; path = Sources/FSAlbumView.swift; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		B2ECC7692CC0C4C7159E9327D52A45B9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B6B340CAD7326BDB76DE5A2506A17B7C /* ALCameraViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ALCameraViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA03D7800056A55023F5201B609AAC4E /* ALUtilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALUtilities.swift; path = ALCameraViewController/Utilities/ALUtilities.swift; sourceTree = "<group>"; };
-		BBE0A20D94AF58ED3B1DFFB587A636BD /* EZSwipeController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EZSwipeController-prefix.pch"; sourceTree = "<group>"; };
+		9A0FFCAF27BFB07158D882F2FC55F03C /* ALImageModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALImageModel.swift; path = ALCameraViewController/Models/ALImageModel.swift; sourceTree = "<group>"; };
+		9C6CEC4FACDD6F86756A21279CBD1283 /* Fusuma-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Fusuma-prefix.pch"; sourceTree = "<group>"; };
+		9CEADB6203CEDF865057C7290E098E06 /* CSStickyHeaderFlowLayoutAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSStickyHeaderFlowLayoutAttributes.h; path = Classes/CSStickyHeaderFlowLayoutAttributes.h; sourceTree = "<group>"; };
+		A10D0F2158624298EFD4A17CB464106E /* EZSwipeController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EZSwipeController.xcconfig; sourceTree = "<group>"; };
+		A5009825618CE43E08CCD004214EE092 /* CSStickyHeaderFlowLayoutAttributes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSStickyHeaderFlowLayoutAttributes.m; path = Classes/CSStickyHeaderFlowLayoutAttributes.m; sourceTree = "<group>"; };
+		AAD9D879C6C1ED578E5DF4C3659D9A17 /* Fusuma-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Fusuma-umbrella.h"; sourceTree = "<group>"; };
+		AF71F0A205618D1D31E37DAEDA22D930 /* ALImageExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALImageExtensions.swift; path = ALCameraViewController/Utilities/ALImageExtensions.swift; sourceTree = "<group>"; };
+		B0FB9F04AB4CC6FB7616442D62343A8F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B39268B9DBD385780A973B2F773874CA /* CSStickyHeaderFlowLayout-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CSStickyHeaderFlowLayout-prefix.pch"; sourceTree = "<group>"; };
+		B4B8476CB5481C19479C45B0810813A2 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Sources/Assets.xcassets; sourceTree = "<group>"; };
+		B5446BED371269B2F87484FB640C25DB /* FSCameraView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = FSCameraView.xib; path = Sources/FSCameraView.xib; sourceTree = "<group>"; };
 		BD8A2721F250D0625997BC8028D8F054 /* Pods-Glimpse-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Glimpse-acknowledgements.markdown"; sourceTree = "<group>"; };
-		BEF7ABAC0AB3A02FA794C60692BA14F5 /* ALCameraView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALCameraView.swift; path = ALCameraViewController/Views/ALCameraView.swift; sourceTree = "<group>"; };
-		C2CCC9A285AE129862439A96E1820164 /* ALPermissionsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALPermissionsView.swift; path = ALCameraViewController/Views/ALPermissionsView.swift; sourceTree = "<group>"; };
-		C50E1A0C9611353D130472C6DDB78073 /* ALImageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALImageCell.swift; path = ALCameraViewController/Views/ALImageCell.swift; sourceTree = "<group>"; };
+		CCD85BA563CD334AF049D5AEDE19C671 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		CF0E2131F6CC39A66E673AC68719453B /* ALCameraViewController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ALCameraViewController.xcconfig; sourceTree = "<group>"; };
-		CFC8D339F15239E4534F84B98A93342E /* ALConfirmViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALConfirmViewController.swift; path = ALCameraViewController/ViewController/ALConfirmViewController.swift; sourceTree = "<group>"; };
-		D3E3DB00B60035F1F36D14061CA07483 /* ALImagePickerViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALImagePickerViewDelegate.swift; path = ALCameraViewController/ViewController/ALImagePickerViewDelegate.swift; sourceTree = "<group>"; };
+		D11BA089FBAB5923B8F37359724B4B24 /* FSAlbumView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = FSAlbumView.xib; path = Sources/FSAlbumView.xib; sourceTree = "<group>"; };
+		D15206B03DA89969ACE0DCEB3076FCA1 /* Fusuma.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Fusuma.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1D3519F5109A60F3A64B34D412A2727 /* EZSwipeController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EZSwipeController-dummy.m"; sourceTree = "<group>"; };
+		D25C1A74E009896944E799BB968F2A4C /* EZSwipeController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EZSwipeController-umbrella.h"; sourceTree = "<group>"; };
+		D52212A20F72DE444F667DF8A8A361C0 /* CSStickyHeaderFlowLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CSStickyHeaderFlowLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA772CAC4936A4AD4B5D88674CBE95A6 /* ALConfirmViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALConfirmViewController.swift; path = ALCameraViewController/ViewController/ALConfirmViewController.swift; sourceTree = "<group>"; };
+		DB0B53BC3720F7F933DFE674B5B943FA /* Fusuma.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Fusuma.modulemap; sourceTree = "<group>"; };
+		DB460EEE512A02ED9D8F1372545B07B1 /* ALPermissionsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALPermissionsView.swift; path = ALCameraViewController/Views/ALPermissionsView.swift; sourceTree = "<group>"; };
+		DCAB5400A9F33870BD58F12C0FFF3259 /* CSStickyHeaderFlowLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSStickyHeaderFlowLayout.m; path = Classes/CSStickyHeaderFlowLayout.m; sourceTree = "<group>"; };
+		DDCEE97BABE253AE9E4D32F61ABE69D2 /* FSAlbumViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = FSAlbumViewCell.xib; path = Sources/FSAlbumViewCell.xib; sourceTree = "<group>"; };
+		DF5C48F27C966C44A5A6EA9880962C47 /* ALImageFetchingInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALImageFetchingInteractor.swift; path = ALCameraViewController/Utilities/ALImageFetchingInteractor.swift; sourceTree = "<group>"; };
+		E02C7C5A7B9756E4F20A49F4E7F3B367 /* EZSwipeController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EZSwipeController-prefix.pch"; sourceTree = "<group>"; };
 		E26447681956CA15E220C9A84F6B375A /* Pods-Glimpse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Glimpse.debug.xcconfig"; sourceTree = "<group>"; };
 		E448C5CA7C7BC5B68B3F63D2DDD29761 /* Pods-Glimpse.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Glimpse.modulemap"; sourceTree = "<group>"; };
-		E66DEA33629FD5E28B3D34FDC101B9D3 /* ALCameraViewAssets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = ALCameraViewAssets.xcassets; path = ALCameraViewController/ALCameraViewAssets.xcassets; sourceTree = "<group>"; };
+		E479D0C9822697215885F91D502904AB /* CSStickyHeaderFlowLayout.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CSStickyHeaderFlowLayout.xcconfig; sourceTree = "<group>"; };
+		EB8644AF2060A7133DB8347C2F5D6A92 /* ALCameraViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALCameraViewController.swift; path = ALCameraViewController/ViewController/ALCameraViewController.swift; sourceTree = "<group>"; };
 		F45FDBAA30E38F400CC20614DE9CED58 /* Pods-Glimpse-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Glimpse-dummy.m"; sourceTree = "<group>"; };
-		F906519FD4DBD7A392B0CF2E40F63D18 /* ALCameraViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALCameraViewController.swift; path = ALCameraViewController/ViewController/ALCameraViewController.swift; sourceTree = "<group>"; };
+		FAF866C67AB82991DEF6E7A6AE58665D /* CSStickyHeaderFlowLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSStickyHeaderFlowLayout.h; path = Classes/CSStickyHeaderFlowLayout.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2A157C3D77199E01F13D0600DB06A80D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67460C9EDF1325A06D500977B2B46AE2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4295ABDE8F0DFBECB65E87B403670BFB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				3C247C875321A4E9A2ABFEBE1C4DB42C /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5E71562299E30A7CCB0436AD11AA48BD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8BBCCF7E9700049AC5BBBE9E5DEF63B0 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,35 +188,44 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BBCCF9F79793F43520017E6EC9742A13 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07AFF06C8B4AE2737036729F7373E8F6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6737A0D938879F13C560EAFDDF31A93 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A16FB228E50FD6F5936363C11A20066 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		05AEDE37393D38E6F88F5B5DB3F4997B /* Pods */ = {
+		08EA1C0C80CC85587DF2DAC1310B3860 /* CSStickyHeaderFlowLayout */ = {
 			isa = PBXGroup;
 			children = (
-				A70148786C915DB8EE43D4744824D007 /* ALCameraViewController */,
-				127EE996837883F1C944E3DB49DE7C54 /* EZSwipeController */,
+				FAF866C67AB82991DEF6E7A6AE58665D /* CSStickyHeaderFlowLayout.h */,
+				DCAB5400A9F33870BD58F12C0FFF3259 /* CSStickyHeaderFlowLayout.m */,
+				9CEADB6203CEDF865057C7290E098E06 /* CSStickyHeaderFlowLayoutAttributes.h */,
+				A5009825618CE43E08CCD004214EE092 /* CSStickyHeaderFlowLayoutAttributes.m */,
+				F89E9315A0F45681AB7E083D4DEED021 /* Support Files */,
 			);
-			name = Pods;
+			path = CSStickyHeaderFlowLayout;
 			sourceTree = "<group>";
 		};
-		127EE996837883F1C944E3DB49DE7C54 /* EZSwipeController */ = {
+		0AF0F62A9A1CB1BD3BA4D7B19C03C6CE /* EZSwipeController */ = {
 			isa = PBXGroup;
 			children = (
-				116B0E196686599FBE82C6D3B02425B7 /* EZSwipeController.swift */,
-				F92B8C32ABA6357C7A6D65F95F02B978 /* Support Files */,
+				4C7506786A8F16691F93D2AC355BCA92 /* EZSwipeController.swift */,
+				5DFF09FE5E4E678701F81FCEAD09D09B /* Support Files */,
 			);
 			path = EZSwipeController;
-			sourceTree = "<group>";
-		};
-		1815A3BEC619B0063504DF389F792628 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				71203E8D0C82AA1F0C22AE510875185B /* ALCameraView.strings */,
-				E66DEA33629FD5E28B3D34FDC101B9D3 /* ALCameraViewAssets.xcassets */,
-				614D2CC7C758738163FC6B92F5498695 /* ALConfirmViewController.xib */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		201C7372DD0AA52284E155B6BB586719 /* Pods-Glimpse */ = {
@@ -173,6 +246,20 @@
 			path = "Target Support Files/Pods-Glimpse";
 			sourceTree = "<group>";
 		};
+		2BC4116D24E5210F1B893EFD304B385B /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				390010B8DAA2E58DC2FB792E0014D10C /* ALCameraViewController.modulemap */,
+				32956D9AC0477A191A92B93578EF1B90 /* ALCameraViewController.xcconfig */,
+				76B0C01B60BE863F9ADEAB4AB84FA147 /* ALCameraViewController-dummy.m */,
+				68CCE62B24BD779CA79B89FD362675FD /* ALCameraViewController-prefix.pch */,
+				2B3074B03AFCA765AF472D6505C74E4B /* ALCameraViewController-umbrella.h */,
+				4CC5B729C82B998C93560039C50AFE90 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/ALCameraViewController";
+			sourceTree = "<group>";
+		};
 		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,37 +268,69 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		419E2DC9DF6E70384AEFA9D5AB1D7BDD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EC7869F7265D9A6D39547B36736024B5 /* ALCameraViewController */,
+				08EA1C0C80CC85587DF2DAC1310B3860 /* CSStickyHeaderFlowLayout */,
+				0AF0F62A9A1CB1BD3BA4D7B19C03C6CE /* EZSwipeController */,
+				58B0CAAFA431A540323697990CDEC61F /* Fusuma */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		58B0CAAFA431A540323697990CDEC61F /* Fusuma */ = {
+			isa = PBXGroup;
+			children = (
+				84AA1E12B226E3FF639CD40D33164E51 /* FSAlbumView.swift */,
+				44F6701890EF48D8A92D9FECA90581EB /* FSAlbumViewCell.swift */,
+				09875575BE63A81266BCA308EB91A846 /* FSCameraView.swift */,
+				828F26CABCE9B02138AC3D66A8F3337C /* FSConstants.swift */,
+				10006686D2B01E59AF83639D4C81CEDB /* FSImageCropView.swift */,
+				35B1593A84224FA226AAD8CEA3D1454F /* FusumaViewController.swift */,
+				E63FE6CA2C7A461623C9124BCD00FDB6 /* Resources */,
+				8692F84D35F397B8DC544E046B0106B9 /* Support Files */,
+			);
+			path = Fusuma;
+			sourceTree = "<group>";
+		};
+		5DFF09FE5E4E678701F81FCEAD09D09B /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				28D74D5F659D0EF168E60BD6D15F0E4B /* EZSwipeController.modulemap */,
+				A10D0F2158624298EFD4A17CB464106E /* EZSwipeController.xcconfig */,
+				D1D3519F5109A60F3A64B34D412A2727 /* EZSwipeController-dummy.m */,
+				E02C7C5A7B9756E4F20A49F4E7F3B367 /* EZSwipeController-prefix.pch */,
+				D25C1A74E009896944E799BB968F2A4C /* EZSwipeController-umbrella.h */,
+				7A4E4C6D2B29F200EB2C4F1D129FFFE7 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/EZSwipeController";
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				05AEDE37393D38E6F88F5B5DB3F4997B /* Pods */,
-				CC997B0A2E1A643C7E600B9D95A6AF49 /* Products */,
+				419E2DC9DF6E70384AEFA9D5AB1D7BDD /* Pods */,
+				FE8554936A78704613BAFD8EEB9D2B0F /* Products */,
 				C5EFCE7E52B594DFDCE36935241BC35B /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		A70148786C915DB8EE43D4744824D007 /* ALCameraViewController */ = {
+		8692F84D35F397B8DC544E046B0106B9 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				42B3EDF0AD7FDBFDD9F0B14FC3D012BD /* ALCameraShot.swift */,
-				BEF7ABAC0AB3A02FA794C60692BA14F5 /* ALCameraView.swift */,
-				F906519FD4DBD7A392B0CF2E40F63D18 /* ALCameraViewController.swift */,
-				CFC8D339F15239E4534F84B98A93342E /* ALConfirmViewController.swift */,
-				21B843EA86F2CB494935D1106BA50FB8 /* ALCropOverlay.swift */,
-				C50E1A0C9611353D130472C6DDB78073 /* ALImageCell.swift */,
-				343021F877418B8FA52035B605FC0EED /* ALImageExtensions.swift */,
-				771C9ADDA09ED879C62E2715D4DEB4C3 /* ALImageFetchingInteractor.swift */,
-				4E13031193156B4E2B6CB80A6E2D228F /* ALImageModel.swift */,
-				5C01F193CA26DA37F0BA38B10CD4CB6E /* ALImagePickerViewController.swift */,
-				D3E3DB00B60035F1F36D14061CA07483 /* ALImagePickerViewDelegate.swift */,
-				C2CCC9A285AE129862439A96E1820164 /* ALPermissionsView.swift */,
-				BA03D7800056A55023F5201B609AAC4E /* ALUtilities.swift */,
-				1815A3BEC619B0063504DF389F792628 /* Resources */,
-				C2F7A773A66FDBD668F0FA4095116785 /* Support Files */,
+				DB0B53BC3720F7F933DFE674B5B943FA /* Fusuma.modulemap */,
+				59B2F9778935468839527E7966939486 /* Fusuma.xcconfig */,
+				486E78FCEE7E48FE8A83A3E803CEF7F9 /* Fusuma-dummy.m */,
+				9C6CEC4FACDD6F86756A21279CBD1283 /* Fusuma-prefix.pch */,
+				AAD9D879C6C1ED578E5DF4C3659D9A17 /* Fusuma-umbrella.h */,
+				CCD85BA563CD334AF049D5AEDE19C671 /* Info.plist */,
 			);
-			path = ALCameraViewController;
+			name = "Support Files";
+			path = "../Target Support Files/Fusuma";
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -222,20 +341,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C2F7A773A66FDBD668F0FA4095116785 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				766BB63411CF6A5EA46C637706FF5018 /* ALCameraViewController.modulemap */,
-				CF0E2131F6CC39A66E673AC68719453B /* ALCameraViewController.xcconfig */,
-				5E6965BE358021B180250D080BD6488A /* ALCameraViewController-dummy.m */,
-				6EE302064E8E605E99B5D51F9ADD1674 /* ALCameraViewController-prefix.pch */,
-				90D275E20D513D4AE2584EBFC2940B25 /* ALCameraViewController-umbrella.h */,
-				B2ECC7692CC0C4C7159E9327D52A45B9 /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/ALCameraViewController";
-			sourceTree = "<group>";
-		};
 		C5EFCE7E52B594DFDCE36935241BC35B /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,28 +349,74 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		CC997B0A2E1A643C7E600B9D95A6AF49 /* Products */ = {
+		E63FE6CA2C7A461623C9124BCD00FDB6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B6B340CAD7326BDB76DE5A2506A17B7C /* ALCameraViewController.framework */,
-				1C065BC7187C0822FFE3CC3566461C50 /* EZSwipeController.framework */,
-				3090A0321E3B5B0B534C3FD29DBE88D9 /* Pods_Glimpse.framework */,
+				B4B8476CB5481C19479C45B0810813A2 /* Assets.xcassets */,
+				D11BA089FBAB5923B8F37359724B4B24 /* FSAlbumView.xib */,
+				DDCEE97BABE253AE9E4D32F61ABE69D2 /* FSAlbumViewCell.xib */,
+				B5446BED371269B2F87484FB640C25DB /* FSCameraView.xib */,
+				1025E7B69A7679B00A2290FB0A645B1A /* FusumaViewController.xib */,
 			);
-			name = Products;
+			name = Resources;
 			sourceTree = "<group>";
 		};
-		F92B8C32ABA6357C7A6D65F95F02B978 /* Support Files */ = {
+		EC7869F7265D9A6D39547B36736024B5 /* ALCameraViewController */ = {
 			isa = PBXGroup;
 			children = (
-				6C48AB080D34094051299F535C50A39E /* EZSwipeController.modulemap */,
-				67C6257699C040E8188B23D6151E1249 /* EZSwipeController.xcconfig */,
-				3F9085061CC8FF38CB5233C63579F495 /* EZSwipeController-dummy.m */,
-				BBE0A20D94AF58ED3B1DFFB587A636BD /* EZSwipeController-prefix.pch */,
-				366D32A3757256814BA88F5E0DBA2935 /* EZSwipeController-umbrella.h */,
-				55101CE27487E8171B9E1D74D058EAC4 /* Info.plist */,
+				00A7C10EF4F01B55371DB278AA3B75A7 /* ALCameraShot.swift */,
+				75E82AA55564071B80329906DC50CBA5 /* ALCameraView.swift */,
+				EB8644AF2060A7133DB8347C2F5D6A92 /* ALCameraViewController.swift */,
+				DA772CAC4936A4AD4B5D88674CBE95A6 /* ALConfirmViewController.swift */,
+				45D2D1CB432643A1CCDBC2D8F690D040 /* ALCropOverlay.swift */,
+				7188552481E00DB3F43D4CF6EC382BF0 /* ALImageCell.swift */,
+				AF71F0A205618D1D31E37DAEDA22D930 /* ALImageExtensions.swift */,
+				DF5C48F27C966C44A5A6EA9880962C47 /* ALImageFetchingInteractor.swift */,
+				9A0FFCAF27BFB07158D882F2FC55F03C /* ALImageModel.swift */,
+				1DB48E827827F407213EFFAC11E5ACB0 /* ALImagePickerViewController.swift */,
+				374FB81F7C18E25C4B9E6BCE73C31D24 /* ALImagePickerViewDelegate.swift */,
+				DB460EEE512A02ED9D8F1372545B07B1 /* ALPermissionsView.swift */,
+				3D253EE56FEA2B2B337B6D4A76E789E5 /* ALUtilities.swift */,
+				FD87716E7758077FB1FD6FF09962DBD7 /* Resources */,
+				2BC4116D24E5210F1B893EFD304B385B /* Support Files */,
+			);
+			path = ALCameraViewController;
+			sourceTree = "<group>";
+		};
+		F89E9315A0F45681AB7E083D4DEED021 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				5225022EA8F64E35A1340E41DCC3D4CE /* CSStickyHeaderFlowLayout.modulemap */,
+				E479D0C9822697215885F91D502904AB /* CSStickyHeaderFlowLayout.xcconfig */,
+				14DE7EA759E1D5E16EB91B88F347ECEB /* CSStickyHeaderFlowLayout-dummy.m */,
+				B39268B9DBD385780A973B2F773874CA /* CSStickyHeaderFlowLayout-prefix.pch */,
+				0F02939EF8D8C2BE85F0EB9675F50B39 /* CSStickyHeaderFlowLayout-umbrella.h */,
+				B0FB9F04AB4CC6FB7616442D62343A8F /* Info.plist */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/EZSwipeController";
+			path = "../Target Support Files/CSStickyHeaderFlowLayout";
+			sourceTree = "<group>";
+		};
+		FD87716E7758077FB1FD6FF09962DBD7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				576EACEAE60994D00F1688BEF425ED7C /* ALCameraView.strings */,
+				2711AC411A1C497F24D9BF251F50CB51 /* ALCameraViewAssets.xcassets */,
+				2641533DD821C398834A0335ABF86EDC /* ALConfirmViewController.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		FE8554936A78704613BAFD8EEB9D2B0F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				168A171F40DEDB149955FF2088053479 /* ALCameraViewController.framework */,
+				D52212A20F72DE444F667DF8A8A361C0 /* CSStickyHeaderFlowLayout.framework */,
+				5F1AAA8533BFE3CF654049A9A6EFF5A4 /* EZSwipeController.framework */,
+				D15206B03DA89969ACE0DCEB3076FCA1 /* Fusuma.framework */,
+				7C3F23758D5FE23B0C8BEB844B865DDB /* Pods_Glimpse.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,11 +430,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		581198927B555F63354F30DF91DC8ADE /* Headers */ = {
+		6E685717BBA85E62A7837B82C3050DF6 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0CED312C9265AA8EA9507BC7C566F59 /* Pods-Glimpse-umbrella.h in Headers */,
+				C4ABDF207C548E58E309B2B34E433434 /* CSStickyHeaderFlowLayout-umbrella.h in Headers */,
+				1283FF810941EED86E367EAE06B1DE2D /* CSStickyHeaderFlowLayout.h in Headers */,
+				567BDEA0D15A2E9B281D33907F16899C /* CSStickyHeaderFlowLayoutAttributes.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E6C297CF0C9CE9DFD857910F5700C06 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A008AFE1365F22DAE27DAACC48FFDF9F /* Pods-Glimpse-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD25B45C4E21547997C6FA1FCC2F9944 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D65A4DF004341CFFB1699A61B289600F /* Fusuma-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,23 +467,42 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		0C81543B1C17437C1C5DE9A82AF9597F /* Pods-Glimpse */ = {
+		19F59489894E5607F5F2B536B73A6130 /* Pods-Glimpse */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AF704FD86A4A6414D7520DA7D5D89B8B /* Build configuration list for PBXNativeTarget "Pods-Glimpse" */;
+			buildConfigurationList = 66F3FC6112B0AC4B6CBA0FA62310493F /* Build configuration list for PBXNativeTarget "Pods-Glimpse" */;
 			buildPhases = (
-				0CF9AF803556B83541CE3F966D0F7A59 /* Sources */,
-				5E71562299E30A7CCB0436AD11AA48BD /* Frameworks */,
-				581198927B555F63354F30DF91DC8ADE /* Headers */,
+				F477DEDE179685BFA035E34084BB2C1D /* Sources */,
+				C6737A0D938879F13C560EAFDDF31A93 /* Frameworks */,
+				6E6C297CF0C9CE9DFD857910F5700C06 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				345D275587011F4E231BA620DA99F646 /* PBXTargetDependency */,
-				3B190445B20CF7FA48A4F28330893319 /* PBXTargetDependency */,
+				ED3EA1E2383F97D4FAA04A45E5587EDC /* PBXTargetDependency */,
+				598F66E58AB86134544F1380D6EF5534 /* PBXTargetDependency */,
+				F65184C204A0B5CF5D31FDEC2B63B274 /* PBXTargetDependency */,
+				A11F43E9910930AAEB2FE5F7AFEAD910 /* PBXTargetDependency */,
 			);
 			name = "Pods-Glimpse";
 			productName = "Pods-Glimpse";
-			productReference = 3090A0321E3B5B0B534C3FD29DBE88D9 /* Pods_Glimpse.framework */;
+			productReference = 7C3F23758D5FE23B0C8BEB844B865DDB /* Pods_Glimpse.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		30C445E6D8703D94CB06D42EB47820DE /* CSStickyHeaderFlowLayout */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7A7F2F6EF8FD3D96A9D6A4A4E8884BC /* Build configuration list for PBXNativeTarget "CSStickyHeaderFlowLayout" */;
+			buildPhases = (
+				4B8C60A2130A1A3F7901D711445CC038 /* Sources */,
+				BBCCF9F79793F43520017E6EC9742A13 /* Frameworks */,
+				6E685717BBA85E62A7837B82C3050DF6 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CSStickyHeaderFlowLayout;
+			productName = CSStickyHeaderFlowLayout;
+			productReference = D52212A20F72DE444F667DF8A8A361C0 /* CSStickyHeaderFlowLayout.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		6B9DF4776A5114EA56DC8E036C668D15 /* ALCameraViewController */ = {
@@ -332,7 +520,7 @@
 			);
 			name = ALCameraViewController;
 			productName = ALCameraViewController;
-			productReference = B6B340CAD7326BDB76DE5A2506A17B7C /* ALCameraViewController.framework */;
+			productReference = 168A171F40DEDB149955FF2088053479 /* ALCameraViewController.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		D168A90FC275B7C8B0DDF59974BBE8BE /* EZSwipeController */ = {
@@ -349,7 +537,25 @@
 			);
 			name = EZSwipeController;
 			productName = EZSwipeController;
-			productReference = 1C065BC7187C0822FFE3CC3566461C50 /* EZSwipeController.framework */;
+			productReference = 5F1AAA8533BFE3CF654049A9A6EFF5A4 /* EZSwipeController.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		DFA5878F438E022805BFFB1CD6120E2C /* Fusuma */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 456BC59D9DAA1EB4C07DF5C7E5372416 /* Build configuration list for PBXNativeTarget "Fusuma" */;
+			buildPhases = (
+				F2B6FA0F7B608C1669600A08A514DC12 /* Sources */,
+				2A157C3D77199E01F13D0600DB06A80D /* Frameworks */,
+				8B08D4BDA076F5B2EFF5FADB96F0DC31 /* Resources */,
+				BD25B45C4E21547997C6FA1FCC2F9944 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Fusuma;
+			productName = Fusuma;
+			productReference = D15206B03DA89969ACE0DCEB3076FCA1 /* Fusuma.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -369,13 +575,15 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = CC997B0A2E1A643C7E600B9D95A6AF49 /* Products */;
+			productRefGroup = FE8554936A78704613BAFD8EEB9D2B0F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				6B9DF4776A5114EA56DC8E036C668D15 /* ALCameraViewController */,
+				30C445E6D8703D94CB06D42EB47820DE /* CSStickyHeaderFlowLayout */,
 				D168A90FC275B7C8B0DDF59974BBE8BE /* EZSwipeController */,
-				0C81543B1C17437C1C5DE9A82AF9597F /* Pods-Glimpse */,
+				DFA5878F438E022805BFFB1CD6120E2C /* Fusuma */,
+				19F59489894E5607F5F2B536B73A6130 /* Pods-Glimpse */,
 			);
 		};
 /* End PBXProject section */
@@ -391,23 +599,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		0CF9AF803556B83541CE3F966D0F7A59 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
+		8B08D4BDA076F5B2EFF5FADB96F0DC31 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31ED0B55A7E417ADEE29CC50E008F415 /* Pods-Glimpse-dummy.m in Sources */,
+				8BA292C9EA7F3180606EE6722850780A /* Assets.xcassets in Resources */,
+				957A78BB28A5BF105D75F5EACFFAE5B0 /* FSAlbumView.xib in Resources */,
+				140645840FCF30434382568B5B6F7AAE /* FSAlbumViewCell.xib in Resources */,
+				071BF5F9A3D162F11C72D6654C4A92A5 /* FSCameraView.xib in Resources */,
+				5C2826330EF1E5859DF4B641B69233A0 /* FusumaViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
 		30D0E09F668091452BCF457B7B106131 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C266178B1554011E1429289C4C1B006D /* EZSwipeController-dummy.m in Sources */,
 				42C2E583ECAC07035E4E87DDF2DF3CB7 /* EZSwipeController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B8C60A2130A1A3F7901D711445CC038 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C775FBB08DBA6936822E2BC00F18AF4C /* CSStickyHeaderFlowLayout-dummy.m in Sources */,
+				095187D19D92E711C84D41157070C767 /* CSStickyHeaderFlowLayout.m in Sources */,
+				AC909F21BD5C748CD4372C0457CF3F1A /* CSStickyHeaderFlowLayoutAttributes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,27 +654,91 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F2B6FA0F7B608C1669600A08A514DC12 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47D4C5AFDC0CBB822D4CF998461BADDC /* FSAlbumView.swift in Sources */,
+				392CBD55D7E631BCB89F4DA95CD9712B /* FSAlbumViewCell.swift in Sources */,
+				32E454EF4A53D527BB669AF7724BC730 /* FSCameraView.swift in Sources */,
+				021E51C45E8C85E8D2A2B58E732686E5 /* FSConstants.swift in Sources */,
+				5A7B0492885F86CBEF9D0D71416E6D26 /* FSImageCropView.swift in Sources */,
+				41F1113CAB35415461A635192E3BA801 /* Fusuma-dummy.m in Sources */,
+				CAF5C9A210F8C61D30176FD2FDD7E246 /* FusumaViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F477DEDE179685BFA035E34084BB2C1D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E326F62C29B9A5FB5CB7918F17D09C81 /* Pods-Glimpse-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		345D275587011F4E231BA620DA99F646 /* PBXTargetDependency */ = {
+		598F66E58AB86134544F1380D6EF5534 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CSStickyHeaderFlowLayout;
+			target = 30C445E6D8703D94CB06D42EB47820DE /* CSStickyHeaderFlowLayout */;
+			targetProxy = 9E963C721DEA943834FEC33FAC10E17E /* PBXContainerItemProxy */;
+		};
+		A11F43E9910930AAEB2FE5F7AFEAD910 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Fusuma;
+			target = DFA5878F438E022805BFFB1CD6120E2C /* Fusuma */;
+			targetProxy = DD0142402E61497C220592C22DE856EF /* PBXContainerItemProxy */;
+		};
+		ED3EA1E2383F97D4FAA04A45E5587EDC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ALCameraViewController;
 			target = 6B9DF4776A5114EA56DC8E036C668D15 /* ALCameraViewController */;
-			targetProxy = 68D4E7DACBD7B2185D7A9A89C298D426 /* PBXContainerItemProxy */;
+			targetProxy = 194F978F147F187D66A2F46B8DFACB30 /* PBXContainerItemProxy */;
 		};
-		3B190445B20CF7FA48A4F28330893319 /* PBXTargetDependency */ = {
+		F65184C204A0B5CF5D31FDEC2B63B274 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = EZSwipeController;
 			target = D168A90FC275B7C8B0DDF59974BBE8BE /* EZSwipeController */;
-			targetProxy = 5F00B8A99B48E85CEF7972495C0AC713 /* PBXContainerItemProxy */;
+			targetProxy = D8F0B96C246073FD3D8911D41799E0BA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		0079297A0E578EE6656701B6185EEE46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 59B2F9778935468839527E7966939486 /* Fusuma.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Fusuma/Fusuma-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Fusuma/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Fusuma/Fusuma.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Fusuma;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		06CA686067FEE704C768737FD55F1D19 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CF0E2131F6CC39A66E673AC68719453B /* ALCameraViewController.xcconfig */;
+			baseConfigurationReference = 32956D9AC0477A191A92B93578EF1B90 /* ALCameraViewController.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -480,13 +766,13 @@
 			};
 			name = Debug;
 		};
-		36BE9BBE50ADB8C626A277679C63A483 /* Debug */ = {
+		1242FE97E627D6A5C2B74028652A86CF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E26447681956CA15E220C9A84F6B375A /* Pods-Glimpse.debug.xcconfig */;
+			baseConfigurationReference = 3A18589BA9717FC872FC30D371AD86F4 /* Pods-Glimpse.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -499,7 +785,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-Glimpse/Pods-Glimpse.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -507,12 +793,11 @@
 				PRODUCT_NAME = Pods_Glimpse;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		3FA451D268613890FA8A5A03801E11D5 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -549,6 +834,35 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5773D8202245973D7DBAB978400C42AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 59B2F9778935468839527E7966939486 /* Fusuma.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Fusuma/Fusuma-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Fusuma/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Fusuma/Fusuma.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Fusuma;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -594,9 +908,9 @@
 			};
 			name = Debug;
 		};
-		7F9CAD3379D55AFA4846E4121BB264A9 /* Release */ = {
+		5F8CDFDA62D83508F8AE1EA5C2F72623 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3A18589BA9717FC872FC30D371AD86F4 /* Pods-Glimpse.release.xcconfig */;
+			baseConfigurationReference = E479D0C9822697215885F91D502904AB /* CSStickyHeaderFlowLayout.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -607,18 +921,14 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-Glimpse/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CSStickyHeaderFlowLayout/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Glimpse/Pods-Glimpse.modulemap";
+				MODULEMAP_FILE = "Target Support Files/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_Glimpse;
+				PRODUCT_NAME = CSStickyHeaderFlowLayout;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -627,9 +937,38 @@
 			};
 			name = Release;
 		};
+		61CF88B318D1BAEF1EADF462DD9225FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E479D0C9822697215885F91D502904AB /* CSStickyHeaderFlowLayout.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CSStickyHeaderFlowLayout/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = CSStickyHeaderFlowLayout;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		8F9FBEFE76B213ABFE712A085FAA6195 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 67C6257699C040E8188B23D6151E1249 /* EZSwipeController.xcconfig */;
+			baseConfigurationReference = A10D0F2158624298EFD4A17CB464106E /* EZSwipeController.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -658,7 +997,7 @@
 		};
 		93519B9BB2E93ADA7A9A730FFA39B70B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 67C6257699C040E8188B23D6151E1249 /* EZSwipeController.xcconfig */;
+			baseConfigurationReference = A10D0F2158624298EFD4A17CB464106E /* EZSwipeController.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -688,7 +1027,7 @@
 		};
 		E18FB8C0669AA1D60A1992641F2550F2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CF0E2131F6CC39A66E673AC68719453B /* ALCameraViewController.xcconfig */;
+			baseConfigurationReference = 32956D9AC0477A191A92B93578EF1B90 /* ALCameraViewController.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -715,6 +1054,40 @@
 			};
 			name = Release;
 		};
+		E33E390B6928C97026A566940A5D566B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E26447681956CA15E220C9A84F6B375A /* Pods-Glimpse.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Glimpse/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Glimpse/Pods-Glimpse.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Glimpse;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -736,6 +1109,24 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		456BC59D9DAA1EB4C07DF5C7E5372416 /* Build configuration list for PBXNativeTarget "Fusuma" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0079297A0E578EE6656701B6185EEE46 /* Debug */,
+				5773D8202245973D7DBAB978400C42AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66F3FC6112B0AC4B6CBA0FA62310493F /* Build configuration list for PBXNativeTarget "Pods-Glimpse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E33E390B6928C97026A566940A5D566B /* Debug */,
+				1242FE97E627D6A5C2B74028652A86CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AC27273E7F6D985A68B215564431CC31 /* Build configuration list for PBXNativeTarget "ALCameraViewController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -745,11 +1136,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AF704FD86A4A6414D7520DA7D5D89B8B /* Build configuration list for PBXNativeTarget "Pods-Glimpse" */ = {
+		D7A7F2F6EF8FD3D96A9D6A4A4E8884BC /* Build configuration list for PBXNativeTarget "CSStickyHeaderFlowLayout" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				36BE9BBE50ADB8C626A277679C63A483 /* Debug */,
-				7F9CAD3379D55AFA4846E4121BB264A9 /* Release */,
+				61CF88B318D1BAEF1EADF462DD9225FB /* Debug */,
+				5F8CDFDA62D83508F8AE1EA5C2F72623 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
