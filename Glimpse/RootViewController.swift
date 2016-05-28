@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import ALCameraViewController
 import CoreLocation
 import EZSwipeController
+import Parse
 
 class RootViewController: EZSwipeController, CLLocationManagerDelegate, EZSwipeControllerDataSource {
 
@@ -34,9 +34,8 @@ class RootViewController: EZSwipeController, CLLocationManagerDelegate, EZSwipeC
         // Monitor Location Setup
         monitorLocation = nil;
         
-        view.backgroundColor = UIColor.blackColor()
     }
-    
+   
     
     // MARK: - EZ Swipe View Controller
     override func setupView() {
@@ -56,11 +55,6 @@ class RootViewController: EZSwipeController, CLLocationManagerDelegate, EZSwipeC
         return [storyVC, captureVC, profileVC];
     }
     
-    /*
-    func titlesForPages() -> [String] {
-        return ["Karsh", "Best"];
-    }
-    */
     func indexOfStartingPage() -> Int {
         return 1;
     }

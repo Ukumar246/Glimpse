@@ -10,4 +10,5 @@ pod 'ALCameraViewController'
 pod 'EZSwipeController'
 pod 'Fusuma'
 pod 'CSStickyHeaderFlowLayout'
+pod 'SimpleCam', '~> 0.1'
 end

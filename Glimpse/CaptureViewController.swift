@@ -133,6 +133,7 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
         
         postButton.setTitle("Post", forState: .Normal);
         postButton.enabled = true;
+        commentTextField.enabled = true;
     }
     
     func hidePreview() -> Void {
@@ -151,6 +152,7 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
         // Disable Mulitple Posting
         postButton.setTitle("Posting..", forState: .Normal);
         postButton.enabled = false;
+        commentTextField.enabled = false;
         postImageToParse(capturedImage!);
     }
     

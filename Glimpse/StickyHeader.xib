@@ -13,19 +13,11 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="375" height="203"/>
                 <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sticky" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QsN-gt-QxU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="203"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
-            <color key="backgroundColor" red="0.91927928839999995" green="0.32034484860000001" blue="0.078049726999999999" alpha="1" colorSpace="calibratedRGB"/>
-            <size key="customSize" width="551" height="238"/>
-            <point key="canvasLocation" x="555.5" y="227.5"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <size key="customSize" width="566" height="238"/>
+            <point key="canvasLocation" x="562.5" y="227.5"/>
         </collectionViewCell>
     </objects>
 </document>
