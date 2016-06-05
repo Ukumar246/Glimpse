@@ -16,27 +16,81 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
     // MARK: Public API
     var imageFile:PFFile!
     var imageComment:String?
+    var post:PFObject!
     var interactor:Interactor? = nil
     
+    // MARK: Private API
+    var user:PFUser{
+        return PFUser.currentUser()!;
+    }
     
     // MARK: Private API
     @IBOutlet var imageView: PFImageView!
     @IBOutlet var commentLabel: UILabel!
+    @IBOutlet weak var profileImageView: PFImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        assert(post != nil, "Post must be set");
+        
+        // Post Stuff
         imageView.file = imageFile;
         imageView.loadInBackground();
-        
         commentLabel.text = imageComment;
+        
+        viewPost();
+        
+        let user = post["user"] as! PFUser
+        user.fetchIfNeededInBackgroundWithBlock{ (result:PFObject?, error:NSError?) in
+            if error != nil{
+                print("! Error Fetching User Image");
+                return;
+            }
+            
+            if let fetchedUser = result as? PFUser{
+                let profilePic = fetchedUser["picture"] as? PFFile
+                self.profileImageView.file = profilePic;
+                self.profileImageView.loadInBackground();
+            }
+            else{
+                print("! Error Fetching User Profile Photo");
+            }
+        }
+        
+        // Show Hints?
+        //showHelperCircle();
+        setupViews();
+    }
+    
+    func setupViews(){
+        
         imageView.layer.cornerRadius = 7;
         imageView.layer.masksToBounds = true;
         
-        // Show Hints
-        //showHelperCircle();
+        profileImageView.layer.cornerRadius = CGRectGetWidth(profileImageView.frame) / 2;
+        profileImageView.layer.masksToBounds = true;
+        
+        /*
+        // Add Gradient Layer to Comment Label
+        let gradientLayer = CAGradientLayer();
+        gradientLayer.frame = commentLabel.frame;
+        
+        // 3
+        let customBlack:UIColor = view.backgroundColor!;
+        let color1 = customBlack.CGColor as CGColorRef
+        let color2 = UIColor.clearColor().CGColor as CGColorRef
+        gradientLayer.colors = [color1, color2];
+        
+        // 4
+        gradientLayer.locations = [0.0, 0.50];
+        
+        // 5
+        commentLabel.layer.addSublayer(gradientLayer);
+         */
     }
-    
+
+    //MARK: - Actions
     @IBAction func dismiss(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil);
     }
@@ -94,5 +148,32 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
         default:
             break
         }
+    }
+    
+    //MARK: - Database Operations
+    
+    /// + Incrmentes views on this post
+    /// + Registers self as viewer of this post
+    func viewPost() -> Void
+    {
+        if let currentViewers = post["viewers"] as? [PFUser]{
+            if currentViewers.contains(self.user){
+                print("* Already viewed this post");
+                return;
+            }
+        }
+        
+        // Do database operations
+        post.incrementKey("views");
+        post.addUniqueObject(self.user, forKey: "viewers");
+        post.saveInBackgroundWithBlock { (success:Bool, error:NSError?) in
+            if success{
+                print("# Viewed post!");
+            }
+            else{
+                print("! Failed to view post");
+            }
+        }
+        
     }
 }

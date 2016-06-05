@@ -17,6 +17,10 @@ enum Regions {
     case North, Campus, South;
 }
 
+enum AutoLoad {
+    case On, Off;
+}
+
 class StoryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, MKMapViewDelegate, UIScrollViewDelegate
 {
     // MARK: Private API
@@ -31,10 +35,17 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
  
     let interactor = Interactor()
     
+    /// Auto Loader for view controller
+    /// Note: - turns on automatically when set off in following view controller appear cycle
+    var autoLoad:AutoLoad!
+    
     /// local region where the user current is
     var localRegion:Regions!{
         didSet{
             collectionView.reloadData();
+            addOverlayOnMap(localRegion);
+            centerMapOnRegion(localRegion);
+            fetchPosts(localRegion);
         }
     }
     
@@ -63,8 +74,7 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
     var posts:[PFObject]?{
         didSet{
             if posts != nil{
-                print("\n\n>> Found \(posts!.count) posts: ");
-                collectionView.reloadData();
+                print("\n\n>> Found \(posts!.count) posts.");
                 
                 /* Print all posts found
                 for post in posts!{
@@ -73,21 +83,36 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
                     }
                 }
                 */
-                
+                collectionView.reloadData();
                 annotatePostsOnMap(posts!);
             }
+            else{
+                // There are no new posts 
+                
+            }
+            
+            
+            selectedPost = nil;
         }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated);
-        refreshCollectionView();
+
+        if autoLoad == .On{
+            refreshCollectionView();
+        }
+        
+        autoLoad = .On;
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+     
+        autoLoad = .On;
+        navigationController!.setNavigationBarHidden(true, animated: false);
         
-        updateLocalFeed();
+        showCampusFeed();
         setupViews();
     }
 
@@ -105,16 +130,15 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         // map setup
         mapView.delegate = self;
-        centerMap();
+        //centerMap();
         
         addOverlayOnMap(.Campus);
         
         // Collection View
     }
     
-    func updateLocalFeed() -> Void {
+    func showCampusFeed() -> Void {
         localRegion = .Campus;
-        fetchPosts(localRegion);
     }
     
     // MARK: - Database Operations
@@ -123,6 +147,8 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
         print("> Fetching \(localRegion) Posts..");
         
         let query = PFQuery(className: "Post");
+        query.includeKey("user");
+        query.includeKey("viewers");
         
         // Region Query
         let (NE, SW) = getRegionalBox(region);
@@ -245,8 +271,8 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func refreshCollectionView() -> Void {
-        
         navigationRefresh.startAnimating();
+        
         fetchPosts(localRegion);
     }
     
@@ -269,6 +295,51 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
         let torntoLon = -79.39910531044006;
         let torontoCordinate:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: torontoLat, longitude: torntoLon);
         let torontoRegion = mapView.regionThatFits(MKCoordinateRegionMakeWithDistance(torontoCordinate, 2500, 2500));
+        
+        mapView.setRegion(torontoRegion, animated: true);
+    }
+    
+    func centerMapOnRegion(region:Regions) -> Void {
+        // MAP
+        
+        /*          Centers
+         35 Cortland Ave, Toronto, ON M4R 1T7, Canada
+         Latitude: 43.724467 | Longitude: -79.402657
+         Centre of Q1
+         
+         
+         129 College St, Toronto, ON M5T 1P5, Canada
+         Latitude: 43.6598 | Longitude: -79.39064
+         Centre of Q2
+         
+         
+         433-441 Lake Shore Blvd W, Toronto, ON M5V, Canada
+         Latitude: 43.638001 | Longitude: -79.394932
+         Centre of Q3
+        */
+        
+        var regionCenter:CLLocationCoordinate2D!
+        var latDistance:CLLocationDistance!
+        var lonDistnace:CLLocationDistance!
+        
+        if region == .North{
+            regionCenter = CLLocationCoordinate2D(latitude: 43.724467, longitude: -79.402657);
+            latDistance = 14000;
+            lonDistnace = 14000;
+        }
+        else if region == .Campus{
+            regionCenter = CLLocationCoordinate2D(latitude: 43.6598, longitude: -79.39064);
+            latDistance = 3500;
+            lonDistnace = 2000;
+        }
+        else{
+            regionCenter = CLLocationCoordinate2D(latitude: 43.638001, longitude: -79.394932);
+            latDistance = 2000;
+            lonDistnace = 5000;
+        }
+        
+        let torontoRegion = mapView.regionThatFits(MKCoordinateRegionMakeWithDistance(regionCenter, latDistance, lonDistnace));
+        
         
         mapView.setRegion(torontoRegion, animated: true);
     }
@@ -361,9 +432,6 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
         else{
             localRegion = .South;
         }
-        
-        addOverlayOnMap(localRegion);
-        fetchPosts(localRegion);
     }
     
     @IBAction func mapAcessoryButtonTapped(sender: UIButton) {
@@ -374,11 +442,41 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
         refreshCollectionView();
     }
     
+    func hideCollectionView() -> Void {
+        // Animate Collection View Fade out
+        // Pre animation
+        collectionView.alpha = 1;
+        collectionView.hidden = false;
+        
+        // Animation
+        UIView.animateWithDuration(1.0, animations: {
+            self.collectionView.alpha = 0.2;
+            
+            }, completion: { (finished:Bool) in
+                self.collectionView.hidden = true;
+        });
+    }
+
+    func showCollectionView() -> Void {
+        // Animate Collection View Fade out
+        // Pre animation
+        collectionView.alpha = 0;
+        collectionView.hidden = false;
+        
+        // Animation
+        UIView.animateWithDuration(1.0) {
+                self.collectionView.alpha = 1;
+        }
+    }
+    
     //MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueFullScreen{
             assert(selectedPost != nil, "Post must be selected to segue");
             let dvc = segue.destinationViewController as! FullScreenImageViewController
+            
+            // Turn off auto refresh
+            autoLoad = .Off;
             
             // Animated Transition
             dvc.transitioningDelegate = self;
@@ -386,6 +484,7 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
             
             dvc.imageFile = selectedPost!["picture"] as! PFFile;
             dvc.imageComment = selectedPost!["comment"] as? String;
+            dvc.post = selectedPost!
         }
     }
 }

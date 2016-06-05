@@ -7,16 +7,41 @@
 //
 
 import UIKit
-//import ALCameraViewController
 import Parse
+
+enum VCState {
+    case VCLoaded, LoadingCamera, Camera, Preview, Posting;
+}
+
+struct State {
+    /// Last system time this stuct was modifed
+    var lastModified:NSDate!
+    /// Current state of the view controller
+    var currentState:VCState!{
+        didSet{
+            lastModified = NSDate();
+        }
+    };
+    
+    init(currentState: VCState) {
+        self.currentState = currentState;
+    }
+    
+    mutating func setState(newState: VCState){
+        self.currentState = newState;
+    }
+}
+
 
 class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFieldDelegate
 {
-    
     //MARK: Private API
     var cameraView:CameraSessionView?
     var capturedImage:UIImage?
+    /// The state the view controller is currently in
+    var state:State!
     
+    // MARK: Storyboard Outlets
     @IBOutlet weak var imagePreview: UIImageView!
     @IBOutlet weak var restartCamera: UIButton!
     @IBOutlet weak var postButton: UIButton!
@@ -39,7 +64,13 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        startCamera();
+        
+        if (state.currentState == .Preview || state.currentState == .Posting){
+            print("# Locked State.");
+        }
+        else{
+            startCamera();
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -49,6 +80,8 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
     
     override func viewDidLoad() {
         super.viewDidLoad();
+        
+        state = State(currentState: .VCLoaded);
         
         setupCamera()
         startCamera()
@@ -80,12 +113,15 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
         cameraView = CameraSessionView(frame: view.frame);
         cameraView!.delegate = self
         // Call Camera Public API's Here
+        
+        state.setState(.LoadingCamera);
     }
     
     func startCamera() ->Void{
         if cameraView == nil{
             setupCamera();
         }
+
         hidePreview();
         
         if cameraView!.hidden == true{
@@ -95,6 +131,7 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
         }
         
         view.addSubview(cameraView!);
+        state.setState(.Camera);
     }
     
     func stopCamera() -> Void{
@@ -139,6 +176,7 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
         restartCamera.hidden = false;
         postButton.hidden = false;
         commentTextField.hidden = false;
+        commentTextField.text = nil;
         
         commentVisualEffectView.hidden = false;
         
@@ -150,6 +188,8 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
         postButton.setTitle("Post", forState: .Normal);
         postButton.enabled = true;
         commentTextField.enabled = true;
+        
+        state.setState(.Preview);
     }
     
     func hidePreview() -> Void {
@@ -169,7 +209,13 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
         postButton.setTitle("Posting...", forState: .Normal);
         postButton.enabled = false;
         commentTextField.enabled = false;
-        postImageToParse(capturedImage!);
+        
+        if let commentString = commentTextField.text{
+            postImageToParse(capturedImage!, comment: commentString);
+        }
+        else{
+            postImageToParse(capturedImage!, comment: "");
+        }
     }
     
     @IBAction func imageTapped(sender: UITapGestureRecognizer) {
@@ -179,7 +225,7 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
     }
     
     // MARK: - Database Operations
-    func postImageToParse(image:UIImage) -> Void {
+    func postImageToParse(image:UIImage, comment:String) -> Void {
         let imageData:NSData = UIImageJPEGRepresentation(image, 1.0)!;
         
         let post = PFObject(className: "Post");
@@ -191,8 +237,10 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
             print("!! Error: Cannot determine location :(");
             return;
         }
-        post["comment"] = commentTextField.text
+        post["comment"] = comment;
         post["user"] = user;
+        post["views"] = 0;
+        post["viewers"] = [];
         
         post.saveInBackgroundWithBlock { (success:Bool, error:NSError?) in
             
@@ -209,6 +257,8 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
             
             self.startCamera();
         }
+        
+        state.setState(.Posting);
     }
     
     // MARK: - Actions
