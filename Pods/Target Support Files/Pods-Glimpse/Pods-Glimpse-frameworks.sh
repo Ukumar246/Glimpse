@@ -84,16 +84,12 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/ALCameraViewController/ALCameraViewController.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.framework"
   install_framework "$BUILT_PRODUCTS_DIR/EZSwipeController/EZSwipeController.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Fusuma/Fusuma.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SimpleCam/SimpleCam.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/ALCameraViewController/ALCameraViewController.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CSStickyHeaderFlowLayout/CSStickyHeaderFlowLayout.framework"
   install_framework "$BUILT_PRODUCTS_DIR/EZSwipeController/EZSwipeController.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Fusuma/Fusuma.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SimpleCam/SimpleCam.framework"
 fi

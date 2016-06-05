@@ -6,9 +6,7 @@ target 'Glimpse' do
   use_frameworks!
 
 # Pods for Glimpse
-pod 'ALCameraViewController'
 pod 'EZSwipeController'
-pod 'Fusuma'
 pod 'CSStickyHeaderFlowLayout'
 pod 'SimpleCam', '~> 0.1'
 end

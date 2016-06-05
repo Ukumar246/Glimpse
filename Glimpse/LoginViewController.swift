@@ -51,8 +51,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         emailTextField.attributedPlaceholder = NSAttributedString(string: "email", attributes: attributes)
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "password", attributes: attributes);
         
+        // Auto Load Email
+        let (email, valid) = loadEmailTf();
+        if valid{
+            emailTextField.text = email;
+        }
+        
     }
-
+    
+    /// Adds Bottom Border to Passed Tf
     func addBottomBorder(textField:UITextField) -> Void {
         let border = CALayer()
         let width = CGFloat(2.0)
@@ -64,6 +71,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         textField.layer.masksToBounds = true
     }
     
+    /// Loads Email Based on Registered UUID
+    /// Return: - Email Address: String
+    ///         - Valid: Bool
+    func loadEmailTf() -> (String, Bool){
+        
+        let uuid:String = NSUUID().UUIDString;
+        
+        if uuid == "e4fc45d54801309368405ae957408cf3b4fa3a78"{
+            return ("karsh@a.com", true);
+        }
+        
+        return ("Null", false);
+    }
+    
+    // MARK: - Action
     @IBAction func editingBegan(sender: UITextField) {
         if sender.tag == 1{
             if scrollView.contentOffset == CGPointMake(0, 0){
@@ -77,8 +99,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
-    // MARK: - Action
     @IBAction func loginAction(sender: UIButton) {
         print("* Logging In..");
         
@@ -122,7 +142,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder();
         return false;
     }
-    
     
     // MARK: - Navigation
     

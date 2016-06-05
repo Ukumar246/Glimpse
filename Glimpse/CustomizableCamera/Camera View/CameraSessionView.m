@@ -174,13 +174,13 @@ static NSInteger stealthSwitchTag = 22;
         _cameraToggle = [CameraToggleButton new];
         if (_cameraToggle) {
             _cameraToggle.frame = (CGRect){0,0, barButtonItemSize};
-            _cameraToggle.center = CGPointMake(_topBarView.center.x, _topBarView.center.y);
+            _cameraToggle.center = CGPointMake(_topBarView.frame.size.width - barButtonItemSize.width, _topBarView.center.y);
             _cameraToggle.tag = ToggleButtonTag;
             [_topBarView addSubview:_cameraToggle];
         }
         
-        //Add the camera dismiss button
         /*
+        //Add the camera dismiss button
         _cameraDismiss = [CameraDismissButton new];
         if (_cameraDismiss) {
             _cameraDismiss.frame = (CGRect){0,0, barButtonItemSize};
@@ -188,9 +188,9 @@ static NSInteger stealthSwitchTag = 22;
             _cameraDismiss.tag = DismissButtonTag;
             [_topBarView addSubview:_cameraDismiss];
         }
-        */
         
         //Add the stealth switch
+        
         _cameraStealth = [UISwitch new];
         if (_cameraStealth) {
             _cameraStealth.frame = (CGRect){0,0, barButtonItemSize};
@@ -198,6 +198,8 @@ static NSInteger stealthSwitchTag = 22;
             _cameraStealth.tag = stealthSwitchTag;
             [_topBarView addSubview:_cameraStealth];
         }
+        */
+        
         //ADD Stealth Shutter
         _stealthShutter = [UIButton new];
         if (_stealthShutter){
@@ -394,7 +396,7 @@ static NSInteger stealthSwitchTag = 22;
                 _cameraFlash.center = CGPointMake(20, _topBarView.center.y);
                 
                 _cameraToggle.transform = transform;
-                _cameraToggle.center = CGPointMake(_topBarView.center.x, _topBarView.center.y);
+                _cameraToggle.center = CGPointMake(_topBarView.frame.size.width - barButtonItemSize.width, _topBarView.center.y);
                 
                 //_cameraDismiss.center = CGPointMake(20, _topBarView.center.y);
             }];
@@ -410,7 +412,7 @@ static NSInteger stealthSwitchTag = 22;
                 _cameraFlash.center = CGPointMake(20, _topBarView.center.y);
                 
                 _cameraToggle.transform = transform;
-                _cameraToggle.center = CGPointMake(_topBarView.center.x, _topBarView.center.y);
+                _cameraToggle.center = CGPointMake(_topBarView.frame.size.width - barButtonItemSize.width, _topBarView.center.y);
                 
                 //_cameraDismiss.center = CGPointMake(_topBarView.center.x * 0.25, _topBarView.center.y);
             }];
@@ -426,7 +428,7 @@ static NSInteger stealthSwitchTag = 22;
                 _cameraFlash.center = CGPointMake(20, _topBarView.center.y);
                 
                 _cameraToggle.transform = transform;
-                _cameraToggle.center = CGPointMake(_topBarView.center.x, _topBarView.center.y);
+                _cameraToggle.center = CGPointMake(_topBarView.frame.size.width - barButtonItemSize.width, _topBarView.center.y);
                 
                 //_cameraDismiss.center = CGPointMake(_topBarView.center.x * 1.75, _topBarView.center.y);
             }];
@@ -442,9 +444,10 @@ static NSInteger stealthSwitchTag = 22;
 {
     if (self.delegate)
     {
-        int cameraType = (cameraBeingUsed == RearFacingCamera)? 1 : 0;
-        if ([self.delegate respondsToSelector:@selector(didCaptureImage:withCamera:)])
-            [self.delegate didCaptureImage:[[self captureManager] stillImage] withCamera:cameraType];
+        Boolean frontCam = (cameraBeingUsed == FrontFacingCamera) ? YES : NO;
+        
+        if ([self.delegate respondsToSelector:@selector(didCaptureImage:withFrontCamera:)])
+            [self.delegate didCaptureImage:[[self captureManager] stillImage] withFrontCamera:frontCam];
         
         if ([self.delegate respondsToSelector:@selector(didCaptureImageWithData:)])
             [self.delegate didCaptureImageWithData:[[self captureManager] stillImageData]];
@@ -537,6 +540,12 @@ static NSInteger stealthSwitchTag = 22;
 {
     _cameraDismiss.hidden = YES;
 }
+
+- (void)hideStealthSwitch
+{
+    _cameraStealth.hidden = YES;
+}
+
 
 - (void)dealloc
 {

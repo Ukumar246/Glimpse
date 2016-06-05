@@ -33,14 +33,13 @@ class RootViewController: EZSwipeController, CLLocationManagerDelegate, EZSwipeC
         
         // Monitor Location Setup
         monitorLocation = nil;
-        
     }
    
     
     // MARK: - EZ Swipe View Controller
     override func setupView() {
         super.setupView()
-        navigationBarShouldNotExist = true
+        navigationBarShouldNotExist = true;
         datasource = self
     }
     

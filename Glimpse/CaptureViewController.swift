@@ -39,12 +39,16 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         startCamera();
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated);
+        
+    }
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad();
         
         setupCamera()
         startCamera()
@@ -55,6 +59,10 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
     /// Sets up apperance on the Storybord Views
     func setupViews() -> Void
     {
+        imagePreview.hidden = true;
+        commentTextField.hidden = true;
+        postButton.hidden = true;
+        
         // Rounded Buttons
         postButton.layer.cornerRadius = CGRectGetWidth(postButton.frame) / 2;
         restartCamera.layer.cornerRadius = CGRectGetWidth(restartCamera.frame) / 2;
@@ -71,6 +79,7 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
     func setupCamera() -> Void {
         cameraView = CameraSessionView(frame: view.frame);
         cameraView!.delegate = self
+        // Call Camera Public API's Here
     }
     
     func startCamera() ->Void{
@@ -101,8 +110,16 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
         cameraView = nil;
         
     }
-    
-    func didCaptureImage(image: UIImage!, withCamera cameraType: Int32) {
+
+    func didCaptureImage(image: UIImage!, withFrontCamera frontCamera: Bool) {
+        
+        if frontCamera{
+            // Flip Image
+//            var flipedImage = UIImage(CGImage: image.CGImage!, scale: 1.0, orientation: .DownMirrored)
+//            print("* Flipped Image");
+        }
+        
+        
         previewImage(image);
         
         cameraView!.alpha = 1;          // Full opacity
@@ -117,14 +134,13 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
         }
     }
     
-    
     // MARK: UI
     func previewImage(image:UIImage) -> Void {
         restartCamera.hidden = false;
         postButton.hidden = false;
+        commentTextField.hidden = false;
         
         commentVisualEffectView.hidden = false;
-        commentTextField.text = nil;
         
         imagePreview.hidden = false;
         imagePreview.image = image;
@@ -150,10 +166,16 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
         assert(capturedImage != nil);
         
         // Disable Mulitple Posting
-        postButton.setTitle("Posting..", forState: .Normal);
+        postButton.setTitle("Posting...", forState: .Normal);
         postButton.enabled = false;
         commentTextField.enabled = false;
         postImageToParse(capturedImage!);
+    }
+    
+    @IBAction func imageTapped(sender: UITapGestureRecognizer) {
+        if commentTextField.isFirstResponder(){
+            commentTextField.resignFirstResponder()
+        }
     }
     
     // MARK: - Database Operations
@@ -177,7 +199,7 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
             if success{
                 print("* Post Uploaded Successfully!");
                 // Alert then start camera again
-                Helper.showQuickAlert("Posted!", message: "", viewController: self);
+                Helper.showQuickAlert("Posted!", message: "Check your feed", viewController: self);
             }
             else{
                 print("! Error Posting: ", error!.description);
@@ -199,6 +221,10 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
         guard let text = textField.text else { return true }
         let newLength = text.characters.count + string.characters.count - range.length
         return newLength <= characterLimit
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.attributedPlaceholder = nil;
     }
 }
 

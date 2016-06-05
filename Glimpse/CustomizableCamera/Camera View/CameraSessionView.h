@@ -6,11 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Constants.h"
 
 ///Protocol Definition
 @protocol CACameraSessionDelegate <NSObject>
 
-@optional - (void)didCaptureImage:(UIImage *)image withCamera:(int) cameraType;
+-(void)didCaptureImage:(UIImage *)image withFrontCamera:(Boolean) frontCamera;
 @optional - (void)didCaptureImageWithData:(NSData *)imageData;
 @optional - (void)didDismissCameraView;
 
@@ -28,5 +29,6 @@
 - (void)hideFlashButton;
 - (void)hideCameraToogleButton;
 - (void)hideDismissButton;
+- (void)hideStealthSwitch;
 
 @end

@@ -17,9 +17,8 @@ enum Regions {
     case North, Campus, South;
 }
 
-class StoryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, MKMapViewDelegate
+class StoryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, MKMapViewDelegate, UIScrollViewDelegate
 {
-
     // MARK: Private API
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet var headerContentView: UIView!
@@ -29,8 +28,9 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
     @IBOutlet var navigationView: UIView!
     @IBOutlet var navigationTitleLabel: UILabel!
     @IBOutlet var navigationRefresh: UIActivityIndicatorView!
+ 
+    let interactor = Interactor()
     
-    var refresh:UIRefreshControl!
     /// local region where the user current is
     var localRegion:Regions!{
         didSet{
@@ -45,8 +45,21 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
     let LabelViewCELLTAG:Int = 2;
     /// tag for UILabel inside of the header collection view
     let LabelViewHeaderCELLTAG:Int = 1;
+    let SegueFullScreen:String = "Segue_FullScreenImage";
     
+    /// Selected Post 
+    /// Note: - It is a reference to self.posts[PFObject]
+    var selectedPost:PFObject?{
+        didSet{
+            if selectedPost == nil{
+                return;
+            }
+            
+            performSegueWithIdentifier(SegueFullScreen, sender: nil);
+        }
+    }
     
+    /// Universal Data Model for Displaying All Fetched Posts
     var posts:[PFObject]?{
         didSet{
             if posts != nil{
@@ -64,6 +77,11 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
                 annotatePostsOnMap(posts!);
             }
         }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated);
+        refreshCollectionView();
     }
     
     override func viewDidLoad() {
@@ -89,15 +107,9 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
         mapView.delegate = self;
         centerMap();
         
-        addOverlayOnMap(.North);
         addOverlayOnMap(.Campus);
-        addOverlayOnMap(.South);
         
         // Collection View
-        refresh = UIRefreshControl();
-        refresh.tintColor = UIColor.clearColor();
-        refresh.addTarget(self, action: #selector(StoryViewController.refreshCollectionView(_:)), forControlEvents: .ValueChanged);
-        collectionView.addSubview(refresh);
     }
     
     func updateLocalFeed() -> Void {
@@ -117,9 +129,8 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
         query.whereKey("location", withinGeoBoxFromSouthwest: SW, toNortheast: NE);
         
         query.orderByDescending("createdAt");
-        query.findObjectsInBackgroundWithBlock { (newPosts:[PFObject]?, error:NSError?) in
+        query.findObjectsInBackgroundWithBlock {(newPosts:[PFObject]?, error:NSError?) in
             
-            self.refresh.endRefreshing();
             self.navigationRefresh.stopAnimating();
             
             if error == nil && newPosts != nil{
@@ -136,7 +147,7 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         // Box 1
         let (NEQ1_Lat, NEQ1_Lon) = (43.77456454892858, -79.32231903076172);
-        let (SWQ1_Lat, SWQ1_Lon) = (43.658247507179006, -79.48822975158691);
+        let (SWQ1_Lat, SWQ1_Lon) = (43.67622159755976, -79.4957184791565);
         
         let NEQ1 = PFGeoPoint(latitude: NEQ1_Lat, longitude: NEQ1_Lon);
         let SWQ1 = PFGeoPoint(latitude: SWQ1_Lat, longitude: SWQ1_Lon);
@@ -147,9 +158,7 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         // Box 2
         let (NEQ2_Lat, NEQ2_Lon) = (43.67504211589516, -79.3778944015503);
-        
-        let SWQ2_Lat = 43.6471934083222;
-        let SWQ2_Lon = -79.40394401550293;
+        let (SWQ2_Lat, SWQ2_Lon) = (43.6471934083222, -79.40394401550293);
         
         let NEQ2 = PFGeoPoint(latitude: NEQ2_Lat, longitude: NEQ2_Lon);
         let SWQ2 = PFGeoPoint(latitude: SWQ2_Lat, longitude: SWQ2_Lon);
@@ -158,10 +167,8 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
             return (NEQ2, SWQ2);
         }
         
-        let (NEQ3_Lat, NEQ3_Lon) = (43.65452163377025, -79.36948299407959);
-        
-        let SWQ3_Lat = 43.630111446719226;
-        let SWQ3_Lon = -79.42467212677002;
+        let (NEQ3_Lat, NEQ3_Lon) = (43.64706919340517, -79.37049150466919);
+        let (SWQ3_Lat, SWQ3_Lon) = (43.630111446719226, -79.42467212677002)
         
         let NEQ3 = PFGeoPoint(latitude: NEQ3_Lat, longitude: NEQ3_Lon);
         let SWQ3 = PFGeoPoint(latitude: SWQ3_Lat, longitude: SWQ3_Lon);
@@ -232,19 +239,27 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
         if posts == nil || posts?.count == 0{
             return;
         }
-        print("* Selected Image ", indexPath.row);
-        
         // Fetch the post
         let post:PFObject = posts![indexPath.row];
-        if let imageFile = post["picture"] as? PFFile{
-            print("* File: ", imageFile);
-        }
+        self.selectedPost = post;
     }
     
-    func refreshCollectionView(sender:UIRefreshControl) -> Void {
+    func refreshCollectionView() -> Void {
         
         navigationRefresh.startAnimating();
         fetchPosts(localRegion);
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let yOffset = scrollView.contentOffset.y;
+        
+        if (yOffset > headerContentView.frame.height)
+        {
+            self.navigationController!.setNavigationBarHidden(false, animated: true)
+        }
+        else{
+            self.navigationController!.setNavigationBarHidden(true, animated: true);
+        }
     }
     
     // MARK: - Map
@@ -282,13 +297,20 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func removeAllMapAnnotations() -> Void {
-        print("* Removing all annotations..");
         
         let annotationsToRemove = mapView.annotations.filter { $0 !== mapView.userLocation }
         mapView.removeAnnotations( annotationsToRemove );
     }
     
     func addOverlayOnMap(displayRegion:Regions) -> Void{
+        
+        // Remove All OverLay
+        let currentOverlays = mapView.overlays;
+        mapView.removeOverlays(currentOverlays);
+        
+        // Remove Annotations
+        removeAllMapAnnotations();
+        
         let (NE, SW) = getRegionalBox(displayRegion);      // Default Parse Query Format
         let NW = CLLocationCoordinate2DMake(NE.latitude, SW.longitude);             // Top Left     -NW
         let SE = CLLocationCoordinate2DMake(SW.latitude, NE.longitude);             // Bottom Right -SE
@@ -306,39 +328,22 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
         mapView.addOverlay(polygon);
     }
     
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer
+    {
         if (overlay.isKindOfClass(MKPolygon.self))
         {
             let polygonOverlay = overlay as! MKPolygon;
             let aRenderer = MKPolygonRenderer(polygon: polygonOverlay);
             
-            let polygonTitle = polygonOverlay.title;
-            if polygonTitle == "\(Regions.North)"{
-                aRenderer.fillColor = UIColor.cyanColor().colorWithAlphaComponent(0.2);
-                aRenderer.strokeColor = UIColor.blueColor().colorWithAlphaComponent(0.7);
-                aRenderer.lineWidth = 3;
-            }
-            else if polygonTitle == "\(Regions.Campus)"{
-                aRenderer.fillColor = UIColor.yellowColor().colorWithAlphaComponent(0.3);
-                aRenderer.strokeColor = UIColor.yellowColor().colorWithAlphaComponent(0.7);
-                aRenderer.lineWidth = 3;
-            }
-            else{
-                aRenderer.fillColor = UIColor.brownColor().colorWithAlphaComponent(0.2);
-                aRenderer.strokeColor = UIColor.brownColor().colorWithAlphaComponent(0.7);
-                aRenderer.lineWidth = 3;
-            }
-            
+            let backgroundColor:UIColor = view.backgroundColor!
+            aRenderer.fillColor = backgroundColor.colorWithAlphaComponent(0.2);
+            aRenderer.strokeColor = backgroundColor.colorWithAlphaComponent(0.7);
+            aRenderer.lineWidth = 3;
             
             return aRenderer;
         }
         else{
             let aRenderer = MKPolygonRenderer(polygon: overlay as! MKPolygon);
-            
-            aRenderer.fillColor = UIColor.whiteColor().colorWithAlphaComponent(0.2);
-            aRenderer.strokeColor = UIColor.whiteColor().colorWithAlphaComponent(0.7);
-            aRenderer.lineWidth = 3;
-            
             return aRenderer;
         }
     }
@@ -357,6 +362,7 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
             localRegion = .South;
         }
         
+        addOverlayOnMap(localRegion);
         fetchPosts(localRegion);
     }
     
@@ -364,6 +370,34 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
         centerMap();
     }
     
+    @IBAction func refreshBarButtonItem(sender: UIBarButtonItem) {
+        refreshCollectionView();
+    }
+    
+    //MARK: - Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == SegueFullScreen{
+            assert(selectedPost != nil, "Post must be selected to segue");
+            let dvc = segue.destinationViewController as! FullScreenImageViewController
+            
+            // Animated Transition
+            dvc.transitioningDelegate = self;
+            dvc.interactor = interactor;
+            
+            dvc.imageFile = selectedPost!["picture"] as! PFFile;
+            dvc.imageComment = selectedPost!["comment"] as? String;
+        }
+    }
+}
+
+extension StoryViewController: UIViewControllerTransitioningDelegate {
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissAnimator();
+    }
+    
+    func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil;
+    }
 }
 
 class MapPin : NSObject, MKAnnotation {
