@@ -80,7 +80,7 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        
+        self.performSegueWithIdentifier("Segue_SignupProcess", sender: nil);
         state = State(currentState: .VCLoaded);
         
         setupCamera()
@@ -156,11 +156,9 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
 //            print("* Flipped Image");
         }
         
-        
         previewImage(image);
         
         cameraView!.alpha = 1;          // Full opacity
-        
         UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseIn], animations: {
             self.cameraView!.alpha = 0;
         }) { (complete:Bool) in
@@ -176,7 +174,10 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
         restartCamera.hidden = false;
         postButton.hidden = false;
         commentTextField.hidden = false;
+        
         commentTextField.text = nil;
+        let attribute:[String: AnyObject] = [NSForegroundColorAttributeName: Helper.getGlimpseOrangeColor()];
+        commentTextField.attributedPlaceholder = NSAttributedString(string: "Comment", attributes: attribute);
         
         commentVisualEffectView.hidden = false;
         
@@ -199,6 +200,8 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
     }
     
     @IBAction func restartCameraAction(sender: AnyObject) {
+        // Dismiss Keyboard
+        commentTextField.resignFirstResponder();
         startCamera();
     }
     

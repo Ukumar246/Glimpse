@@ -124,9 +124,12 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
         let headerNib = UINib(nibName: "StickyHeader", bundle: nil);
         collectionView.registerNib(headerNib, forSupplementaryViewOfKind: CSStickyHeaderParallaxHeader, withReuseIdentifier: "stickyHeader");
         
-        let width = CGRectGetWidth(self.view.frame);
+        let superViewWidth = CGRectGetWidth(self.view.frame);
         let height = CGRectGetHeight(self.headerContentView.frame);
-        layout.parallaxHeaderReferenceSize = CGSizeMake(width, height);
+        layout.parallaxHeaderReferenceSize = CGSizeMake(superViewWidth, height);
+        
+        let headerFrame = CGRectMake(0, 0, superViewWidth, height);
+        headerContentView.frame = headerFrame;
         
         // map setup
         mapView.delegate = self;
@@ -134,7 +137,6 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         addOverlayOnMap(.Campus);
         
-        // Collection View
     }
     
     func showCampusFeed() -> Void {
@@ -216,6 +218,16 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
         return posts!.count;
     }
     
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        let deviceSize = UIScreen.mainScreen().bounds.size
+        
+        let cellWidth   = (deviceSize.width - 10)
+        let cellHeight  = (deviceSize.height * 0.607);
+        
+        return CGSize(width: cellWidth , height: cellHeight)
+    }
+    
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         
         // Appearance
@@ -227,7 +239,7 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell:UICollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCellIdentifer", forIndexPath: indexPath);
+        let cell:CustomCell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCellIdentifer", forIndexPath: indexPath) as! CustomCell;
         let imageView:PFImageView = cell.viewWithTag(ImageViewCELLTAG) as! PFImageView;
         
         let post = posts![indexPath.row]
@@ -325,17 +337,17 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
         if region == .North{
             regionCenter = CLLocationCoordinate2D(latitude: 43.724467, longitude: -79.402657);
             latDistance = 14000;
-            lonDistnace = 14000;
+            lonDistnace = 16500;
         }
         else if region == .Campus{
             regionCenter = CLLocationCoordinate2D(latitude: 43.6598, longitude: -79.39064);
             latDistance = 3500;
-            lonDistnace = 2000;
+            lonDistnace = 2200;
         }
         else{
             regionCenter = CLLocationCoordinate2D(latitude: 43.638001, longitude: -79.394932);
             latDistance = 2000;
-            lonDistnace = 5000;
+            lonDistnace = 5500;
         }
         
         let torontoRegion = mapView.regionThatFits(MKCoordinateRegionMakeWithDistance(regionCenter, latDistance, lonDistnace));
@@ -510,3 +522,16 @@ class MapPin : NSObject, MKAnnotation {
         self.subtitle = subtitle
     }
 }
+
+class CustomCell: UICollectionViewCell {
+    override var bounds: CGRect {
+        didSet {
+            contentView.frame = bounds;
+        }
+    }
+    
+    override func awakeFromNib() {
+        self.contentView.autoresizingMask = [UIViewAutoresizing.FlexibleWidth , UIViewAutoresizing.FlexibleHeight]
+    }
+}
+
