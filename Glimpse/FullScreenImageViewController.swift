@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import ParseUI
+import MapKit
 
 class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelegate
 {
@@ -28,6 +29,8 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
     @IBOutlet var imageView: PFImageView!
     @IBOutlet var commentLabel: UILabel!
     @IBOutlet weak var profileImageView: PFImageView!
+    @IBOutlet weak var viewsLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +41,27 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
         imageView.file = imageFile;
         imageView.loadInBackground();
         commentLabel.text = imageComment;
+        
+        if let views = post["views"] as? Int
+        {
+            var viewsString:String!
+            if (views <= 1){
+                viewsString = "\(views) View";
+            }
+            else{
+                viewsString = "\(views) Views";
+            }
+            
+            viewsLabel.text = viewsString;
+        }
+        else{
+            viewsLabel.text = "0 View";
+        }
+        
+        // Geo Coding GeoPoint
+        locationLabel.text = nil;
+        let postLocation = post["location"] as! PFGeoPoint;
+        reverseGeoCodeLocation(postLocation.longitude, latitude: postLocation.latitude);
         
         viewPost();
         
@@ -90,6 +114,41 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
          */
     }
 
+    //MARK: - GeoLocation
+    func reverseGeoCodeLocation(longitude:CLLocationDegrees ,latitude:CLLocationDegrees)
+    {
+        
+        let location = CLLocation(latitude: latitude, longitude: longitude)
+        CLGeocoder().reverseGeocodeLocation(location, completionHandler: {(placemarks, error) -> Void in
+            
+            if (error != nil || placemarks == nil){
+                print("Reverse geocoder failed with error" + error!.localizedDescription);
+                return
+            }
+            
+            let places:[CLPlacemark] = placemarks!;
+            if (places.count > 0)
+            {
+                let pm:CLPlacemark = places[0];
+                
+                // Extract Formatted Address String
+                let lines = pm.addressDictionary!["FormattedAddressLines"];
+                
+                print("\nLines: ", lines);
+                let addressString = lines!.componentsJoinedByString("\n");
+                print("\nAddress String: ", addressString);
+                self.setGeoCodeLocationLabel(addressString);
+            }
+            else {
+                print("Problem with the data received from geocoder");
+            }
+        })
+    }
+    
+    func setGeoCodeLocationLabel(locality:String?){
+        self.locationLabel.text = locality;
+    }
+    
     //MARK: - Actions
     @IBAction func dismiss(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil);

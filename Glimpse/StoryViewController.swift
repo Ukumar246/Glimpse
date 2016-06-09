@@ -53,7 +53,8 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
     ///tag for PFImageView inside of the UICollectionViewCell
     let ImageViewCELLTAG:Int = 1;
     /// tag for UILabel inside of the UICollectionViewCell
-    let LabelViewCELLTAG:Int = 2;
+    let LabelCommentCELLTAG:Int = 2;
+    let LabelViewsCELLTAG:Int = 3;
     /// tag for UILabel inside of the header collection view
     let LabelViewHeaderCELLTAG:Int = 1;
     let SegueFullScreen:String = "Segue_FullScreenImage";
@@ -235,6 +236,11 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
         imageView.layer.cornerRadius = 7;
         imageView.layer.masksToBounds = true;
         imageView.clipsToBounds = true;
+        
+        let viewsLabel:UILabel = cell.viewWithTag(LabelViewsCELLTAG) as! UILabel;
+        viewsLabel.layer.cornerRadius = 7;
+        viewsLabel.layer.masksToBounds = true
+        viewsLabel.clipsToBounds = true;
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -246,8 +252,25 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
         imageView.file = post["picture"] as? PFFile;
         imageView.loadInBackground();
         
-        let commentLabel:UILabel = cell.viewWithTag(LabelViewCELLTAG) as! UILabel;
+        let commentLabel:UILabel = cell.viewWithTag(LabelCommentCELLTAG) as! UILabel;
+        let viewsLabel:UILabel = cell.viewWithTag(LabelViewsCELLTAG) as! UILabel;
+        
         commentLabel.text = post["comment"] as? String;
+        viewsLabel.text = nil;
+        
+        if let views = post["views"] as? Int{
+            var viewsString:String!
+            
+            if (views <= 1){
+                 viewsString = "\(views) View";
+            }
+            else{
+                viewsString = "\(views) Views";
+            }
+            
+            viewsLabel.text = viewsString;
+        }
+        
         
         return cell;
     }

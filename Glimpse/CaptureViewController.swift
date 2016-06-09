@@ -80,7 +80,7 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        self.performSegueWithIdentifier("Segue_SignupProcess", sender: nil);
+        
         state = State(currentState: .VCLoaded);
         
         setupCamera()
