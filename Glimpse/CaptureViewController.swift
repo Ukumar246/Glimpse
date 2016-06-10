@@ -10,7 +10,7 @@ import UIKit
 import Parse
 
 enum VCState {
-    case VCLoaded, LoadingCamera, Camera, Preview, Posting;
+    case VCLoaded, Typing ,Posting;
 }
 
 struct State {
@@ -33,49 +33,48 @@ struct State {
 }
 
 
-class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFieldDelegate
+class CaptureViewController: UIViewController, UITextFieldDelegate
 {
     //MARK: Private API
-    var cameraView:CameraSessionView?
-    var capturedImage:UIImage?
+    
     /// The state the view controller is currently in
     var state:State!
     
     // MARK: Storyboard Outlets
-    @IBOutlet weak var imagePreview: UIImageView!
-    @IBOutlet weak var restartCamera: UIButton!
-    @IBOutlet weak var postButton: UIButton!
-    @IBOutlet weak var commentVisualEffectView: UIVisualEffectView!
-    @IBOutlet weak var commentTextField: UITextField!
+    @IBOutlet weak var subjectTextField: UITextField!
+    @IBOutlet weak var requestTextField: UITextField!
+    
+    @IBOutlet weak var askButton: UIButton!
     
     var user:PFUser{
         return PFUser.currentUser()!;
     }
     
     // Constants:
-    let characterLimit:Int = 140;
+    let characterLimit:Int = 40;
     
     // MARK: - Lifecycle
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated);
         
-        stopCamera();
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if (state.currentState == .Preview || state.currentState == .Posting){
-            print("# Locked State.");
+        if (state.currentState == .Typing){
+            // Dont Do Anything
+        }
+        else if (state.currentState == .Posting){
+            // Dont Do Anything
         }
         else{
-            startCamera();
+            
         }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated);
-        
     }
     
     override func viewDidLoad() {
@@ -83,8 +82,6 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
         
         state = State(currentState: .VCLoaded);
         
-        setupCamera()
-        startCamera()
         
         setupViews();
     }
@@ -92,160 +89,56 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
     /// Sets up apperance on the Storybord Views
     func setupViews() -> Void
     {
-        imagePreview.hidden = true;
-        commentTextField.hidden = true;
-        postButton.hidden = true;
+        let defaultCornerRadius:CGFloat = 7;
+        askButton.layer.cornerRadius = defaultCornerRadius;
+        //subjectTextField.layer.cornerRadius = defaultCornerRadius;
+        //requestTextField.layer.cornerRadius = defaultCornerRadius;
         
-        // Rounded Buttons
-        postButton.layer.cornerRadius = CGRectGetWidth(postButton.frame) / 2;
-        restartCamera.layer.cornerRadius = CGRectGetWidth(restartCamera.frame) / 2;
+        askButton.layer.masksToBounds = true;
+        subjectTextField.layer.masksToBounds = true;
+        requestTextField.layer.masksToBounds = true;
         
-        commentVisualEffectView.layer.cornerRadius = 7;
-        commentVisualEffectView.layer.masksToBounds = true;
-        commentVisualEffectView.clipsToBounds = true;
+        addBottomBorder(subjectTextField);
+        addBottomBorder(requestTextField);
         
-        let attribute:[String: AnyObject] = [NSForegroundColorAttributeName: Helper.getGlimpseOrangeColor()];
-        commentTextField.attributedPlaceholder = NSAttributedString(string: "Comment", attributes: attribute);
+        let _:[String: AnyObject] = [NSForegroundColorAttributeName: Helper.getGlimpseOrangeColor()];
     }
     
-    // MARK: - Camera
-    func setupCamera() -> Void {
-        cameraView = CameraSessionView(frame: view.frame);
-        cameraView!.delegate = self
-        // Call Camera Public API's Here
+    // Adds Bottom Border to Passed Tf
+    func addBottomBorder(textField:UITextField) -> Void {
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = Helper.getGlimpseOrangeColor().CGColor;
+        border.frame = CGRect(x: 0, y: textField.frame.size.height - width, width:  textField.frame.size.width, height: textField.frame.size.height)
         
-        state.setState(.LoadingCamera);
-    }
-    
-    func startCamera() ->Void{
-        if cameraView == nil{
-            setupCamera();
-        }
-
-        hidePreview();
-        
-        if cameraView!.hidden == true{
-            // The camera view was just hidden
-            cameraView!.hidden = false;
-            cameraView!.alpha = 1;          // Full opacity
-        }
-        
-        view.addSubview(cameraView!);
-        state.setState(.Camera);
-    }
-    
-    func stopCamera() -> Void{
-        cameraView?.removeFromSuperview();
-        cameraView = nil;
-    }
-    
-    func removeCamera() -> Void {
-        assert(cameraView != nil, "cameraView is not setup at this point");
-        if view.subviews.contains(cameraView!){
-            cameraView!.removeFromSuperview();
-        }
-        cameraView = nil;
-        
+        border.borderWidth = width
+        textField.layer.addSublayer(border)
+        textField.layer.masksToBounds = true
     }
 
-    func didCaptureImage(image: UIImage!, withFrontCamera frontCamera: Bool) {
-        
-        if frontCamera{
-            // Flip Image
-//            var flipedImage = UIImage(CGImage: image.CGImage!, scale: 1.0, orientation: .DownMirrored)
-//            print("* Flipped Image");
-        }
-        
-        previewImage(image);
-        
-        cameraView!.alpha = 1;          // Full opacity
-        UIView.animateWithDuration(0.5, delay: 0, options: [.CurveEaseIn], animations: {
-            self.cameraView!.alpha = 0;
-        }) { (complete:Bool) in
-            if complete{
-                // Just Hide the CameraView
-                self.cameraView!.hidden = true;
-            }
-        }
-    }
     
-    // MARK: UI
-    func previewImage(image:UIImage) -> Void {
-        restartCamera.hidden = false;
-        postButton.hidden = false;
-        commentTextField.hidden = false;
+    @IBAction func tappedScreen(sender: UITapGestureRecognizer) {
         
-        commentTextField.text = nil;
-        let attribute:[String: AnyObject] = [NSForegroundColorAttributeName: Helper.getGlimpseOrangeColor()];
-        commentTextField.attributedPlaceholder = NSAttributedString(string: "Comment", attributes: attribute);
-        
-        commentVisualEffectView.hidden = false;
-        
-        imagePreview.hidden = false;
-        imagePreview.image = image;
-
-        capturedImage = image;
-        
-        postButton.setTitle("Post", forState: .Normal);
-        postButton.enabled = true;
-        commentTextField.enabled = true;
-        
-        state.setState(.Preview);
-    }
-    
-    func hidePreview() -> Void {
-        imagePreview.hidden = true;
-        restartCamera.hidden = true
-        postButton.hidden = true;
-    }
-    
-    @IBAction func restartCameraAction(sender: AnyObject) {
-        // Dismiss Keyboard
-        commentTextField.resignFirstResponder();
-        startCamera();
-    }
-    
-    @IBAction func postAction(sender: UIButton) {
-        assert(capturedImage != nil);
-        
-        // Disable Mulitple Posting
-        postButton.setTitle("Posting...", forState: .Normal);
-        postButton.enabled = false;
-        commentTextField.enabled = false;
-        
-        if let commentString = commentTextField.text{
-            postImageToParse(capturedImage!, comment: commentString);
-        }
-        else{
-            postImageToParse(capturedImage!, comment: "");
-        }
-    }
-    
-    @IBAction func imageTapped(sender: UITapGestureRecognizer) {
-        if commentTextField.isFirstResponder(){
-            commentTextField.resignFirstResponder()
-        }
     }
     
     // MARK: - Database Operations
-    func postImageToParse(image:UIImage, comment:String) -> Void {
-        let imageData:NSData = UIImageJPEGRepresentation(image, 1.0)!;
+    func postRequestToParse(comment:String) -> Void {
         
-        let post = PFObject(className: "Post");
-        post["picture"] = PFFile(name: "img.jpeg", data: imageData);
+        let request = PFObject(className: "Post");
+        
         if let lastLocation = Helper.getLastKnownUserLocation(){
-            post["location"] = PFGeoPoint(latitude: lastLocation.latitude, longitude: lastLocation.longitude);
+            request["location"] = PFGeoPoint(latitude: lastLocation.latitude, longitude: lastLocation.longitude);
         }
         else{
             print("!! Error: Cannot determine location :(");
             return;
         }
-        post["comment"] = comment;
-        post["user"] = user;
-        post["views"] = 0;
-        post["viewers"] = [];
+        request["comment"] = comment;
+        request["user"] = user;
+        request["views"] = 0;
+        request["viewers"] = [];
         
-        post.saveInBackgroundWithBlock { (success:Bool, error:NSError?) in
+        request.saveInBackgroundWithBlock { (success:Bool, error:NSError?) in
             
             if success{
                 print("* Post Uploaded Successfully!");
@@ -258,7 +151,7 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
                 Helper.showQuickAlert("Error!", message: error!.description, viewController: self);
             }
             
-            self.startCamera();
+            // After Posting
         }
         
         state.setState(.Posting);
@@ -278,6 +171,13 @@ class CaptureViewController: UIViewController, CACameraSessionDelegate, UITextFi
     
     func textFieldDidBeginEditing(textField: UITextField) {
         textField.attributedPlaceholder = nil;
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        if textField.text == nil || textField.text == ""{
+            // Insert attributed placeholder in here
+            //            textField.attributedPlaceholder
+        }
     }
 }
 

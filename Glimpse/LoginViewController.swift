@@ -45,8 +45,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.text = nil;
         
         // Placeholders
-        let mercuryColor:UIColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1);
-        let attributes:[String : AnyObject] = [NSForegroundColorAttributeName : mercuryColor];
+        let attributes:[String : AnyObject] = [NSForegroundColorAttributeName : Helper.getGlimpseOrangeColor()];
         
         emailTextField.attributedPlaceholder = NSAttributedString(string: "email", attributes: attributes)
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "password", attributes: attributes);
