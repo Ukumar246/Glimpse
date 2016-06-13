@@ -11,38 +11,45 @@ import Parse
 import ParseUI
 import MapKit
 
-class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelegate
+class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelegate, UITextFieldDelegate, UIScrollViewDelegate
 {
     
     // MARK: Public API
-    var imageFile:PFFile!
-    var imageComment:String?
-    var post:PFObject!
+    var request:PFObject!
     var interactor:Interactor? = nil
     
     // MARK: Private API
     var user:PFUser{
         return PFUser.currentUser()!;
     }
-    
-    // MARK: Private API
-    @IBOutlet var imageView: PFImageView!
-    @IBOutlet var commentLabel: UILabel!
+
     @IBOutlet weak var profileImageView: PFImageView!
-    @IBOutlet weak var viewsLabel: UILabel!
-    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var subjectLabel: UILabel!
+    @IBOutlet weak var requestLabel: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var commentsTableView: UITableView!
+    @IBOutlet weak var commentBox: CommentBox!
+
+    // MARK: Constants
+    let cellIdentifier:String = "commentCell";
+    
+    // MARK: - Lifecycle
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated);
+        
+        let originalPoint = CGPointMake(0, 16);
+        scrollView.contentOffset = originalPoint;
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        assert(post != nil, "Post must be set");
+        assert(request != nil, "Post must be set");
         
-        // Post Stuff
-        imageView.file = imageFile;
-        imageView.loadInBackground();
-        commentLabel.text = imageComment;
+        // Request Stuff
+        subjectLabel.text = request["subject"] as? String;
+        requestLabel.text = request["request"] as? String;
         
-        if let views = post["views"] as? Int
+        if let views = request["views"] as? Int
         {
             var viewsString:String!
             if (views <= 1){
@@ -52,20 +59,13 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
                 viewsString = "\(views) Views";
             }
             
-            viewsLabel.text = viewsString;
+            //viewsLabel.text = viewsString;
         }
         else{
-            viewsLabel.text = "0 View";
+            //viewsLabel.text = "0 View";
         }
         
-        // Geo Coding GeoPoint
-        locationLabel.text = nil;
-        let postLocation = post["location"] as! PFGeoPoint;
-        reverseGeoCodeLocation(postLocation.longitude, latitude: postLocation.latitude);
-        
-        viewPost();
-        
-        let user = post["user"] as! PFUser
+        let user = request["owner"] as! PFUser;
         user.fetchIfNeededInBackgroundWithBlock{ (result:PFObject?, error:NSError?) in
             if error != nil{
                 print("! Error Fetching User Image");
@@ -89,31 +89,55 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
     
     func setupViews(){
         
-        imageView.layer.cornerRadius = 7;
-        imageView.layer.masksToBounds = true;
-        
-        profileImageView.layer.cornerRadius = CGRectGetWidth(profileImageView.frame) / 2;
+        profileImageView.layer.cornerRadius = 7;
         profileImageView.layer.masksToBounds = true;
+     
+        commentsTableView.tableHeaderView = nil;
+        commentsTableView.contentInset = UIEdgeInsetsMake(-33, 0, -33, 0);
         
-        /*
-        // Add Gradient Layer to Comment Label
-        let gradientLayer = CAGradientLayer();
-        gradientLayer.frame = commentLabel.frame;
+        let attributes:[String: AnyObject] = [NSForegroundColorAttributeName: Helper.getGlimpseOrangeColor()];
         
-        // 3
-        let customBlack:UIColor = view.backgroundColor!;
-        let color1 = customBlack.CGColor as CGColorRef
-        let color2 = UIColor.clearColor().CGColor as CGColorRef
-        gradientLayer.colors = [color1, color2];
+        commentBox.commentTextField.attributedPlaceholder = NSAttributedString(string: "Leave a comment", attributes: attributes);
+        commentBox.layer.cornerRadius = 7;
+        commentBox.layer.masksToBounds = true;
         
-        // 4
-        gradientLayer.locations = [0.0, 0.50];
+        let originalPoint = CGPointMake(0, 16);
+        scrollView.contentOffset = originalPoint;
         
-        // 5
-        commentLabel.layer.addSublayer(gradientLayer);
-         */
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FullScreenImageViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        
     }
-
+    
+    func autoChangeBackgroundColors(){
+        var patternColorArray = [UIColor]();
+        for x in 1...5 {
+            let patternImageFileName:String = "Pattern \(x)";
+            let patternImage = UIImage(named: patternImageFileName)!;
+            let patternColor = UIColor(patternImage: patternImage);
+            patternColorArray.append(patternColor);
+        }
+        
+        
+        var randIndex:Int = 0{
+            didSet{
+                if randIndex >= 5{
+                    randIndex = 0;
+                }
+            }
+        }
+        
+        for index in 1...5 {
+            let seconds:Double = 5 * Double(index);
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(seconds * Double(NSEC_PER_SEC)))
+            dispatch_after(delayTime, dispatch_get_main_queue()) {
+                
+                print("* Testing pattern ", randIndex);
+                self.scrollView.backgroundColor = patternColorArray[randIndex];
+                randIndex += 1;
+            }
+        }
+    }
+    
     //MARK: - GeoLocation
     func reverseGeoCodeLocation(longitude:CLLocationDegrees ,latitude:CLLocationDegrees)
     {
@@ -146,35 +170,12 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
     }
     
     func setGeoCodeLocationLabel(locality:String?){
-        self.locationLabel.text = locality;
+        
     }
     
     //MARK: - Actions
     @IBAction func dismiss(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil);
-    }
-    
-    func showHelperCircle(){
-        let center = CGPoint(x: view.bounds.width * 0.5, y: 100)
-        let small = CGSize(width: 30, height: 30)
-        let circle = UIView(frame: CGRect(origin: center, size: small))
-        circle.layer.cornerRadius = circle.frame.width/2
-        circle.backgroundColor = UIColor.greenColor()
-        circle.layer.shadowOpacity = 0.8
-        circle.layer.shadowOffset = CGSizeZero
-        view.insertSubview(circle, atIndex: 0);
-        UIView.animateWithDuration(
-            0.5,
-            delay: 0.25,
-            options: [],
-            animations: {
-                circle.frame.origin.y += 200
-                circle.layer.opacity = 0
-            },
-            completion: { _ in
-                circle.removeFromSuperview()
-            }
-        )
     }
     
     @IBAction func handleGesture(sender: UIPanGestureRecognizer) {
@@ -209,13 +210,56 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
         }
     }
     
-    //MARK: - Database Operations
+    func moveCommentBoxUp(keyboardHeight: CGFloat){
+        let extraHeight = keyboardHeight + 15;
+        let movedUpPoint = CGPointMake(0, extraHeight);
+        scrollView.setContentOffset(movedUpPoint, animated: true);
+    }
     
+    func moveCommentBoxDown(){
+        let originalPoint = CGPointMake(0, 16);
+        scrollView.setContentOffset(originalPoint, animated: true);
+    }
+    
+    func keyboardWillShow(notification:NSNotification) {
+        let userInfo:NSDictionary = notification.userInfo!
+        let keyboardFrame:NSValue = userInfo.valueForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardRectangle = keyboardFrame.CGRectValue()
+        let keyboardHeight = keyboardRectangle.height
+        moveCommentBoxUp(keyboardHeight);
+    }
+    
+    // MARK: - ScrollView
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+    }
+    
+    // MARK: - TextField
+    func textFieldDidBeginEditing(textField: UITextField) {
+        
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        moveCommentBoxDown();
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder();
+        return false;
+    }
+    
+    func dismissKeyboard(){
+        if commentBox.commentTextField.isFirstResponder(){
+            commentBox.commentTextField.resignFirstResponder();
+        }
+    }
+    
+    //MARK: - Database Operations
     /// + Incrmentes views on this post
     /// + Registers self as viewer of this post
     func viewPost() -> Void
     {
-        if let currentViewers = post["viewers"] as? [PFUser]{
+        if let currentViewers = request["followers"] as? [PFUser]{
             if currentViewers.contains(self.user){
                 print("* Already viewed this post");
                 return;
@@ -223,9 +267,9 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
         }
         
         // Do database operations
-        post.incrementKey("views");
-        post.addUniqueObject(self.user, forKey: "viewers");
-        post.saveInBackgroundWithBlock { (success:Bool, error:NSError?) in
+        request.incrementKey("views");
+        request.addUniqueObject(self.user, forKey: "viewers");
+        request.saveInBackgroundWithBlock { (success:Bool, error:NSError?) in
             if success{
                 print("# Viewed post!");
             }
@@ -233,6 +277,84 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
                 print("! Failed to view post");
             }
         }
+    }
+}
+
+extension FullScreenImageViewController: UITableViewDataSource, UITableViewDelegate{
+    
+    // MARK: Configration
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1;
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5;
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let commentCell = cell as! CommentCell;
+        
+        commentCell.imageComment.layer.cornerRadius = 7;
+        commentCell.imageComment.layer.masksToBounds = true;
+        
+        commentCell.profileImageView.layer.cornerRadius = 7;
+        commentCell.profileImageView.layer.masksToBounds = true;
         
     }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell:CommentCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! CommentCell;
+        
+        return cell;
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 374;     // Const for test
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat.min;
+    }
+    
+    // MARK: Editing
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        let moreRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "More", handler:{action, indexpath in
+            
+            print("MORE•ACTION");
+        });
+        moreRowAction.backgroundColor = UIColor(red: 0.298, green: 0.851, blue: 0.3922, alpha: 1.0);
+        
+        let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete", handler:{action, indexpath in
+            
+            print("DELETE•ACTION");
+        });
+        
+        return [deleteRowAction, moreRowAction];
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            // handle delete (by removing the data from your array and updating the tableview)
+        }
+    }
+}
+
+class CommentCell: UITableViewCell {
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var imageComment: UIImageView!
+    
+}
+
+class CommentBox: UIView {
+    @IBOutlet weak var commentTextField: UITextField!
+    @IBOutlet weak var profileImageView: PFImageView!
 }

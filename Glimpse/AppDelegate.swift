@@ -37,8 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Register for Push Notitications
         if application.applicationState != UIApplicationState.Background
         {
-            let preBackgroundPush = !application.respondsToSelector("backgroundRefreshStatus")
-            let oldPushHandlerOnly = !self.respondsToSelector("application:didReceiveRemoteNotification:fetchCompletionHandler:")
+            let preBackgroundPush = !application.respondsToSelector(Selector("backgroundRefreshStatus"))
+            let oldPushHandlerOnly = !self.respondsToSelector(#selector(UIApplicationDelegate.application(_:didReceiveRemoteNotification:fetchCompletionHandler:)))
             var pushPayload = false
             if let options = launchOptions {
                 pushPayload = options[UIApplicationLaunchOptionsRemoteNotificationKey] != nil
@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
             }
         }
-        if application.respondsToSelector("registerUserNotificationSettings:")
+        if application.respondsToSelector(#selector(UIApplication.registerUserNotificationSettings(_:)))
         {
             let setting = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
             application.registerUserNotificationSettings(setting)
@@ -65,17 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization();
         
-        
-        // Parse User Login
-        if PFUser.currentUser() == nil{
-            // User is NOT logged in
-            let storyBoard = UIStoryboard(name: "Main", bundle: nil);
-            let loginVC:LoginViewController = storyBoard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController;
-            
-            
-            window?.rootViewController = loginVC;
-            window?.makeKeyAndVisible();
-        }
+        // Appearance 
+        UIApplication.sharedApplication().statusBarStyle = .Default;
         
         return true
     }
@@ -127,6 +118,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        // Reset Push Badge
+        let currentInstallation = PFInstallation.currentInstallation();
+        
+        if currentInstallation.badge != 0
+        {
+            currentInstallation.badge = 0;
+            currentInstallation.saveEventually()
+        }
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -153,21 +152,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        if error.code == 3010 {
+        if error.code == 3010
+        {
             print("Push notifications are not supported in the iOS Simulator.")
-        } else {
-            print("application:didFailToRegisterForRemoteNotificationsWithError: %@", error)
+        }
+        else
+        {
+            print("application:didFailToRegisterForRemoteNotificationsWithError: \(error)");
         }
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void)
     {
-            PFPush.handlePush(userInfo)
-            completionHandler(UIBackgroundFetchResult.NewData)
-            
-            if application.applicationState == UIApplicationState.Inactive{
-                PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
-            }
+        PFPush.handlePush(userInfo)
+        completionHandler(UIBackgroundFetchResult.NewData)
+        
+        if application.applicationState == UIApplicationState.Inactive{
+            PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
+        }
         return;
     }
 }

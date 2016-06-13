@@ -11,9 +11,13 @@ import Parse
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
+    // MARK: Public API
+    var interactor:Interactor? = nil
+    
     //MARK: Private API
     let SegueIdentifier_RootVC:String = "segue_LoginVC_RootVC";
     
+    @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var emailTextField: UITextField!
@@ -85,6 +89,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - Action
+    @IBAction func tappedOutside(sender: UITapGestureRecognizer) {
+        
+        if sender.state == UIGestureRecognizerState.Recognized{
+            let attachedView = sender.view
+            let tappedPoint = sender.locationInView(attachedView);
+            
+            print("Attached View ", tappedPoint);
+            
+            let outside = sender.locationInView(visualEffectView);
+            print("Visual View ", outside);
+        }
+    }
+    
+    @IBAction func dismissViewController(sender: UIButton) {
+        dismissViewControllerAnimated(true, completion: nil);
+    }
+    
     @IBAction func editingBegan(sender: UITextField) {
         if sender.tag == 1{
             if scrollView.contentOffset == CGPointMake(0, 0){
@@ -116,16 +137,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             return;
         }
         
-        PFUser.logInWithUsernameInBackground(email!, password: password!) { (loggedInUser:PFUser?, error:NSError?) in
-            
-            if error == nil && loggedInUser != nil{
-                self.gotoRootViewController();
-            }
-            else{
-                Helper.showQuickAlert("Login Failed", message: "☹️", viewController: self);
-            }
-        }
-        
+        login(email!, password: password!);
     }
     
     func isValidEmail(testStr:String) -> Bool {
@@ -142,8 +154,28 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return false;
     }
     
-    // MARK: - Navigation
+    // MARK: - Database
+    func login(username:String, password: String)
+    {
+        PFUser.logInWithUsernameInBackground(username, password: password){ (loggedInUser:PFUser?, error:NSError?) in
+            if (error == nil && loggedInUser != nil)
+            {
+                // Installation
+                let installation = PFInstallation.currentInstallation();
+                let loggedInUser:PFUser = loggedInUser!;
+                installation["user"] = loggedInUser;
+                
+                installation.saveInBackground();
+                
+                self.gotoRootViewController();
+            }
+            else{
+                Helper.showQuickAlert("Login Failed", message: "☹️", viewController: self);
+            }
+        }
+    }
     
+    // MARK: - Navigation
     /// Enter the app
     func gotoRootViewController() -> Void {
         performSegueWithIdentifier(SegueIdentifier_RootVC, sender: nil);

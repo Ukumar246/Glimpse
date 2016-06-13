@@ -9,4 +9,5 @@ target 'Glimpse' do
 pod 'EZSwipeController'
 pod 'CSStickyHeaderFlowLayout'
 pod 'SimpleCam', '~> 0.1'
+pod 'AASquaresLoading'
 end

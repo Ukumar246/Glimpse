@@ -1,18 +1,21 @@
 PODS:
+  - AASquaresLoading (0.3.2)
   - CSStickyHeaderFlowLayout (0.2.10)
   - EZSwipeController (0.5)
   - SimpleCam (0.1.5)
 
 DEPENDENCIES:
+  - AASquaresLoading
   - CSStickyHeaderFlowLayout
   - EZSwipeController
   - SimpleCam (~> 0.1)
 
 SPEC CHECKSUMS:
+  AASquaresLoading: 14da64695b9128cbda6b8558249bd0bbc72123b6
   CSStickyHeaderFlowLayout: 5366582779d8b7c9ba9b9cc729c218cc23888776
   EZSwipeController: 01cc43b319e133b6dbfb25bfdc78617a1560e952
   SimpleCam: c51100cde507bffdcac55e9c759a2e122aa5990c
 
-PODFILE CHECKSUM: d89e04c1efea2769467214fff8f24af2cb20172e
+PODFILE CHECKSUM: 9309d89285eaa14c003e5c8267077cb077e66597
 
 COCOAPODS: 1.0.0

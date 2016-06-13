@@ -14,8 +14,9 @@ import MessageUI
 
 class ProfileTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UITextFieldDelegate, MFMessageComposeViewControllerDelegate
 {
-    @IBOutlet weak var titleLabel: UILabel!
     
+    // MARK: - Private Properties
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet var headerView: UIView!
     @IBOutlet var headerVisualEffectView: UIVisualEffectView!
     @IBOutlet var backgroundImageView: PFImageView!
@@ -25,18 +26,27 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
     
     var imagePicker:UIImagePickerController!
     
+    var userLoggedIn:Bool{
+        return (PFUser.currentUser() == nil) ? false : true;
+    }
+    
     var user:PFUser{
         return PFUser.currentUser()!;
     }
     
+    // MARK: Constants
+    let loginSegue:String = "Segue_Login";
+    
+    // MARK: - Lifecycle
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated);
+        // Status Bar
+        UIApplication.sharedApplication().statusBarStyle = .Default;
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        assert(PFUser.currentUser() != nil);
 
-        //let currentUser = PFUser.currentUser()!
-        fetchProfileImage();
-        fetchUserName();
-        
         imagePicker = UIImagePickerController();
         imagePicker.delegate = self;
         imagePicker.sourceType = .PhotoLibrary;
@@ -48,33 +58,51 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
         imagePicker.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : Helper.getGlimpseOrangeColor()]
         
         setupViews();
+        
+        if userLoggedIn == false{
+            // Logout button needs to be changed
+            return;
+        }
+        
+        // Do User Account Activity Stuff
+        fetchProfileImage();
+        fetchUserName();
     }
     
     /// Adds Styles and Appearance to views on storyboard
     func setupViews() -> Void {
+        // Status Bar
+        UIApplication.sharedApplication().statusBarStyle = .Default;
+        
         // View Setup
         profileImageView.layer.cornerRadius = 7;
         logoutButton.layer.cornerRadius = 5;
+        
+        changeLogoutButton();
     }
 
     //MARK: - Action
+    func changeLogoutButton(){
+        if userLoggedIn{
+            // User is logged in
+            logoutButton.setTitle("Logout", forState: .Normal);
+            logoutButton.addTarget(self, action: #selector(ProfileTableViewController.logoutAction(_:)), forControlEvents: .TouchUpInside);
+        }
+        else{
+            // User is logged in
+            logoutButton.setTitle("Logout", forState: .Normal);
+            logoutButton.removeTarget(self, action: #selector(ProfileTableViewController.logoutAction(_:)), forControlEvents: .TouchUpInside);
+        }
+    }
+    
     @IBAction func logoutAction(sender: UIButton) {
         
         // Avoid Double Tap
         sender.enabled = false;
         
-        // Logout User
-        PFUser.logOutInBackgroundWithBlock { (error:NSError?) in
+        logout { (finished) in
             // Enable ReTap
             sender.enabled = true;
-            if (error == nil)
-            {
-                print("* Logged out!");
-                self.gotoLoginScreen();
-            }
-            else{
-                print("! Error Logging out", error!.description);
-            }
         }
     }
 
@@ -110,16 +138,23 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
         UIApplication.sharedApplication().openURL(url);
     }
     
+    // MARK: Tap Actions
     @IBAction func tappedImage(sender: UITapGestureRecognizer) {
+        if userLoggedIn == false{
+            gotoLoginScreen();
+            return;
+        }
         presentViewController(imagePicker, animated: true, completion: nil);
     }
     
     @IBAction func longPressedImage(sender: UILongPressGestureRecognizer) {
-        
+        if userLoggedIn == false{
+            gotoLoginScreen();
+            return;
+        }
     }
     
     @IBAction func tappedNameTf(sender: UITapGestureRecognizer) {
-        
         let editNameTf = UITextField(frame: nameLabel.frame);
         editNameTf.tag = 1;
         editNameTf.borderStyle = .RoundedRect;
@@ -137,7 +172,6 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
         
         // TextField Targets
         editNameTf.delegate = self;
-        
     }
     
     func share(){
@@ -151,33 +185,34 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
     }
     
     func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
-        
-        print("* Message Sent!");
         controller.dismissViewControllerAnimated(true, completion: nil);
     }
     
-    //MARK: TextField
+    //MARK: - TextField
     func textFieldDidEndEditing(textField: UITextField) {
         if textField.tag != 1{
             return;
         }
-        
-        if textField.text == nil || textField.text == ""{
+        else if textField.text == nil || textField.text == ""{
+            return
+        }
+        else if (userLoggedIn == false){
+            gotoLoginScreen();
             return
         }
         
-        let newName:String = textField.text!;
-        user["name"] = newName;
-        
-        user.saveInBackgroundWithBlock { (saved:Bool, error:NSError?) in
-            if saved && error == nil{
-                self.nameLabel.text = newName;
-                self.nameLabel.hidden = false;
-                textField.removeFromSuperview();
+        let newName = textField.text!;
+        updateUserName(newName) { (finished) in
+            
+            if finished == false{
+                Helper.showQuickAlert("Failed to Save :/", message: "", viewController: self);
+                return
             }
-            else{
-                Helper.showAlert("Error", message: "Check your internet", viewController: self);
-            }
+            
+            // Name Updated Successfully!
+            self.nameLabel.text = newName;
+            self.nameLabel.hidden = false;
+            textField.removeFromSuperview();
         }
         
         textField.text = "Saving...";
@@ -188,7 +223,7 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
         return false;
     }
     
-    //MARK: Image Picker Delegate
+    //MARK: - Image Picker Delegate
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             
@@ -215,11 +250,12 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
     }
     
     //MARK: - Database Operations
-    
     /// Updates Profile Image 
     /// Note: Database Operation
     ///       **Updates UIImage View Profile Image View**
     func uploadProfileImage(newImage:UIImage) -> Void {
+        assert(PFUser.currentUser() != nil, "User must be logged in to update profile pic!");
+        
         let imageData:NSData = UIImageJPEGRepresentation(newImage, 1.0)!;
         let imageFile:PFFile = PFFile(name: "profile.jpeg", data: imageData)!;
         
@@ -246,13 +282,31 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
         });
     }
     
+    func updateUserName(newName:String, completion:(finished:Bool) -> Void)
+    {
+        assert(PFUser.currentUser() != nil);
+        
+        user["name"] = newName;
+        user.saveInBackgroundWithBlock { (saved:Bool, error:NSError?) in
+            if saved && error == nil{
+                completion(finished: true);
+            }
+            else{
+                completion(finished: false);
+            }
+        }
+    }
+    
     /// Loads user profile image
     func fetchProfileImage() -> Void {
         if let profilePic = user["picture"] as? PFFile{
             profileImageView.file = profilePic;
             backgroundImageView.file = profilePic;
+            
             profileImageView.loadInBackground();
             backgroundImageView.loadInBackground();
+            
+            print("Profile Picture Loaded.");
         }
     }
     
@@ -262,14 +316,27 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
         }
     }
     
+    func logout(completion:(finished:Bool) -> Void) -> Void{
+        // Logout User
+        PFUser.logOutInBackgroundWithBlock { (error:NSError?) in
+            completion(finished: true);
+            
+            if (error == nil){
+                let installation = PFInstallation.currentInstallation();
+                installation.removeObjectForKey("user");
+                installation.saveInBackground();
+                
+                self.gotoLoginScreen();
+            }
+            else{
+                print("! Error Logging out", error!.description);
+            }
+        }
+    }
+    
     // MARK: - Navigation
     func gotoLoginScreen() -> Void {
-        let loginVC_Identifier:String = "LoginViewController";
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil);
-        
-        let loginVC:UIViewController = storyBoard.instantiateViewControllerWithIdentifier(loginVC_Identifier);
-        
-        presentViewController(loginVC, animated: true, completion: nil);
+        performSegueWithIdentifier(loginSegue, sender: nil);
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation

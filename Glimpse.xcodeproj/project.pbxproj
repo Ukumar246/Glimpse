@@ -330,6 +330,14 @@
 					376E895D1CECDF57009B78D5 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = GGJF6LY3BM;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -567,7 +575,7 @@
 				);
 				INFOPLIST_FILE = Glimpse/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = GlimpseCreative.Glimpse;
+				PRODUCT_BUNDLE_IDENTIFIER = GlimpseCreative.GlimpsePivot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Glimpse/Glimpse-Bridging-Header.h";
@@ -594,7 +602,7 @@
 				);
 				INFOPLIST_FILE = Glimpse/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = GlimpseCreative.Glimpse;
+				PRODUCT_BUNDLE_IDENTIFIER = GlimpseCreative.GlimpsePivot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Glimpse/Glimpse-Bridging-Header.h";

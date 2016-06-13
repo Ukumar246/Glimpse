@@ -9,9 +9,9 @@
 import UIKit
 import ParseUI
 import Parse
-import CSStickyHeaderFlowLayout
 import MapKit
 import CoreLocation
+import AASquaresLoading
 
 enum Regions {
     case North, Campus, South;
@@ -21,39 +21,37 @@ enum AutoLoad {
     case On, Off;
 }
 
-class StoryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, MKMapViewDelegate, UIScrollViewDelegate
+class StoryViewController: UIViewController, MKMapViewDelegate
 {
-    // MARK: Private API
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet var headerContentView: UIView!
+    // MARK: - Private API
+    var loadingSquares:AASquaresLoading?        // Loading Alert Shared Reference
+    
+    // MARK: Storyboard Outlet
+    @IBOutlet weak var tableView: UITableView!
+    //@IBOutlet weak var collectionView: UICollectionView!
+    //@IBOutlet var headerContentView: UIView!
     @IBOutlet var mapView: MKMapView!
-    @IBOutlet var headerSegment: UISegmentedControl!
+    //@IBOutlet var headerSegment: UISegmentedControl!
     
     @IBOutlet var navigationView: UIView!
     @IBOutlet var navigationTitleLabel: UILabel!
     @IBOutlet var navigationRefresh: UIActivityIndicatorView!
  
-    let interactor = Interactor()
+    /// Segue Handler for Swipe to Dismiss
+    var interactor:Interactor!
     
     /// Auto Loader for view controller
     /// Note: - turns on automatically when set off in following view controller appear cycle
     var autoLoad:AutoLoad!
     
-    /// local region where the user current is
-    var localRegion:Regions!{
-        didSet{
-            collectionView.reloadData();
-            addOverlayOnMap(localRegion);
-            centerMapOnRegion(localRegion);
-            fetchPosts(localRegion);
-        }
-    }
     
     // Constants
-    ///tag for PFImageView inside of the UICollectionViewCell
+    /// reuse identifer for the storyboard cell
+    let CellIdentifier:String = "simpleCellIdentifier";
+    /// tag for PFImageView inside of the UICollectionViewCell
     let ImageViewCELLTAG:Int = 1;
     /// tag for UILabel inside of the UICollectionViewCell
-    let LabelCommentCELLTAG:Int = 2;
+    let SubjectLabelCELLTAG:Int = 1;
     let LabelViewsCELLTAG:Int = 3;
     /// tag for UILabel inside of the header collection view
     let LabelViewHeaderCELLTAG:Int = 1;
@@ -61,12 +59,11 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     /// Selected Post 
     /// Note: - It is a reference to self.posts[PFObject]
-    var selectedPost:PFObject?{
+    var selectedRequest:PFObject?{
         didSet{
-            if selectedPost == nil{
+            if selectedRequest == nil{
                 return;
             }
-            
             performSegueWithIdentifier(SegueFullScreen, sender: nil);
         }
     }
@@ -75,33 +72,23 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
     var posts:[PFObject]?{
         didSet{
             if posts != nil{
-                print("\n\n>> Found \(posts!.count) posts.");
-                
-                /* Print all posts found
-                for post in posts!{
-                    if let comment = post["comment"] as? String{
-                        print(" - ", comment);
-                    }
-                }
-                */
-                collectionView.reloadData();
-                annotatePostsOnMap(posts!);
+                tableView.reloadData();
             }
             else{
-                // There are no new posts 
-                
+                // There are no posts
             }
-            
-            
-            selectedPost = nil;
+            selectedRequest = nil;
         }
     }
     
+    // MARK: - LifeCycle
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated);
-
+        // Status Bar
+        UIApplication.sharedApplication().statusBarStyle = .LightContent;
+        
         if autoLoad == .On{
-            refreshCollectionView();
+            refreshTableView();
         }
         
         autoLoad = .On;
@@ -111,56 +98,78 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
         super.viewDidLoad()
      
         autoLoad = .On;
-        navigationController!.setNavigationBarHidden(true, animated: false);
+        self.interactor = Interactor();
         
-        showCampusFeed();
         setupViews();
     }
 
-    // MARK: - Setup Views
-    func setupViews() -> Void {
-        let layout:CSStickyHeaderFlowLayout = collectionView.collectionViewLayout as! CSStickyHeaderFlowLayout;
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated);
         
-        // Locate the nib and register it to your collection view
-        let headerNib = UINib(nibName: "StickyHeader", bundle: nil);
-        collectionView.registerNib(headerNib, forSupplementaryViewOfKind: CSStickyHeaderParallaxHeader, withReuseIdentifier: "stickyHeader");
-        
-        let superViewWidth = CGRectGetWidth(self.view.frame);
-        let height = CGRectGetHeight(self.headerContentView.frame);
-        layout.parallaxHeaderReferenceSize = CGSizeMake(superViewWidth, height);
-        
-        let headerFrame = CGRectMake(0, 0, superViewWidth, height);
-        headerContentView.frame = headerFrame;
-        
-        // map setup
-        mapView.delegate = self;
-        //centerMap();
-        
-        addOverlayOnMap(.Campus);
-        
+        // Status Bar
+        UIApplication.sharedApplication().statusBarStyle = .Default;
     }
     
-    func showCampusFeed() -> Void {
-        localRegion = .Campus;
+    // MARK: - Setup Views
+    func setupViews() -> Void {
+        // Status Bar
+        UIApplication.sharedApplication().statusBarStyle = .LightContent;
+        
+        self.edgesForExtendedLayout = .None;
+        tableView.tableHeaderView = nil;
+        tableView.contentInset = UIEdgeInsetsMake(-33, 0, -33, 0);
+        
+        autoChangeBackgroundColors();
+    }
+    
+    func autoChangeBackgroundColors(){
+        var patternColorArray = [UIColor]();
+        for x in 1...5 {
+            let patternImageFileName:String = "Pattern \(x)";
+            let patternImage = UIImage(named: patternImageFileName)!;
+            let patternColor = UIColor(patternImage: patternImage);
+            patternColorArray.append(patternColor);
+        }
+        
+        
+        var randIndex:Int = 0{
+            didSet{
+                if randIndex >= 5{
+                    randIndex = 0;
+                }
+            }
+        }
+        
+        for index in 1...5 {
+            let seconds:Double = 5 * Double(index);
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(seconds * Double(NSEC_PER_SEC)))
+            dispatch_after(delayTime, dispatch_get_main_queue()) {
+                
+                print("* Testing pattern ", randIndex);
+                self.view.backgroundColor = patternColorArray[randIndex];
+                randIndex += 1;
+            }
+        }
     }
     
     // MARK: - Database Operations
     /// Updates Post Feed
-    func fetchPosts(region:Regions) -> Void {
-        print("> Fetching \(localRegion) Posts..");
+    /// - Notes:
+    ///     - Compeletion Block Handler is trigger once data is refreshed!
+    func fetchRequests(completion:(finished:Bool) -> Void) -> Void
+    {
+        print("> Fetching Random Posts..");
         
-        let query = PFQuery(className: "Post");
+        let query = PFQuery(className: "Request");
         query.includeKey("user");
-        query.includeKey("viewers");
-        
-        // Region Query
-        let (NE, SW) = getRegionalBox(region);
-        query.whereKey("location", withinGeoBoxFromSouthwest: SW, toNortheast: NE);
+        query.includeKey("followers");
         
         query.orderByDescending("createdAt");
+        query.limit = 3;
+        
         query.findObjectsInBackgroundWithBlock {(newPosts:[PFObject]?, error:NSError?) in
             
-            self.navigationRefresh.stopAnimating();
+            completion(finished: true);
             
             if error == nil && newPosts != nil{
                 self.posts = newPosts;
@@ -205,121 +214,13 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
         return (NEQ3, SWQ3);
     }
     
-    // MARK: - Collection View
-    // MARK: Datasource
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1;
-    }
-    
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if posts == nil{
-            return 0;
-        }
+    func refreshTableView() -> Void {
+        self.navigationRefresh.startAnimating();
+        self.showLoadingSquare();
         
-        return posts!.count;
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        
-        let deviceSize = UIScreen.mainScreen().bounds.size
-        
-        let cellWidth   = (deviceSize.width - 10)
-        let cellHeight  = (deviceSize.height * 0.607);
-        
-        return CGSize(width: cellWidth , height: cellHeight)
-    }
-    
-    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        
-        // Appearance
-        let imageView = cell.viewWithTag(ImageViewCELLTAG) as! PFImageView;
-        imageView.layer.cornerRadius = 7;
-        imageView.layer.masksToBounds = true;
-        imageView.clipsToBounds = true;
-        
-        let viewsLabel:UILabel = cell.viewWithTag(LabelViewsCELLTAG) as! UILabel;
-        viewsLabel.layer.cornerRadius = 7;
-        viewsLabel.layer.masksToBounds = true
-        viewsLabel.clipsToBounds = true;
-    }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
-        let cell:CustomCell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCellIdentifer", forIndexPath: indexPath) as! CustomCell;
-        let imageView:PFImageView = cell.viewWithTag(ImageViewCELLTAG) as! PFImageView;
-        
-        let post = posts![indexPath.row]
-        imageView.file = post["picture"] as? PFFile;
-        imageView.loadInBackground();
-        
-        let commentLabel:UILabel = cell.viewWithTag(LabelCommentCELLTAG) as! UILabel;
-        let viewsLabel:UILabel = cell.viewWithTag(LabelViewsCELLTAG) as! UILabel;
-        
-        commentLabel.text = post["comment"] as? String;
-        viewsLabel.text = nil;
-        
-        if let views = post["views"] as? Int{
-            var viewsString:String!
-            
-            if (views <= 1){
-                 viewsString = "\(views) View";
-            }
-            else{
-                viewsString = "\(views) Views";
-            }
-            
-            viewsLabel.text = viewsString;
-        }
-        
-        
-        return cell;
-    }
-    
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        
-        var view:UICollectionReusableView!
-        
-        if (kind == UICollectionElementKindSectionHeader){
-            view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "header", forIndexPath: indexPath);
-            let headerLabel = view.viewWithTag(LabelViewHeaderCELLTAG) as! UILabel
-            headerLabel.text = "\(localRegion)";
-        }
-        else if (kind == CSStickyHeaderParallaxHeader){
-            view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "stickyHeader", forIndexPath: indexPath)
-            view.addSubview(self.headerContentView);
-        }
-        else{
-            print("Collection View Error");
-        }
-        
-        return view;
-    }
-    
-    // MARK: Delegates
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if posts == nil || posts?.count == 0{
-            return;
-        }
-        // Fetch the post
-        let post:PFObject = posts![indexPath.row];
-        self.selectedPost = post;
-    }
-    
-    func refreshCollectionView() -> Void {
-        navigationRefresh.startAnimating();
-        
-        fetchPosts(localRegion);
-    }
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        let yOffset = scrollView.contentOffset.y;
-        
-        if (yOffset > headerContentView.frame.height)
-        {
-            self.navigationController!.setNavigationBarHidden(false, animated: true)
-        }
-        else{
-            self.navigationController!.setNavigationBarHidden(true, animated: true);
+        fetchRequests { (finished) in
+            self.navigationRefresh.stopAnimating();
+            self.removeLoadingSquare();
         }
     }
     
@@ -455,31 +356,30 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     // MARK: - Actions
-    @IBAction func headerSegmentChanged(sender: UISegmentedControl) {
-        let selectedIndex = sender.selectedSegmentIndex;
-        
-        if selectedIndex == 0{
-            localRegion = .North;
-        }
-        else if selectedIndex == 1{
-            localRegion = .Campus
-        }
-        else{
-            localRegion = .South;
-        }
-    }
-    
     @IBAction func mapAcessoryButtonTapped(sender: UIButton) {
         centerMap();
     }
     
     @IBAction func refreshBarButtonItem(sender: UIBarButtonItem) {
-        refreshCollectionView();
+        refreshTableView();
+    }
+    
+    func showLoadingSquare(){
+        loadingSquares = AASquaresLoading(target: self.view, size: 40)
+        loadingSquares!.backgroundColor = UIColor.clearColor();
+        loadingSquares!.color = Helper.getGlimpseOrangeColor();
+        loadingSquares!.setSquareSize(120);
+        loadingSquares!.start()
+    }
+    
+    func removeLoadingSquare(){
+        loadingSquares?.stop();
     }
     
     func hideCollectionView() -> Void {
         // Animate Collection View Fade out
         // Pre animation
+        /*
         collectionView.alpha = 1;
         collectionView.hidden = false;
         
@@ -490,11 +390,13 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
             }, completion: { (finished:Bool) in
                 self.collectionView.hidden = true;
         });
+        */
     }
 
     func showCollectionView() -> Void {
         // Animate Collection View Fade out
         // Pre animation
+        /*
         collectionView.alpha = 0;
         collectionView.hidden = false;
         
@@ -502,12 +404,14 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
         UIView.animateWithDuration(1.0) {
                 self.collectionView.alpha = 1;
         }
+        */
     }
     
     //MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueFullScreen{
-            assert(selectedPost != nil, "Post must be selected to segue");
+            assert(selectedRequest != nil, "Post must be selected to segue");
+            
             let dvc = segue.destinationViewController as! FullScreenImageViewController
             
             // Turn off auto refresh
@@ -517,9 +421,7 @@ class StoryViewController: UIViewController, UICollectionViewDelegate, UICollect
             dvc.transitioningDelegate = self;
             dvc.interactor = interactor;
             
-            dvc.imageFile = selectedPost!["picture"] as! PFFile;
-            dvc.imageComment = selectedPost!["comment"] as? String;
-            dvc.post = selectedPost!
+            dvc.request = selectedRequest!
         }
     }
 }
@@ -533,6 +435,96 @@ extension StoryViewController: UIViewControllerTransitioningDelegate {
         return interactor.hasStarted ? interactor : nil;
     }
 }
+
+extension StoryViewController: UITableViewDataSource, UITableViewDelegate{
+    
+    // MARK: Configuration
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1;
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if posts == nil{
+            return 0;
+        }
+        
+        return posts!.count;
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return CGRectGetHeight(view.frame) / 3;
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat.min;
+    }
+    
+    // MARK: Cell
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = Helper.getGlimpseOrangeColor().colorWithAlphaComponent(0.7);
+        cell.selectedBackgroundView = bgColorView
+        
+        return;
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier)!;
+        
+        let subjectLabel:UILabel = cell.viewWithTag(SubjectLabelCELLTAG) as! UILabel;
+        
+        let index:Int = indexPath.row;
+        let post = posts![index];
+        
+        subjectLabel.text = post["subject"] as? String;
+        
+        return cell;
+    }
+    
+    // MARK: Delegate
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil;
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true);
+        
+        assert(posts != nil, "Posts must exist in data struc at point of call");
+        
+        let index:Int = indexPath.row;
+        selectedRequest = posts![index];
+    }
+    
+    // MARK: Editing
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true;
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        let moreRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "More", handler:{action, indexpath in
+            
+            print("MORE•ACTION");
+        });
+        moreRowAction.backgroundColor = UIColor(red: 0.298, green: 0.851, blue: 0.3922, alpha: 1.0);
+        
+        let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete", handler:{action, indexpath in
+            
+            print("DELETE•ACTION");
+        });
+        
+        return [deleteRowAction, moreRowAction];
+    }
+}
+
+extension StoryViewController: UIScrollViewDelegate{
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let offset:CGFloat = scrollView.contentOffset.y;
+        
+        print("Offset: \(offset)");
+    }
+}
+
 
 class MapPin : NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D

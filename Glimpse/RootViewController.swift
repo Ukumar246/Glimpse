@@ -49,7 +49,7 @@ class RootViewController: EZSwipeController, CLLocationManagerDelegate, EZSwipeC
         
         let captureVC:UIViewController = storyBoard.instantiateViewControllerWithIdentifier("CaptureViewController");
         let storyVC:UIViewController = storyBoard.instantiateViewControllerWithIdentifier("StoryNavigationViewController");
-        let profileVC:UIViewController = storyBoard.instantiateViewControllerWithIdentifier("ProfileNavigationViewController");
+        let profileVC:UIViewController = storyBoard.instantiateViewControllerWithIdentifier("ProfileViewController");
         
         return [storyVC, captureVC, profileVC];
     }

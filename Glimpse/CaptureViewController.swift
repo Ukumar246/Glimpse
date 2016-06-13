@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import AASquaresLoading
 
 enum VCState {
     case VCLoaded, Typing ,Posting;
@@ -39,12 +40,20 @@ class CaptureViewController: UIViewController, UITextFieldDelegate
     
     /// The state the view controller is currently in
     var state:State!
+    /// Segue Handler for Swipe to Dismiss
+    var interactor:Interactor!
     
     // MARK: Storyboard Outlets
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var subjectTextField: UITextField!
     @IBOutlet weak var requestTextField: UITextField!
     
     @IBOutlet weak var askButton: UIButton!
+    
+    // MARK: Computed Properties
+    var userLoggedIn:Bool{
+        return (PFUser.currentUser() == nil) ? false : true;
+    }
     
     var user:PFUser{
         return PFUser.currentUser()!;
@@ -52,13 +61,11 @@ class CaptureViewController: UIViewController, UITextFieldDelegate
     
     // Constants:
     let characterLimit:Int = 40;
+    let movedDownOffset:CGPoint = CGPointMake(0, -40);
+    let movedUpOffset:CGPoint = CGPointZero;
+    let loginSegue:String = "Segue_Login";
     
     // MARK: - Lifecycle
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated);
-        
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -72,23 +79,35 @@ class CaptureViewController: UIViewController, UITextFieldDelegate
             
         }
     }
-    
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated);
+        
+        // Status Bar
+        UIApplication.sharedApplication().statusBarStyle = .Default;
+        
+        askButton.enabled = true;
     }
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        
         state = State(currentState: .VCLoaded);
         
+        interactor = Interactor();
         
         setupViews();
     }
 
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated);
+    }
+    
     /// Sets up apperance on the Storybord Views
     func setupViews() -> Void
     {
+        // Status Bar
+        UIApplication.sharedApplication().statusBarStyle = .Default;
+        
         let defaultCornerRadius:CGFloat = 7;
         askButton.layer.cornerRadius = defaultCornerRadius;
         //subjectTextField.layer.cornerRadius = defaultCornerRadius;
@@ -100,6 +119,8 @@ class CaptureViewController: UIViewController, UITextFieldDelegate
         
         addBottomBorder(subjectTextField);
         addBottomBorder(requestTextField);
+        
+        askButton.enabled = true;
         
         let _:[String: AnyObject] = [NSForegroundColorAttributeName: Helper.getGlimpseOrangeColor()];
     }
@@ -116,34 +137,97 @@ class CaptureViewController: UIViewController, UITextFieldDelegate
         textField.layer.masksToBounds = true
     }
 
-    
+    // MARK: - Actions
     @IBAction func tappedScreen(sender: UITapGestureRecognizer) {
+        if subjectTextField.isFirstResponder(){
+            subjectTextField.resignFirstResponder();
+        }
+        else if requestTextField.isFirstResponder(){
+            requestTextField.resignFirstResponder();
+        }
+    }
+    
+    @IBAction func tappedAsk(sender: UIButton) {
+        let subject = subjectTextField.text;
+        let request = requestTextField.text;
         
+        if (subject == nil || request == nil)
+        {
+            return;
+        }
+        else if (subject! == "" || request! == "")
+        {
+            return;
+        }
+        else if (userLoggedIn == false){
+            // User has not been logged in yet 
+            //askButton.enabled = false;
+            
+            presentLoginScreen();
+            return;
+        }
+        
+        // Temp disable the post button
+        self.askButton.enabled = false;
+        
+        // Dismiss Keyboards
+        dismissKeyboard();
+        
+        postRequest(subject!, requestString: request!) { (finished) in
+            self.askButton.enabled = true;
+            self.clearTextFields();
+        }
+    }
+    
+    func moveUpScrollView(){
+        scrollView.setContentOffset(movedUpOffset, animated: true);
+    }
+    
+    func movedDownScrollView(){
+        scrollView.setContentOffset(movedDownOffset, animated: true);
     }
     
     // MARK: - Database Operations
-    func postRequestToParse(comment:String) -> Void {
+    /// Posts request to database 
+    /// - Note:
+    ///   - Blocks UI (Popup Loading Alert)
+    ///   - Activates UI Activity View Etc.
+    func postRequest(subjectString:String, requestString:String, completion:(finished: Bool) -> Void) -> Void
+    {
+        assert(PFUser.currentUser() != nil, "User must be logged in to post!");
         
-        let request = PFObject(className: "Post");
+        // Blocking Loading Alert
+        let loadingSquare = AASquaresLoading(target: self.view, size: 40)
+        loadingSquare.backgroundColor = UIColor.clearColor();
+        loadingSquare.color = Helper.getGlimpseOrangeColor();
+        loadingSquare.setSquareSize(120);
+        loadingSquare.start()
         
+        let request = PFObject(className: "Request");
         if let lastLocation = Helper.getLastKnownUserLocation(){
             request["location"] = PFGeoPoint(latitude: lastLocation.latitude, longitude: lastLocation.longitude);
         }
         else{
-            print("!! Error: Cannot determine location :(");
-            return;
+            print("! Warning: Posting without location data");
         }
-        request["comment"] = comment;
-        request["user"] = user;
-        request["views"] = 0;
-        request["viewers"] = [];
         
+        request["subject"] = subjectString;
+        request["request"] = requestString;
+        
+        request["owner"] = user;
+        request["views"] = 0;
+        request["likes"] = 0;
+        request.addUniqueObject(user, forKey: "followers");
+    
         request.saveInBackgroundWithBlock { (success:Bool, error:NSError?) in
+            
+            // Unblock UI
+            loadingSquare.stop();
             
             if success{
                 print("* Post Uploaded Successfully!");
                 // Alert then start camera again
-                Helper.showQuickAlert("Posted!", message: "Check your feed", viewController: self);
+                Helper.showQuickAlert("Posted!", message: ":)", viewController: self);
             }
             else{
                 print("! Error Posting: ", error!.description);
@@ -151,13 +235,28 @@ class CaptureViewController: UIViewController, UITextFieldDelegate
                 Helper.showQuickAlert("Error!", message: error!.description, viewController: self);
             }
             
-            // After Posting
+            completion(finished: true);
         }
         
         state.setState(.Posting);
     }
     
-    // MARK: - Actions
+    // MARK: - TextFields
+    func dismissKeyboard() -> Bool
+    {
+        subjectTextField.resignFirstResponder();
+        requestTextField.resignFirstResponder();
+        
+        return true;
+    }
+    
+    func clearTextFields()
+    {
+        subjectTextField.text = nil;
+        requestTextField.text = nil;
+        
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder();
         return false;
@@ -170,14 +269,37 @@ class CaptureViewController: UIViewController, UITextFieldDelegate
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        textField.attributedPlaceholder = nil;
+        moveUpScrollView();
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        if textField.text == nil || textField.text == ""{
-            // Insert attributed placeholder in here
-            //            textField.attributedPlaceholder
+        //
+        movedDownScrollView()
+    }
+    
+    // MARK: - Navigation 
+    func presentLoginScreen() -> Void
+    {
+        // User is NOT logged in
+        performSegueWithIdentifier(loginSegue, sender: nil);
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == loginSegue)
+        {
+            let dvc = segue.destinationViewController as! LoginViewController;
+            dvc.interactor = self.interactor;
         }
+    }
+}
+
+extension CaptureViewController: UIViewControllerTransitioningDelegate {
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissAnimator();
+    }
+    
+    func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil;
     }
 }
 
