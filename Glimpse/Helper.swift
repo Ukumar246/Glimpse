@@ -43,8 +43,14 @@ class Helper: NSObject {
     //MARK: - Colors
     static func getGlimpseOrangeColor() -> UIColor
     {
-        //R: 234   G: 82   B:20
-        return UIColor(red: 234/255, green: 82/255, blue: 20/255, alpha: 1);
+        // HEX: FF8E00
+        return UIColor(red: 255/255, green: 142/255, blue: 0, alpha: 1);
+        //UIColor(red: 234/255, green: 82/255, blue: 20/255, alpha: 1);
+    }
+    
+    static func getDefaultCornerRadius() -> CGFloat
+    {
+        return 15;
     }
     
     //MARK: - Location

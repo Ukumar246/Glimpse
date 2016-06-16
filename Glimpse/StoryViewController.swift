@@ -48,13 +48,7 @@ class StoryViewController: UIViewController, MKMapViewDelegate
     // Constants
     /// reuse identifer for the storyboard cell
     let CellIdentifier:String = "simpleCellIdentifier";
-    /// tag for PFImageView inside of the UICollectionViewCell
-    let ImageViewCELLTAG:Int = 1;
-    /// tag for UILabel inside of the UICollectionViewCell
-    let SubjectLabelCELLTAG:Int = 1;
-    let LabelViewsCELLTAG:Int = 3;
-    /// tag for UILabel inside of the header collection view
-    let LabelViewHeaderCELLTAG:Int = 1;
+    
     let SegueFullScreen:String = "Segue_FullScreenImage";
     
     /// Selected Post 
@@ -469,14 +463,12 @@ extension StoryViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier)!;
-        
-        let subjectLabel:UILabel = cell.viewWithTag(SubjectLabelCELLTAG) as! UILabel;
+        let cell:RequestCell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as! RequestCell;
         
         let index:Int = indexPath.row;
         let post = posts![index];
         
-        subjectLabel.text = post["subject"] as? String;
+        cell.requestLabel.text = post["request"] as? String;
         
         return cell;
     }
@@ -501,19 +493,25 @@ extension StoryViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        
-        let moreRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "More", handler:{action, indexpath in
-            
-            print("MORE•ACTION");
-        });
-        moreRowAction.backgroundColor = UIColor(red: 0.298, green: 0.851, blue: 0.3922, alpha: 1.0);
-        
         let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete", handler:{action, indexpath in
             
-            print("DELETE•ACTION");
+            
         });
         
-        return [deleteRowAction, moreRowAction];
+        return [deleteRowAction];
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (editingStyle != .Delete){
+            return
+        }
+        
+        let index = indexPath.row;
+        
+        print("Deleted Row ", index)
+        
+        self.posts!.removeAtIndex(index);
+        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Left);
     }
 }
 
@@ -538,15 +536,7 @@ class MapPin : NSObject, MKAnnotation {
     }
 }
 
-class CustomCell: UICollectionViewCell {
-    override var bounds: CGRect {
-        didSet {
-            contentView.frame = bounds;
-        }
-    }
-    
-    override func awakeFromNib() {
-        self.contentView.autoresizingMask = [UIViewAutoresizing.FlexibleWidth , UIViewAutoresizing.FlexibleHeight]
-    }
+class RequestCell: UITableViewCell {
+    @IBOutlet weak var requestLabel:UILabel!
 }
 

@@ -42,14 +42,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         // Layer Setup
         glimpseButton.layer.cornerRadius = CGRectGetWidth(glimpseButton.frame) / 2;
+        glimpseButton.layer.borderColor = Helper.getGlimpseOrangeColor().CGColor;
+        glimpseButton.layer.borderWidth = 2;
+        
         addBottomBorder(emailTextField);
         addBottomBorder(passwordTextField);
-        
+
         emailTextField.text = nil;
         passwordTextField.text = nil;
         
         // Placeholders
-        let attributes:[String : AnyObject] = [NSForegroundColorAttributeName : Helper.getGlimpseOrangeColor()];
+        let attributes:[String : AnyObject] = [NSForegroundColorAttributeName : UIColor.whiteColor()];
         
         emailTextField.attributedPlaceholder = NSAttributedString(string: "email", attributes: attributes)
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "password", attributes: attributes);

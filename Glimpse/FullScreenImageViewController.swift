@@ -22,9 +22,7 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
     var user:PFUser{
         return PFUser.currentUser()!;
     }
-
-    @IBOutlet weak var profileImageView: PFImageView!
-    @IBOutlet weak var subjectLabel: UILabel!
+    
     @IBOutlet weak var requestLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var commentsTableView: UITableView!
@@ -37,7 +35,7 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated);
         
-        let originalPoint = CGPointMake(0, 16);
+        let originalPoint = CGPointMake(0, 18);
         scrollView.contentOffset = originalPoint;
     }
     
@@ -46,7 +44,6 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
         assert(request != nil, "Post must be set");
         
         // Request Stuff
-        subjectLabel.text = request["subject"] as? String;
         requestLabel.text = request["request"] as? String;
         
         if let views = request["views"] as? Int
@@ -65,23 +62,6 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
             //viewsLabel.text = "0 View";
         }
         
-        let user = request["owner"] as! PFUser;
-        user.fetchIfNeededInBackgroundWithBlock{ (result:PFObject?, error:NSError?) in
-            if error != nil{
-                print("! Error Fetching User Image");
-                return;
-            }
-            
-            if let fetchedUser = result as? PFUser{
-                let profilePic = fetchedUser["picture"] as? PFFile
-                self.profileImageView.file = profilePic;
-                self.profileImageView.loadInBackground();
-            }
-            else{
-                print("! Error Fetching User Profile Photo");
-            }
-        }
-        
         // Show Hints?
         //showHelperCircle();
         setupViews();
@@ -89,23 +69,27 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
     
     func setupViews(){
         
-        profileImageView.layer.cornerRadius = 7;
-        profileImageView.layer.masksToBounds = true;
-     
         commentsTableView.tableHeaderView = nil;
         commentsTableView.contentInset = UIEdgeInsetsMake(-33, 0, -33, 0);
         
-        let attributes:[String: AnyObject] = [NSForegroundColorAttributeName: Helper.getGlimpseOrangeColor()];
+        let _:[String: AnyObject] = [NSForegroundColorAttributeName: Helper.getGlimpseOrangeColor()];
         
-        commentBox.commentTextField.attributedPlaceholder = NSAttributedString(string: "Leave a comment", attributes: attributes);
-        commentBox.layer.cornerRadius = 7;
-        commentBox.layer.masksToBounds = true;
+        addBorder(commentBox);
+        addBorder(commentBox.cameraButton);
         
         let originalPoint = CGPointMake(0, 16);
         scrollView.contentOffset = originalPoint;
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FullScreenImageViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         
+    }
+    
+    func addBorder(passedView:UIView)
+    {
+        passedView.layer.cornerRadius = Helper.getDefaultCornerRadius();
+        passedView.layer.masksToBounds = true;
+        passedView.layer.borderWidth = 2;
+        passedView.layer.borderColor = Helper.getGlimpseOrangeColor().CGColor;
     }
     
     func autoChangeBackgroundColors(){
@@ -211,7 +195,7 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
     }
     
     func moveCommentBoxUp(keyboardHeight: CGFloat){
-        let extraHeight = keyboardHeight + 15;
+        let extraHeight = keyboardHeight + 18;
         let movedUpPoint = CGPointMake(0, extraHeight);
         scrollView.setContentOffset(movedUpPoint, animated: true);
     }
@@ -248,10 +232,9 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
         return false;
     }
     
-    func dismissKeyboard(){
-        if commentBox.commentTextField.isFirstResponder(){
-            commentBox.commentTextField.resignFirstResponder();
-        }
+    func dismissKeyboard()
+    {
+        return;
     }
     
     //MARK: - Database Operations
@@ -297,9 +280,6 @@ extension FullScreenImageViewController: UITableViewDataSource, UITableViewDeleg
         
         commentCell.imageComment.layer.cornerRadius = 7;
         commentCell.imageComment.layer.masksToBounds = true;
-        
-        commentCell.profileImageView.layer.cornerRadius = 7;
-        commentCell.profileImageView.layer.masksToBounds = true;
         
     }
     
@@ -348,13 +328,10 @@ extension FullScreenImageViewController: UITableViewDataSource, UITableViewDeleg
 
 class CommentCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var imageComment: UIImageView!
     
 }
 
 class CommentBox: UIView {
-    @IBOutlet weak var commentTextField: UITextField!
-    @IBOutlet weak var profileImageView: PFImageView!
+    @IBOutlet weak var cameraButton: UIButton!
 }

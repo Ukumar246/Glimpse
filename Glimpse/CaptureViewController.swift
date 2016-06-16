@@ -43,9 +43,11 @@ class CaptureViewController: UIViewController, UITextFieldDelegate
     /// Segue Handler for Swipe to Dismiss
     var interactor:Interactor!
     
+    /// ViewController Loading Square
+    var loadingSquare:AASquaresLoading?
+    
     // MARK: Storyboard Outlets
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var subjectTextField: UITextField!
     @IBOutlet weak var requestTextField: UITextField!
     
     @IBOutlet weak var askButton: UIButton!
@@ -105,24 +107,17 @@ class CaptureViewController: UIViewController, UITextFieldDelegate
     /// Sets up apperance on the Storybord Views
     func setupViews() -> Void
     {
-        // Status Bar
-        UIApplication.sharedApplication().statusBarStyle = .Default;
-        
-        let defaultCornerRadius:CGFloat = 7;
-        askButton.layer.cornerRadius = defaultCornerRadius;
-        //subjectTextField.layer.cornerRadius = defaultCornerRadius;
-        //requestTextField.layer.cornerRadius = defaultCornerRadius;
+        askButton.layer.cornerRadius = Helper.getDefaultCornerRadius();
+        askButton.layer.borderColor = Helper.getGlimpseOrangeColor().CGColor;
+        askButton.layer.borderWidth = 2;
         
         askButton.layer.masksToBounds = true;
-        subjectTextField.layer.masksToBounds = true;
         requestTextField.layer.masksToBounds = true;
-        
-        addBottomBorder(subjectTextField);
         addBottomBorder(requestTextField);
         
         askButton.enabled = true;
         
-        let _:[String: AnyObject] = [NSForegroundColorAttributeName: Helper.getGlimpseOrangeColor()];
+        let _:[String: AnyObject] = [NSForegroundColorAttributeName: UIColor.whiteColor()];
     }
     
     // Adds Bottom Border to Passed Tf
@@ -139,23 +134,19 @@ class CaptureViewController: UIViewController, UITextFieldDelegate
 
     // MARK: - Actions
     @IBAction func tappedScreen(sender: UITapGestureRecognizer) {
-        if subjectTextField.isFirstResponder(){
-            subjectTextField.resignFirstResponder();
-        }
-        else if requestTextField.isFirstResponder(){
+        if requestTextField.isFirstResponder(){
             requestTextField.resignFirstResponder();
         }
     }
     
     @IBAction func tappedAsk(sender: UIButton) {
-        let subject = subjectTextField.text;
-        let request = requestTextField.text;
+        let request:String? = requestTextField.text;
         
-        if (subject == nil || request == nil)
+        if (request == nil)
         {
             return;
         }
-        else if (subject! == "" || request! == "")
+        else if (request! == "")
         {
             return;
         }
@@ -173,7 +164,8 @@ class CaptureViewController: UIViewController, UITextFieldDelegate
         // Dismiss Keyboards
         dismissKeyboard();
         
-        postRequest(subject!, requestString: request!) { (finished) in
+        postRequest(request!){ (finished) in
+            
             self.askButton.enabled = true;
             self.clearTextFields();
         }
@@ -187,21 +179,36 @@ class CaptureViewController: UIViewController, UITextFieldDelegate
         scrollView.setContentOffset(movedDownOffset, animated: true);
     }
     
+    func showLoadingAlert(){
+        // Blocking Loading Alert
+        if (loadingSquare == nil){
+            loadingSquare = AASquaresLoading(target: self.view, size: 40)
+        }
+        
+        loadingSquare!.backgroundColor = UIColor.clearColor();
+        loadingSquare!.color = Helper.getGlimpseOrangeColor();
+        loadingSquare!.setSquareSize(120);
+        loadingSquare!.start()
+    }
+    
+    func stopLoadingAlert(){
+        // Unblock UI
+        if let loading = self.loadingSquare{
+            loading.stop();
+        }
+    }
+    
     // MARK: - Database Operations
     /// Posts request to database 
     /// - Note:
     ///   - Blocks UI (Popup Loading Alert)
     ///   - Activates UI Activity View Etc.
-    func postRequest(subjectString:String, requestString:String, completion:(finished: Bool) -> Void) -> Void
+    func postRequest(requestString:String, completion:(finished: Bool) -> Void) -> Void
     {
         assert(PFUser.currentUser() != nil, "User must be logged in to post!");
         
-        // Blocking Loading Alert
-        let loadingSquare = AASquaresLoading(target: self.view, size: 40)
-        loadingSquare.backgroundColor = UIColor.clearColor();
-        loadingSquare.color = Helper.getGlimpseOrangeColor();
-        loadingSquare.setSquareSize(120);
-        loadingSquare.start()
+        // Show Loading Alert 
+        showLoadingAlert();
         
         let request = PFObject(className: "Request");
         if let lastLocation = Helper.getLastKnownUserLocation(){
@@ -211,7 +218,6 @@ class CaptureViewController: UIViewController, UITextFieldDelegate
             print("! Warning: Posting without location data");
         }
         
-        request["subject"] = subjectString;
         request["request"] = requestString;
         
         request["owner"] = user;
@@ -221,8 +227,8 @@ class CaptureViewController: UIViewController, UITextFieldDelegate
     
         request.saveInBackgroundWithBlock { (success:Bool, error:NSError?) in
             
-            // Unblock UI
-            loadingSquare.stop();
+            // Stop Loading
+            self.stopLoadingAlert();
             
             if success{
                 print("* Post Uploaded Successfully!");
@@ -244,7 +250,6 @@ class CaptureViewController: UIViewController, UITextFieldDelegate
     // MARK: - TextFields
     func dismissKeyboard() -> Bool
     {
-        subjectTextField.resignFirstResponder();
         requestTextField.resignFirstResponder();
         
         return true;
@@ -252,9 +257,7 @@ class CaptureViewController: UIViewController, UITextFieldDelegate
     
     func clearTextFields()
     {
-        subjectTextField.text = nil;
         requestTextField.text = nil;
-        
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

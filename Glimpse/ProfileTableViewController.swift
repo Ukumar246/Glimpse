@@ -78,6 +78,10 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
         profileImageView.layer.cornerRadius = 7;
         logoutButton.layer.cornerRadius = 5;
         
+        logoutButton.layer.cornerRadius = Helper.getDefaultCornerRadius();
+        logoutButton.layer.borderColor = Helper.getGlimpseOrangeColor().CGColor;
+        logoutButton.layer.borderWidth = 2;
+        
         changeLogoutButton();
     }
 
@@ -86,12 +90,16 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
         if userLoggedIn{
             // User is logged in
             logoutButton.setTitle("Logout", forState: .Normal);
+            
+            logoutButton.removeTarget(nil, action: nil, forControlEvents: .AllEvents);
             logoutButton.addTarget(self, action: #selector(ProfileTableViewController.logoutAction(_:)), forControlEvents: .TouchUpInside);
         }
         else{
-            // User is logged in
-            logoutButton.setTitle("Logout", forState: .Normal);
-            logoutButton.removeTarget(self, action: #selector(ProfileTableViewController.logoutAction(_:)), forControlEvents: .TouchUpInside);
+            // User is logged out
+            logoutButton.setTitle("Login", forState: .Normal);
+            
+            logoutButton.removeTarget(nil, action: nil, forControlEvents: .AllEvents);
+            logoutButton.addTarget(self, action: #selector(ProfileTableViewController.gotoLoginScreen), forControlEvents: .TouchUpInside);
         }
     }
     
