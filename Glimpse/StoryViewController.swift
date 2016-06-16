@@ -113,11 +113,31 @@ class StoryViewController: UIViewController, MKMapViewDelegate
         tableView.tableHeaderView = nil;
         tableView.contentInset = UIEdgeInsetsMake(-33, 0, -33, 0);
         
-        autoChangeBackgroundColors();
+        
+        //autoChangeBackgroundColors();
+        setBackgroundPattern(3);
+    }
+    
+    func setBackgroundPattern(number:Int){
+        assert(number <= 5);
+        
+        let patternImageFileName:String = "Pattern \(number)";
+        let patternImage = UIImage(named: patternImageFileName)!;
+        let patternColor = UIColor(patternImage: patternImage);
+        view.backgroundColor = patternColor;
     }
     
     func autoChangeBackgroundColors(){
+        // Update pattern every 5 seconds
+        let timeInterval:NSTimeInterval = 5;
+        let _ = NSTimer.scheduledTimerWithTimeInterval(timeInterval, target: self, selector: #selector(StoryViewController.updateBackgroundPattern), userInfo: nil, repeats: true);
+    }
+    
+    func updateBackgroundPattern()
+    {
         var patternColorArray = [UIColor]();
+        
+        // 1. Add all colors from assets
         for x in 1...5 {
             let patternImageFileName:String = "Pattern \(x)";
             let patternImage = UIImage(named: patternImageFileName)!;
@@ -125,26 +145,24 @@ class StoryViewController: UIViewController, MKMapViewDelegate
             patternColorArray.append(patternColor);
         }
         
-        
-        var randIndex:Int = 0{
-            didSet{
-                if randIndex >= 5{
-                    randIndex = 0;
+        struct Holder{
+            static var currentIndex:Int = 0 {
+                didSet{
+                    if currentIndex >= 5{
+                        currentIndex = 0;
+                    }
                 }
             }
         }
         
-        for index in 1...5 {
-            let seconds:Double = 5 * Double(index);
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(seconds * Double(NSEC_PER_SEC)))
-            dispatch_after(delayTime, dispatch_get_main_queue()) {
-                
-                print("* Testing pattern ", randIndex);
-                self.view.backgroundColor = patternColorArray[randIndex];
-                randIndex += 1;
-            }
-        }
+        let index = Holder.currentIndex;
+        let chosenPattern = patternColorArray[index];
+        Holder.currentIndex += 1;
+        
+        self.view.backgroundColor = chosenPattern;
     }
+    
+    
     
     // MARK: - Database Operations
     /// Updates Post Feed

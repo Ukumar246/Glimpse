@@ -19,7 +19,11 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
     var interactor:Interactor? = nil
     
     // MARK: Private API
-    var user:PFUser{
+    
+    /// Comments on this Request
+    private var comments:[PFObject]?
+    /// Current User
+    private var user:PFUser{
         return PFUser.currentUser()!;
     }
     
@@ -29,14 +33,13 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
     @IBOutlet weak var commentBox: CommentBox!
 
     // MARK: Constants
-    let cellIdentifier:String = "commentCell";
+    private let cellIdentifier:String = "commentCell";
+    private let originalPoint:CGPoint = CGPointMake(0, 16);
     
     // MARK: - Lifecycle
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated);
         
-        let originalPoint = CGPointMake(0, 18);
-        scrollView.contentOffset = originalPoint;
     }
     
     override func viewDidLoad() {
@@ -70,17 +73,18 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
     func setupViews(){
         
         commentsTableView.tableHeaderView = nil;
-        commentsTableView.contentInset = UIEdgeInsetsMake(-33, 0, -33, 0);
+        
+        let yOffset:CGFloat = 25;
+        commentsTableView.contentInset = UIEdgeInsetsMake(yOffset, 0, 0, 0);
+        let startOffset = CGPointMake(0, -25);
+        commentsTableView.setContentOffset(startOffset, animated: false);
         
         let _:[String: AnyObject] = [NSForegroundColorAttributeName: Helper.getGlimpseOrangeColor()];
         
-        addBorder(commentBox);
-        addBorder(commentBox.cameraButton);
-        
-        let originalPoint = CGPointMake(0, 16);
-        scrollView.contentOffset = originalPoint;
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FullScreenImageViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        //addBorder(commentBox.cameraButton);
+    
+        // We dont want keyboard notifications
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FullScreenImageViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         
     }
     
@@ -90,36 +94,6 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
         passedView.layer.masksToBounds = true;
         passedView.layer.borderWidth = 2;
         passedView.layer.borderColor = Helper.getGlimpseOrangeColor().CGColor;
-    }
-    
-    func autoChangeBackgroundColors(){
-        var patternColorArray = [UIColor]();
-        for x in 1...5 {
-            let patternImageFileName:String = "Pattern \(x)";
-            let patternImage = UIImage(named: patternImageFileName)!;
-            let patternColor = UIColor(patternImage: patternImage);
-            patternColorArray.append(patternColor);
-        }
-        
-        
-        var randIndex:Int = 0{
-            didSet{
-                if randIndex >= 5{
-                    randIndex = 0;
-                }
-            }
-        }
-        
-        for index in 1...5 {
-            let seconds:Double = 5 * Double(index);
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(seconds * Double(NSEC_PER_SEC)))
-            dispatch_after(delayTime, dispatch_get_main_queue()) {
-                
-                print("* Testing pattern ", randIndex);
-                self.scrollView.backgroundColor = patternColorArray[randIndex];
-                randIndex += 1;
-            }
-        }
     }
     
     //MARK: - GeoLocation
@@ -195,14 +169,13 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
     }
     
     func moveCommentBoxUp(keyboardHeight: CGFloat){
-        let extraHeight = keyboardHeight + 18;
+        let extraHeight = keyboardHeight + 12;
         let movedUpPoint = CGPointMake(0, extraHeight);
         scrollView.setContentOffset(movedUpPoint, animated: true);
     }
     
     func moveCommentBoxDown(){
-        let originalPoint = CGPointMake(0, 16);
-        scrollView.setContentOffset(originalPoint, animated: true);
+        //        scrollView.setContentOffset(originalPoint, animated: true);
     }
     
     func keyboardWillShow(notification:NSNotification) {
@@ -215,7 +188,8 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
     
     // MARK: - ScrollView
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        
+        let verticalOffset = scrollView.contentOffset.y;
+        print("Scroll: ", verticalOffset);
     }
     
     // MARK: - TextField
@@ -271,14 +245,15 @@ extension FullScreenImageViewController: UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5;
+        return 10;
+        //return (comments == nil) ? 0 : comments!.count;
     }
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         
         let commentCell = cell as! CommentCell;
         
-        commentCell.imageComment.layer.cornerRadius = 7;
+        commentCell.imageComment.layer.cornerRadius = Helper.getDefaultCornerRadius();
         commentCell.imageComment.layer.masksToBounds = true;
         
     }
@@ -305,29 +280,25 @@ extension FullScreenImageViewController: UITableViewDataSource, UITableViewDeleg
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
-        let moreRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "More", handler:{action, indexpath in
-            
-            print("MORE•ACTION");
-        });
-        moreRowAction.backgroundColor = UIColor(red: 0.298, green: 0.851, blue: 0.3922, alpha: 1.0);
-        
         let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete", handler:{action, indexpath in
             
-            print("DELETE•ACTION");
+            print("Delete ", indexPath.row);
         });
         
-        return [deleteRowAction, moreRowAction];
+        return [deleteRowAction];
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
             // handle delete (by removing the data from your array and updating the tableview)
+            
+            print("Delete Action ", indexPath.row);
         }
     }
 }
 
 class CommentCell: UITableViewCell {
-    @IBOutlet weak var nameLabel: UILabel!
+    //@IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageComment: UIImageView!
     
 }

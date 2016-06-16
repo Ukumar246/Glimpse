@@ -39,12 +39,12 @@ class CaptureViewController: UIViewController, UITextFieldDelegate
     //MARK: Private API
     
     /// The state the view controller is currently in
-    var state:State!
+    private var state:State!
     /// Segue Handler for Swipe to Dismiss
     var interactor:Interactor!
     
     /// ViewController Loading Square
-    var loadingSquare:AASquaresLoading?
+    private var loadingSquare:AASquaresLoading?
     
     // MARK: Storyboard Outlets
     @IBOutlet weak var scrollView: UIScrollView!
@@ -53,19 +53,19 @@ class CaptureViewController: UIViewController, UITextFieldDelegate
     @IBOutlet weak var askButton: UIButton!
     
     // MARK: Computed Properties
-    var userLoggedIn:Bool{
+    private var userLoggedIn:Bool{
         return (PFUser.currentUser() == nil) ? false : true;
     }
     
-    var user:PFUser{
+    private var user:PFUser{
         return PFUser.currentUser()!;
     }
     
     // Constants:
-    let characterLimit:Int = 40;
-    let movedDownOffset:CGPoint = CGPointMake(0, -40);
-    let movedUpOffset:CGPoint = CGPointZero;
-    let loginSegue:String = "Segue_Login";
+    private let characterLimit:Int = 40;
+    private let movedDownOffset:CGPoint = CGPointMake(0, -40);
+    private let movedUpOffset:CGPoint = CGPointZero;
+    private let loginSegue:String = "Segue_Login";
     
     // MARK: - Lifecycle
     override func viewWillAppear(animated: Bool) {

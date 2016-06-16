@@ -624,43 +624,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxM-EV-232">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxM-EV-232">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" allowsSelectionDuringEditing="YES" rowHeight="374" sectionHeaderHeight="1" sectionFooterHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="Nbt-YA-Pfd">
-                                        <rect key="frame" x="0.0" y="85" width="375" height="533"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" allowsSelectionDuringEditing="YES" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="387" sectionHeaderHeight="1" sectionFooterHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="Nbt-YA-Pfd">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <color key="separatorColor" red="0.99761284719999999" green="0.99761284719999999" blue="0.99761284719999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="618" id="74e-QR-O60"/>
+                                        </constraints>
+                                        <color key="separatorColor" red="1" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="commentCell" rowHeight="374" id="dMZ-bL-Kvm" customClass="CommentCell" customModule="Glimpse" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="49.5" width="375" height="374"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="commentCell" rowHeight="387" id="dMZ-bL-Kvm" customClass="CommentCell" customModule="Glimpse" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="50" width="375" height="387"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dMZ-bL-Kvm" id="2EK-nq-5nm">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="373.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="387"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="User's Name Who Commented" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjc-IP-hur">
-                                                            <rect key="frame" x="64" y="8" width="255" height="27"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="27" id="oUN-p0-usu"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" name="SinhalaSangamMN" family="Sinhala Sangam MN" pointSize="17"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="starbs" translatesAutoresizingMaskIntoConstraints="NO" id="RPH-mJ-6gv">
-                                                            <rect key="frame" x="64" y="58" width="287" height="308"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Toronto" translatesAutoresizingMaskIntoConstraints="NO" id="RPH-mJ-6gv">
+                                                            <rect key="frame" x="15" y="17" width="345" height="352"/>
                                                         </imageView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailingMargin" secondItem="jjc-IP-hur" secondAttribute="trailing" constant="48" id="s3W-Tt-NJ3"/>
+                                                        <constraint firstItem="RPH-mJ-6gv" firstAttribute="top" secondItem="2EK-nq-5nm" secondAttribute="topMargin" constant="9" id="5X0-d1-HFT"/>
+                                                        <constraint firstItem="RPH-mJ-6gv" firstAttribute="leading" secondItem="2EK-nq-5nm" secondAttribute="leadingMargin" constant="7" id="7o4-1u-E3v"/>
+                                                        <constraint firstItem="RPH-mJ-6gv" firstAttribute="centerY" secondItem="2EK-nq-5nm" secondAttribute="centerY" id="XOG-pD-bbW"/>
+                                                        <constraint firstItem="RPH-mJ-6gv" firstAttribute="centerX" secondItem="2EK-nq-5nm" secondAttribute="centerX" id="taw-10-bbZ"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <connections>
                                                     <outlet property="imageComment" destination="RPH-mJ-6gv" id="Rd4-Pf-dPq"/>
-                                                    <outlet property="nameLabel" destination="jjc-IP-hur" id="eIa-Tc-TKJ"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -669,25 +665,62 @@
                                             <outlet property="delegate" destination="mM3-ds-UWw" id="FI2-OI-Caq"/>
                                         </connections>
                                     </tableView>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k9n-q3-fcc" userLabel="CommentBox" customClass="CommentBox" customModule="Glimpse" customModuleProvider="target">
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6zf-cv-8ns">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="9cN-rq-MOx">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lorem ipsum dolor sit amet, consectetuer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OWT-xm-Adv">
+                                                    <rect key="frame" x="54" y="15" width="266" height="50"/>
+                                                    <fontDescription key="fontDescription" name="SinhalaSangamMN" family="Sinhala Sangam MN" pointSize="16"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yRX-cX-7DU">
+                                                    <rect key="frame" x="8" y="19" width="42" height="42"/>
+                                                    <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                    <state key="normal" image="Exit"/>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="65" id="O4p-Kd-rEb"/>
+                                        </constraints>
+                                        <blurEffect style="light"/>
+                                    </visualEffectView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k9n-q3-fcc" userLabel="CommentBox" customClass="CommentBox" customModule="Glimpse" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="618" width="375" height="49"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lM2-4b-sEE">
-                                                <rect key="frame" x="8" y="8" width="359" height="33"/>
-                                                <state key="normal" title="Camera"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                                                <color key="backgroundColor" red="1" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Camera">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.99761284719999999" green="0.99761284719999999" blue="0.99761284719999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="49" id="pdr-2F-Wme"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="cameraButton" destination="lM2-4b-sEE" id="DH0-UU-qKZ"/>
                                         </connections>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Full Request Goes Here. Text Can Wrap Around If Needed" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OWT-xm-Adv">
-                                        <rect key="frame" x="8" y="8" width="359" height="69"/>
-                                        <fontDescription key="fontDescription" name="SinhalaSangamMN" family="Sinhala Sangam MN" pointSize="16"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="k9n-q3-fcc" firstAttribute="top" secondItem="Nbt-YA-Pfd" secondAttribute="bottom" id="0IQ-Uc-rs4"/>
+                                    <constraint firstAttribute="trailing" secondItem="Nbt-YA-Pfd" secondAttribute="trailing" id="5Ij-ej-ps3"/>
+                                    <constraint firstItem="Nbt-YA-Pfd" firstAttribute="leading" secondItem="JxM-EV-232" secondAttribute="leading" id="8oX-MR-oja"/>
+                                    <constraint firstItem="6zf-cv-8ns" firstAttribute="top" secondItem="JxM-EV-232" secondAttribute="top" id="Xry-Db-gq2"/>
+                                    <constraint firstItem="6zf-cv-8ns" firstAttribute="leading" secondItem="k9n-q3-fcc" secondAttribute="leading" id="d6v-Hw-TE8"/>
+                                    <constraint firstItem="Nbt-YA-Pfd" firstAttribute="trailing" secondItem="6zf-cv-8ns" secondAttribute="trailing" id="h7B-AX-91P"/>
+                                    <constraint firstItem="Nbt-YA-Pfd" firstAttribute="centerX" secondItem="JxM-EV-232" secondAttribute="centerX" id="iSF-7r-z9M"/>
+                                    <constraint firstAttribute="bottom" secondItem="k9n-q3-fcc" secondAttribute="bottom" id="qZp-B5-T96"/>
+                                    <constraint firstItem="Nbt-YA-Pfd" firstAttribute="trailing" secondItem="k9n-q3-fcc" secondAttribute="trailing" id="rny-i9-AKR"/>
+                                    <constraint firstItem="6zf-cv-8ns" firstAttribute="top" secondItem="Nbt-YA-Pfd" secondAttribute="top" id="xah-Og-tZO"/>
+                                    <constraint firstItem="Nbt-YA-Pfd" firstAttribute="leading" secondItem="6zf-cv-8ns" secondAttribute="leading" id="zHT-3h-iwx"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="mM3-ds-UWw" id="BwE-sy-tqx"/>
                                 </connections>
@@ -695,11 +728,17 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="1" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="JxM-EV-232" firstAttribute="bottom" secondItem="u0W-oF-QyI" secondAttribute="top" id="1Ue-Pd-qHO"/>
+                            <constraint firstItem="JxM-EV-232" firstAttribute="top" secondItem="bme-ah-Je1" secondAttribute="top" id="Zjj-I7-y6N"/>
+                            <constraint firstItem="JxM-EV-232" firstAttribute="leading" secondItem="bme-ah-Je1" secondAttribute="leading" id="bo9-YL-CpD"/>
+                            <constraint firstAttribute="trailing" secondItem="JxM-EV-232" secondAttribute="trailing" id="hKA-Ep-17k"/>
+                        </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="hJU-U5-dFR" appends="YES" id="Q3H-tN-BPL"/>
                         </connections>
                     </view>
-                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="commentBox" destination="k9n-q3-fcc" id="0zG-TJ-7mO"/>
@@ -747,8 +786,8 @@
         <image name="Glimpse Transperant" width="700" height="600"/>
         <image name="Globe" width="104" height="104"/>
         <image name="Instagram" width="50" height="50"/>
+        <image name="Toronto" width="1701" height="1129"/>
         <image name="Twitter" width="50" height="50"/>
-        <image name="starbs" width="407" height="600"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="smQ-pU-Tvb"/>
