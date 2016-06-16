@@ -34,6 +34,7 @@
 		377BFC951CF62AA700F222F1 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 377BFC941CF62AA700F222F1 /* libsqlite3.tbd */; };
 		3788250D1CF4D79A00898C02 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3788250C1CF4D79A00898C02 /* MapKit.framework */; };
 		3788250F1CF4D79F00898C02 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3788250E1CF4D79F00898C02 /* CoreLocation.framework */; };
+		379B72531D134F9900DCC1B2 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379B72521D134F9900DCC1B2 /* CameraViewController.swift */; };
 		379CBD861CF4FA68002B3172 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379CBD851CF4FA68002B3172 /* Helper.swift */; };
 		37D81B971CFA6A09008155DC /* FullScreenImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D81B961CFA6A09008155DC /* FullScreenImageViewController.swift */; };
 		37EB5E681CF63595006F9935 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37EB5E671CF63595006F9935 /* AVFoundation.framework */; };
@@ -84,6 +85,7 @@
 		377BFC941CF62AA700F222F1 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		3788250C1CF4D79A00898C02 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3788250E1CF4D79F00898C02 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		379B72521D134F9900DCC1B2 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		379CBD851CF4FA68002B3172 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		37D81B961CFA6A09008155DC /* FullScreenImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenImageViewController.swift; sourceTree = "<group>"; };
 		37EB5E671CF63595006F9935 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -211,6 +213,7 @@
 				373D86931CF8C811008FC7D6 /* StickyHeader.xib */,
 				37461FCA1CFFD0C000AD49CA /* DismissAnimator.swift */,
 				37461FCC1CFFD30200AD49CA /* Interactor.swift */,
+				379B72521D134F9900DCC1B2 /* CameraViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				37EB5E8C1CF6363D006F9935 /* LaunchCameraButton.m in Sources */,
 				37EB5E941CF63860006F9935 /* CameraSessionView.m in Sources */,
 				37EB5E8B1CF6363D006F9935 /* CameraToggleButton.m in Sources */,
+				379B72531D134F9900DCC1B2 /* CameraViewController.swift in Sources */,
 				37EB5E891CF6363D006F9935 /* CameraFocalReticule.m in Sources */,
 				379CBD861CF4FA68002B3172 /* Helper.swift in Sources */,
 				37EB5E901CF6363D006F9935 /* CaptureSessionManager.m in Sources */,

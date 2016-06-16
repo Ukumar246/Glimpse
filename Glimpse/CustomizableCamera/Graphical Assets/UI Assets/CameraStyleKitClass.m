@@ -28,8 +28,9 @@
 
     //// Color Declarations
     UIColor* color0 = [UIColor colorWithRed: 1 green: 1 blue: 1 alpha: 1];
-    UIColor* color1 = [UIColor colorWithRed: 0.812 green: 0.812 blue: 0.812 alpha: 0.62];
-
+    // Red: 255     Green: 142      Blue: 0
+    UIColor* color1 = [UIColor colorWithRed: 1 green:0.5568 blue: 0 alpha: 1];
+    
 
     //// Subframes
     CGRect page1 = CGRectMake(CGRectGetMinX(frame) + floor(CGRectGetWidth(frame) * 0.03691 + 0.12) + 0.38, CGRectGetMinY(frame) + floor(CGRectGetHeight(frame) * 0.03466 + 0.43) + 0.07, floor(CGRectGetWidth(frame) * 0.96691 + 0.12) - floor(CGRectGetWidth(frame) * 0.03691 + 0.12), floor(CGRectGetHeight(frame) * 0.96466 + 0.43) - floor(CGRectGetHeight(frame) * 0.03466 + 0.43));
@@ -49,7 +50,7 @@
             [color1 setFill];
             [cameraShutterVectorPath fill];
             [color0 setStroke];
-            cameraShutterVectorPath.lineWidth = 3;
+            cameraShutterVectorPath.lineWidth = 4;
             [cameraShutterVectorPath stroke];
 
 

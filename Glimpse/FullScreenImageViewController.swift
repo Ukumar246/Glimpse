@@ -39,7 +39,7 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
     // MARK: - Lifecycle
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated);
-        
+        showCameraButton(true);
     }
     
     override func viewDidLoad() {
@@ -186,10 +186,75 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
         moveCommentBoxUp(keyboardHeight);
     }
     
+    /// Hides Camera Button At Bottom of Screen
+    /// Note: - Dont repeat calls (inside scrollview methods)
+    func hideCameraButton(animate: Bool){
+        
+        if (animate)
+        {
+            let animation:CATransition = CATransition();
+            animation.type = kCATransitionFade;
+            animation.duration = 0.7;
+            commentBox.layer.addAnimation(animation, forKey: nil);
+        }
+        
+        commentBox.hidden = true;
+    }
+    
+    /// Shows Camera Button At Bottom of Screen
+    func showCameraButton(animate: Bool){
+        if (animate)
+        {
+            let animation:CATransition = CATransition();
+            animation.type = kCATransitionFade;
+            animation.duration = 0.7;
+            commentBox.layer.addAnimation(animation, forKey: nil);
+        }
+        
+        commentBox.hidden = false;
+    }
+    
+    /// Camera Button Already Hidden?
+    func cameraButtonIsHidden() -> Bool{
+        return commentBox.hidden;
+    }
+    
     // MARK: - ScrollView
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        let verticalOffset = scrollView.contentOffset.y;
-        print("Scroll: ", verticalOffset);
+        
+        /*
+         struct Holder{
+            static var lastOffset:CGFloat!
+        }
+        
+        let verticalOffset:CGFloat = scrollView.contentOffset.y;
+        
+        if (Holder.lastOffset > verticalOffset){
+            // Scrolled UP
+            
+        }
+        else{
+            // Scrolled Down
+            
+        }
+        
+        Holder.lastOffset = verticalOffset;
+        */
+        if (cameraButtonIsHidden() == false){
+            hideCameraButton(true);
+        }
+        
+    }
+    
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        
+        if (cameraButtonIsHidden() == true){
+            showCameraButton(true);
+        }
+    }
+    
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        
     }
     
     // MARK: - TextField
