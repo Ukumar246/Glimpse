@@ -24,18 +24,21 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var logoutButton: UIButton!
     
-    var imagePicker:UIImagePickerController!
+    @IBOutlet weak var collectionView: UICollectionView!
     
-    var userLoggedIn:Bool{
+    private var imagePicker:UIImagePickerController!
+    
+    private var userLoggedIn:Bool{
         return (PFUser.currentUser() == nil) ? false : true;
     }
     
-    var user:PFUser{
+    private var user:PFUser{
         return PFUser.currentUser()!;
     }
     
     // MARK: Constants
-    let loginSegue:String = "Segue_Login";
+    private let loginSegue:String = "Segue_Login";
+    private let collectionCellIdentifier:String = "requestCell";
     
     // MARK: - Lifecycle
     override func viewDidAppear(animated: Bool) {
@@ -75,12 +78,22 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
         UIApplication.sharedApplication().statusBarStyle = .Default;
         
         // View Setup
-        profileImageView.layer.cornerRadius = 7;
+        profileImageView.layer.cornerRadius = Helper.getDefaultCornerRadius();
+        profileImageView.layer.masksToBounds = true;
+        
+        headerVisualEffectView.layer.cornerRadius = Helper.getDefaultCornerRadius();
+        headerVisualEffectView.layer.masksToBounds = true;
+        
+        backgroundImageView.layer.cornerRadius = Helper.getDefaultCornerRadius();
+        backgroundImageView.layer.masksToBounds = true
+        
         logoutButton.layer.cornerRadius = 5;
         
         logoutButton.layer.cornerRadius = Helper.getDefaultCornerRadius();
         logoutButton.layer.borderColor = Helper.getGlimpseOrangeColor().CGColor;
         logoutButton.layer.borderWidth = 2;
+        
+        headerView.sendSubviewToBack(backgroundImageView);
         
         changeLogoutButton();
     }
@@ -248,6 +261,8 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
     //MARK: - TableView
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        print("Selected: ", indexPath.row);
+        /*
         tableView.deselectRowAtIndexPath(indexPath, animated: true);
         
         let feedbackIndexPath = NSIndexPath(forRow: 0, inSection: 0);
@@ -255,6 +270,7 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
         if indexPath == feedbackIndexPath{
             share();
         }
+        */
     }
     
     //MARK: - Database Operations
@@ -352,5 +368,27 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
+}
 
+extension ProfileTableViewController: UICollectionViewDelegate, UICollectionViewDataSource
+{
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1;
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5;
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(collectionCellIdentifier, forIndexPath: indexPath);
+        
+        return cell;
+    }
+}
+
+
+class ProfileRequestCell: UICollectionViewCell {
+    @IBOutlet weak var requestLabel:UILabel!
 }

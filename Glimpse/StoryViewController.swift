@@ -24,7 +24,6 @@ enum AutoLoad {
 class StoryViewController: UIViewController, MKMapViewDelegate
 {
     // MARK: - Private API
-    var loadingSquares:AASquaresLoading?        // Loading Alert Shared Reference
     
     // MARK: Storyboard Outlet
     @IBOutlet weak var tableView: UITableView!
@@ -47,13 +46,13 @@ class StoryViewController: UIViewController, MKMapViewDelegate
     
     // Constants
     /// reuse identifer for the storyboard cell
-    let CellIdentifier:String = "simpleCellIdentifier";
+    private let CellIdentifier:String = "simpleCellIdentifier";
     
-    let SegueFullScreen:String = "Segue_FullScreenImage";
+    private let SegueFullScreen:String = "Segue_FullScreenImage";
     
     /// Selected Post 
     /// Note: - It is a reference to self.posts[PFObject]
-    var selectedRequest:PFObject?{
+    private var selectedRequest:PFObject?{
         didSet{
             if selectedRequest == nil{
                 return;
@@ -62,18 +61,32 @@ class StoryViewController: UIViewController, MKMapViewDelegate
         }
     }
     
+    // These are all grouped together
+    
+    /// Locks the posts from auto updated the table view on its own
+    /// - Note: if in a loop keep turning it on bc it auto turns on after 1 cycle
+    private var tempLock:Bool = false;
+    
+    /// How many times have we skipped yet?
+    private var skipCount:Int = 0;
+    
     /// Universal Data Model for Displaying All Fetched Posts
-    var posts:[PFObject]?{
+    private var posts:[PFObject]?{
         didSet{
-            if posts != nil{
+            if (posts != nil && !tempLock){
                 tableView.reloadData();
             }
             else{
                 // There are no posts
             }
+            
+            // Auto turn off the lock
+            tempLock = false;
+            
             selectedRequest = nil;
         }
     }
+    
     
     // MARK: - LifeCycle
     override func viewDidAppear(animated: Bool) {
@@ -163,7 +176,6 @@ class StoryViewController: UIViewController, MKMapViewDelegate
     }
     
     
-    
     // MARK: - Database Operations
     /// Updates Post Feed
     /// - Notes:
@@ -185,12 +197,38 @@ class StoryViewController: UIViewController, MKMapViewDelegate
             
             if error == nil && newPosts != nil{
                 self.posts = newPosts;
+                self.skipCount = newPosts!.count;
             }
             else{
                 Helper.showQuickAlert("No Posts Found", message: "", viewController: self);
                 self.posts = nil;
             }
         }
+    }
+    
+    /// Fetches 1 new request (for skip usage)
+    func fetchNewRequest(skipCount:Int, completion:(success:Bool, newPost:PFObject?) -> Void) -> Void
+    {
+        print("> Fetching Random Post Skip: ", skipCount);
+        
+        let query = PFQuery(className: "Request");
+        query.includeKey("user");
+        query.includeKey("followers");
+        
+        query.orderByDescending("createdAt");
+        query.skip = skipCount;
+        
+        query.getFirstObjectInBackgroundWithBlock({(newPost:PFObject?, error:NSError?) in
+            
+            if (error == nil && newPost != nil){
+                // We want to add this post in with an animation now
+                completion(success: true, newPost: newPost!)
+            }
+            else{
+                Helper.showQuickAlert("No More Posts Found", message: "", viewController: self);
+                completion(success: false, newPost: nil);
+            }
+        });
     }
     
     func getRegionalBox(inputRegion:Regions) -> (PFGeoPoint,PFGeoPoint) {
@@ -228,11 +266,11 @@ class StoryViewController: UIViewController, MKMapViewDelegate
     
     func refreshTableView() -> Void {
         self.navigationRefresh.startAnimating();
-        self.showLoadingSquare();
+        self.toggleLoading(.Start);
         
         fetchRequests { (finished) in
             self.navigationRefresh.stopAnimating();
-            self.removeLoadingSquare();
+            self.toggleLoading(.Stop);
         }
     }
     
@@ -376,47 +414,88 @@ class StoryViewController: UIViewController, MKMapViewDelegate
         refreshTableView();
     }
     
-    func showLoadingSquare(){
-        loadingSquares = AASquaresLoading(target: self.view, size: 40)
-        loadingSquares!.backgroundColor = UIColor.clearColor();
-        loadingSquares!.color = Helper.getGlimpseOrangeColor();
-        loadingSquares!.setSquareSize(120);
-        loadingSquares!.start()
-    }
-    
-    func removeLoadingSquare(){
-        loadingSquares?.stop();
-    }
-    
-    func hideCollectionView() -> Void {
-        // Animate Collection View Fade out
-        // Pre animation
-        /*
-        collectionView.alpha = 1;
-        collectionView.hidden = false;
-        
-        // Animation
-        UIView.animateWithDuration(1.0, animations: {
-            self.collectionView.alpha = 0.2;
-            
-            }, completion: { (finished:Bool) in
-                self.collectionView.hidden = true;
-        });
-        */
-    }
-
-    func showCollectionView() -> Void {
-        // Animate Collection View Fade out
-        // Pre animation
-        /*
-        collectionView.alpha = 0;
-        collectionView.hidden = false;
-        
-        // Animation
-        UIView.animateWithDuration(1.0) {
-                self.collectionView.alpha = 1;
+    func toggleLoading(operation:LoadingOption){
+        struct Holder{
+            static var loading:AASquaresLoading?
         }
-        */
+        
+        switch operation {
+        case .Start:
+            
+            if (Holder.loading == nil){
+                // Alloc Init
+                Holder.loading = AASquaresLoading(target: self.view, size: 40);
+            }
+            else{
+                // Stop Loading
+                Holder.loading!.stop();
+            }
+            
+            // Start Loading
+            Holder.loading!.backgroundColor = UIColor.clearColor();
+            Holder.loading!.color = Helper.getGlimpseOrangeColor();
+            Holder.loading!.setSquareSize(120);
+            Holder.loading!.start();
+            
+            break;
+        case .Stop:
+            
+            Holder.loading?.stop();
+            
+            break;
+        }
+        return;
+    }
+    
+    func showActionSheet(targetCell: UITableViewCell, indexPath: NSIndexPath){
+        let actionsheet = UIAlertController(title: "", message: "", preferredStyle: .ActionSheet);
+        let skip = UIAlertAction(title: "Skip", style: .Default) { (action:UIAlertAction) in
+            
+            print("Skip post ", indexPath.row);
+            
+            self.skipRequest(indexPath);
+        }
+        actionsheet.view.tintColor = Helper.getGlimpseOrangeColor();
+        actionsheet.addAction(skip);
+        
+        presentViewController(actionsheet, animated: true, completion: nil);
+    }
+    
+    func skipRequest(path:NSIndexPath)
+    {
+        assert(posts != nil);
+
+        let index = path.row;
+            
+        // we dont want foced reload of table view
+        tempLock = true;
+        self.posts!.removeAtIndex(index);
+        
+        // Remove Cell Logic
+        self.tableView.beginUpdates()
+        self.tableView.deleteRowsAtIndexPaths([path], withRowAnimation: .Right);
+        self.tableView.endUpdates();
+        
+        addNewRequest(skipCount, path: path);
+    }
+    
+    func addNewRequest(skipIndex:Int, path:NSIndexPath){
+        assert(posts != nil);
+        fetchNewRequest(skipIndex) { (success, newPost) in
+            if (!success){
+                return;
+            }
+            
+            // The number of posts we skipped
+            self.skipCount += 1;
+            
+            // We want to add this new request with an animation and fade it in
+            self.tempLock = true;
+            self.posts!.append(newPost!)
+            self.tableView.beginUpdates()
+            self.tableView.insertRowsAtIndexPaths([path], withRowAnimation: UITableViewRowAnimation.Fade);
+            self.tableView.endUpdates();
+        }
     }
     
     //MARK: - Navigation
@@ -488,6 +567,11 @@ extension StoryViewController: UITableViewDataSource, UITableViewDelegate{
         
         cell.requestLabel.text = post["request"] as? String;
         
+        // Add Gesture Recognizer 
+        let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(StoryViewController.cellHeldDown(_:)));
+        cell.tag = index;
+        cell.addGestureRecognizer(lpgr);
+        
         return cell;
     }
     
@@ -506,6 +590,7 @@ extension StoryViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     // MARK: Editing
+    /*
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true;
     }
@@ -530,6 +615,20 @@ extension StoryViewController: UITableViewDataSource, UITableViewDelegate{
         
         self.posts!.removeAtIndex(index);
         tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Left);
+    }
+    */
+    
+    func cellHeldDown(sender: UILongPressGestureRecognizer)
+    {
+        if (sender.state != .Began){
+            return;
+        }
+        
+        let row:Int = sender.view!.tag;
+        print("Held Down Row: ", row);
+        
+        let selectedCell:UITableViewCell = sender.view as! UITableViewCell
+        showActionSheet(selectedCell, indexPath: NSIndexPath(forRow: row, inSection: 0));
     }
 }
 
