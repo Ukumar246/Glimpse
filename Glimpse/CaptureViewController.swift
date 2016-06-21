@@ -211,12 +211,15 @@ class CaptureViewController: UIViewController, UITextFieldDelegate
         showLoadingAlert();
         
         let request = PFObject(className: "Request");
+        
+        /*
         if let lastLocation = Helper.getLastKnownUserLocation(){
             request["location"] = PFGeoPoint(latitude: lastLocation.latitude, longitude: lastLocation.longitude);
         }
         else{
             print("! Warning: Posting without location data");
         }
+        */
         
         request["request"] = requestString;
         
@@ -224,7 +227,7 @@ class CaptureViewController: UIViewController, UITextFieldDelegate
         request["views"] = 0;
         request["likes"] = 0;
         request.addUniqueObject(user, forKey: "followers");
-    
+        
         request.saveInBackgroundWithBlock { (success:Bool, error:NSError?) in
             
             // Stop Loading

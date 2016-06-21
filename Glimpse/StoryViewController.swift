@@ -115,7 +115,7 @@ class StoryViewController: UIViewController, MKMapViewDelegate
         
         
         //autoChangeBackgroundColors();
-        setBackgroundPattern(3);
+        setBackgroundPattern(0);
     }
     
     func setBackgroundPattern(number:Int){

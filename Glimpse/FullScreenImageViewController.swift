@@ -10,6 +10,11 @@ import UIKit
 import Parse
 import ParseUI
 import MapKit
+import AASquaresLoading
+
+enum LoadingOption {
+    case Start, Stop;
+}
 
 class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelegate, UITextFieldDelegate, UIScrollViewDelegate
 {
@@ -21,7 +26,12 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
     // MARK: Private API
     
     /// Comments on this Request
-    private var comments:[PFObject]?
+    private var comments:[PFObject]?{
+        didSet{
+            commentsTableView.reloadData();
+        }
+    }
+    
     /// Current User
     private var user:PFUser{
         return PFUser.currentUser()!;
@@ -35,11 +45,15 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
     // MARK: Constants
     private let cellIdentifier:String = "commentCell";
     private let originalPoint:CGPoint = CGPointMake(0, 16);
+    private let Segue_Camera:String = "Segue_CameraViewController";
     
     // MARK: - Lifecycle
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated);
         showCameraButton(true);
+        
+        // Auto Fetch
+        fetchComments();
     }
     
     override func viewDidLoad() {
@@ -48,22 +62,6 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
         
         // Request Stuff
         requestLabel.text = request["request"] as? String;
-        
-        if let views = request["views"] as? Int
-        {
-            var viewsString:String!
-            if (views <= 1){
-                viewsString = "\(views) View";
-            }
-            else{
-                viewsString = "\(views) Views";
-            }
-            
-            //viewsLabel.text = viewsString;
-        }
-        else{
-            //viewsLabel.text = "0 View";
-        }
         
         // Show Hints?
         //showHelperCircle();
@@ -194,7 +192,7 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
         {
             let animation:CATransition = CATransition();
             animation.type = kCATransitionFade;
-            animation.duration = 0.7;
+            animation.duration = 0.4;
             commentBox.layer.addAnimation(animation, forKey: nil);
         }
         
@@ -207,7 +205,7 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
         {
             let animation:CATransition = CATransition();
             animation.type = kCATransitionFade;
-            animation.duration = 0.7;
+            animation.duration = 0.4;
             commentBox.layer.addAnimation(animation, forKey: nil);
         }
         
@@ -275,7 +273,41 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
     {
         return;
     }
-    
+
+    //MARK: - Actions
+    func toggleLoading(operation:LoadingOption){
+        struct Holder{
+            static var loading:AASquaresLoading?
+        }
+        
+        switch operation {
+            case .Start:
+                
+                if (Holder.loading == nil){
+                    // Alloc Init
+                    Holder.loading = AASquaresLoading(target: self.view, size: 40);
+                }
+                else{
+                    // Stop Loading
+                    Holder.loading!.stop();
+                }
+                
+                // Start Loading
+                Holder.loading!.backgroundColor = UIColor.clearColor();
+                Holder.loading!.color = Helper.getGlimpseOrangeColor();
+                Holder.loading!.setSquareSize(120);
+                Holder.loading!.start();
+                
+                break;
+            case .Stop:
+                
+                Holder.loading?.stop();
+                
+                break;
+        }
+        return;
+    }
+
     //MARK: - Database Operations
     /// + Incrmentes views on this post
     /// + Registers self as viewer of this post
@@ -300,18 +332,46 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
             }
         }
     }
+    
+    func fetchComments()
+    {
+        print("Fetching Comments..");
+        toggleLoading(.Start);
+        
+        let query = PFQuery(className: "Comment");
+        query.whereKey("request", equalTo: self.request);
+        
+        query.findObjectsInBackgroundWithBlock { (results:[PFObject]?, error:NSError?) in
+            self.toggleLoading(.Stop);
+            
+            if (results != nil && error == nil)
+            {
+                self.comments = results;
+            }
+            else{
+                self.comments = nil;
+            }
+        }
+    }
+    
+    //MARK: - Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == Segue_Camera){
+            let dvc = segue.destinationViewController as! CameraViewController
+            dvc.request = self.request;
+        }
+    }
 }
 
+// MARK: - TableView
 extension FullScreenImageViewController: UITableViewDataSource, UITableViewDelegate{
-    
-    // MARK: Configration
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1;
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10;
-        //return (comments == nil) ? 0 : comments!.count;
+        return (self.comments == nil) ? 0 : comments!.count;
     }
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -325,6 +385,13 @@ extension FullScreenImageViewController: UITableViewDataSource, UITableViewDeleg
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:CommentCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! CommentCell;
+        
+        let index = indexPath.row;
+        let comment = self.comments![index];
+        
+        let photoFile = comment["photo"] as! PFFile
+        cell.imageComment.file = photoFile;
+        cell.imageComment.loadInBackground();
         
         return cell;
     }
@@ -364,7 +431,7 @@ extension FullScreenImageViewController: UITableViewDataSource, UITableViewDeleg
 
 class CommentCell: UITableViewCell {
     //@IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var imageComment: UIImageView!
+    @IBOutlet weak var imageComment: PFImageView!
     
 }
 

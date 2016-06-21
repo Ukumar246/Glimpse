@@ -13,6 +13,7 @@ import CoreLocation
 struct Global {
     static var lastUserLocation:CLLocationCoordinate2D?
     static var lastUserLocationUpdateTime:NSDate?
+    static var debug:Bool?
 }
 
 class Helper: NSObject {
@@ -62,5 +63,20 @@ class Helper: NSObject {
     static func getLastKnownUserLocation() -> CLLocationCoordinate2D?
     {
         return Global.lastUserLocation;
+    }
+    
+    /// Returns if Testing Mode is ON. Set value on Plist File
+    static func testingOn() -> Bool
+    {
+        
+        if  (Global.debug == nil)
+        {
+            let plistDictionary = NSDictionary(contentsOfFile: NSBundle.mainBundle().pathForResource("Info", ofType: "plist")!)
+            let debugMode = plistDictionary?.objectForKey("debugMode") as! Bool
+            
+            Global.debug = debugMode
+        }
+        
+        return Global.debug!;
     }
 }
