@@ -26,8 +26,9 @@ class CameraViewController: UIViewController, CACameraSessionDelegate {
     
     @IBOutlet weak var imagePreview: UIImageView!
     
-    @IBOutlet weak var retakeButton: UIButton!
-    @IBOutlet weak var postButton: UIButton!
+    @IBOutlet weak var leftBBi: UIButton!
+    @IBOutlet weak var rightBBi: UIButton!
+    
     @IBOutlet weak var testButton: UIButton!{
         didSet{
             if (Helper.testingOn() == false){
@@ -49,22 +50,36 @@ class CameraViewController: UIViewController, CACameraSessionDelegate {
     private var state:ViewControllerStates!{
         didSet
         {
-            var newTitle:String!
+            var newTitle:String = "";
             
             if (state == .Preview){
-                postButton.hidden = false;
+                rightBBi.hidden = false;
                 newTitle = "Looks Great.";
+                
+                // The Left BBi now functions as restart camera
+                // Remove all previous actions
+                leftBBi.removeTarget(nil, action: nil, forControlEvents: .AllEvents);
+                leftBBi.addTarget(self, action: #selector(CameraViewController.restartCamera(_:)), forControlEvents: .TouchUpInside);
+                // Use Back Image
+                let backImage:UIImage = UIImage(named: "Back")!;
+                leftBBi.setImage(backImage, forState: .Normal);
             }
             else if (state == .Camera){
-                postButton.hidden = true;
+                rightBBi.hidden = true;
                 newTitle = "Point. Answer";
+                
+                // The Left BBi now functions as exit screen
+                leftBBi.removeTarget(nil, action: nil, forControlEvents: .AllEvents);
+                leftBBi.addTarget(self, action: #selector(CameraViewController.dismissViewController), forControlEvents: .TouchUpInside);
+                
+                // Use Exit Image 
+                let exitImage:UIImage = UIImage(named: "Exit")!;
+                leftBBi.setImage(exitImage, forState: .Normal);
             }
             else if (state == .Posting){
-                postButton.hidden = true;
+                rightBBi.hidden = true;
                 newTitle = "Posting...";
-            }
-            else{
-                print("Unknown State :/");
+                
             }
             
             navigationBarTitle.text = newTitle;
@@ -91,6 +106,13 @@ class CameraViewController: UIViewController, CACameraSessionDelegate {
         imagePreview.layer.cornerRadius = Helper.getDefaultCornerRadius()
         imagePreview.layer.masksToBounds = true;
         imagePreview.clipsToBounds = true;
+        
+        // Exit Action on Right BBi
+        leftBBi.removeTarget(nil, action: nil, forControlEvents: .AllEvents);
+        leftBBi.addTarget(self, action: #selector(CameraViewController.dismissViewController), forControlEvents: .TouchUpInside);
+        // Exit Image
+        let exitImage = UIImage(named: "Exit")!;
+        leftBBi.setImage(exitImage, forState: .Normal);
     }
     
     
@@ -132,10 +154,10 @@ class CameraViewController: UIViewController, CACameraSessionDelegate {
         animation.type = kCATransitionFade;
         animation.duration = 0.7;
         cameraView.layer.addAnimation(animation, forKey: nil);
-        retakeButton.layer.addAnimation(animation, forKey: nil);
+        
         
         imagePreview.hidden = true;
-        retakeButton.hidden = true;
+        
         
         view.addSubview(cameraView!);
         state = .Camera;
@@ -170,7 +192,7 @@ class CameraViewController: UIViewController, CACameraSessionDelegate {
         state = .Preview;
         
         imagePreview.hidden = false;
-        retakeButton.hidden = false;
+        
         
         imagePreview.image = capturedImage;
         self.capturedImage = capturedImage;

@@ -21,10 +21,20 @@ class RootViewController: EZSwipeController, CLLocationManagerDelegate, EZSwipeC
     private var locationManager:CLLocationManager!
     private var monitorLocation:CLLocationCoordinate2D?{
         didSet{
-            print("* GeoFence Area Set.");
+            //print("* GeoFence Area Set.");
             //startMonitoringGeotification(locValue, radius: 100, identifier: "THOT");
         }
     }
+    
+    //MARK: Constants
+    
+    /// Index number of the first page in the child viewcontollers
+    let minPageIndex:Int = 0;
+    /// Index number of the last page in the child viewcontollers
+    let maxPageIndex:Int = 2;
+    
+    /// Index number of the Request View Controller located in child viewcontrollers
+    let requestPageIndex:Int = 1;
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -49,7 +59,9 @@ class RootViewController: EZSwipeController, CLLocationManagerDelegate, EZSwipeC
         
         let captureVC:UIViewController = storyBoard.instantiateViewControllerWithIdentifier("CaptureViewController");
         let storyVC:UIViewController = storyBoard.instantiateViewControllerWithIdentifier("StoryNavigationViewController");
-        let profileVC:UIViewController = storyBoard.instantiateViewControllerWithIdentifier("ProfileViewController");
+        let profileVC:ProfileTableViewController = storyBoard.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileTableViewController;
+        
+        profileVC.rootSwipeController = self;
         
         return [storyVC, captureVC, profileVC];
     }
@@ -62,9 +74,17 @@ class RootViewController: EZSwipeController, CLLocationManagerDelegate, EZSwipeC
         print(":: Swiped to index", index);
     }
     
-    static func getMyName() -> String
+    // MARK: - Actions
+    func switchToPage(index: Int) -> Void {
+        assert(index >= minPageIndex && index <= maxPageIndex, "Only support index range 1-3 <Int>");
+        
+        print("- Switching to page ", index);
+        self.moveToPage(index);
+    }
+    
+    func getRequestPageIndex() -> Int
     {
-        return "I am EZ VC";
+        return requestPageIndex;
     }
     
     // MARK: - Location Manager

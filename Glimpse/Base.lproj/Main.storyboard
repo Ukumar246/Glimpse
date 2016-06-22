@@ -391,7 +391,7 @@
                                         <rect key="frame" x="0.0" y="364.5" width="375" height="214"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H6e-1j-sUm" id="TZb-bZ-5HZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="214"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="213.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2iM-ug-Jdn">
@@ -860,8 +860,8 @@
                                         <rect key="frame" x="0.0" y="618" width="375" height="49"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lM2-4b-sEE">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
-                                                <color key="backgroundColor" red="1" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <rect key="frame" x="144" y="0.0" width="86" height="49"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <state key="normal">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
@@ -869,11 +869,11 @@
                                                     <segue destination="6Te-EO-rUB" kind="presentation" identifier="Segue_CameraViewController" id="z1k-c0-zfg"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Camera" translatesAutoresizingMaskIntoConstraints="NO" id="TcM-R3-1ps">
-                                                <rect key="frame" x="169" y="7" width="36" height="36"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Camera Filled" translatesAutoresizingMaskIntoConstraints="NO" id="TcM-R3-1ps">
+                                                <rect key="frame" x="166" y="3" width="43" height="43"/>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.99761284719999999" green="0.99761284719999999" blue="0.99761284719999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="49" id="pdr-2F-Wme"/>
                                         </constraints>
@@ -953,10 +953,7 @@
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksu-NF-IvB">
                                             <rect key="frame" x="8" y="20" width="42" height="42"/>
                                             <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                            <state key="normal" image="Exit"/>
-                                            <connections>
-                                                <action selector="dismissViewController" destination="6Te-EO-rUB" eventType="touchUpInside" id="G4K-YA-4IW"/>
-                                            </connections>
+                                            <state key="normal" image="Back"/>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Point. Answer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mby-sO-qUW">
                                             <rect key="frame" x="54" y="20" width="266" height="42"/>
@@ -991,16 +988,12 @@
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Toronto" translatesAutoresizingMaskIntoConstraints="NO" id="aGX-ja-U0e">
                                 <rect key="frame" x="15" y="145" width="345" height="378"/>
                             </imageView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yVT-sA-EWT">
-                                <rect key="frame" x="145" y="531" width="85" height="37"/>
-                                <state key="normal" title="Retake"/>
-                                <connections>
-                                    <action selector="restartCamera:" destination="6Te-EO-rUB" eventType="touchUpInside" id="EHW-2j-Dso"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oPV-bM-pez">
-                                <rect key="frame" x="144" y="617" width="85" height="30"/>
-                                <state key="normal" title="Test"/>
+                                <rect key="frame" x="145" y="617" width="85" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Test">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="testUpload:" destination="6Te-EO-rUB" eventType="touchUpInside" id="P83-6A-246"/>
                                 </connections>
@@ -1018,9 +1011,9 @@
                     <connections>
                         <outlet property="cameraViewFrame" destination="lxb-zs-MOA" id="idc-sI-WVS"/>
                         <outlet property="imagePreview" destination="aGX-ja-U0e" id="nBV-IB-Rd1"/>
+                        <outlet property="leftBBi" destination="ksu-NF-IvB" id="Cs3-eU-saO"/>
                         <outlet property="navigationBarTitle" destination="Mby-sO-qUW" id="3H2-N6-bXZ"/>
-                        <outlet property="postButton" destination="xr9-7Q-S3C" id="3HB-cm-HUF"/>
-                        <outlet property="retakeButton" destination="yVT-sA-EWT" id="sL8-2N-VdJ"/>
+                        <outlet property="rightBBi" destination="xr9-7Q-S3C" id="rKf-IX-L63"/>
                         <outlet property="testButton" destination="oPV-bM-pez" id="ubT-F5-43Z"/>
                     </connections>
                 </viewController>
@@ -1051,8 +1044,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Camera" width="100" height="100"/>
-        <image name="Checkmark" width="104" height="104"/>
+        <image name="Back" width="50" height="50"/>
+        <image name="Camera Filled" width="100" height="100"/>
+        <image name="Checkmark" width="50" height="50"/>
         <image name="Exit" width="50" height="50"/>
         <image name="Facebook" width="50" height="50"/>
         <image name="Glimpse Transperant" width="700" height="600"/>

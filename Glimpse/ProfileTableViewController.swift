@@ -16,6 +16,10 @@ import EZSwipeController
 
 class ProfileTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UITextFieldDelegate, MFMessageComposeViewControllerDelegate
 {
+    // MARK: - Public Properties
+    /// Root view controller <EZSwipe Controller> that instantiated us
+    var rootSwipeController:RootViewController?
+    
     /// Segue Handler for Swipe to Dismiss
     var interactor:Interactor!
     
@@ -531,6 +535,12 @@ extension ProfileTableViewController: UICollectionViewDelegate, UICollectionView
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(collectionCellIdentifier, forIndexPath: indexPath) as! ProfileRequestCell;
         
+        // Add Border to the cell
+        cell.layer.cornerRadius = Helper.getDefaultCornerRadius();
+        cell.layer.borderColor = Helper.getGlimpseOrangeColor().CGColor;
+        cell.layer.borderWidth = 2;
+        cell.layer.masksToBounds = true;
+        
         if (requests == nil)
         {
             cell.requestLabel.text = "Dont Be Shy. Make A Request. They Will Live Here."
@@ -561,16 +571,19 @@ extension ProfileTableViewController: UICollectionViewDelegate, UICollectionView
         return CGSizeMake(160, 58);
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+    {
         if (requests == nil){
             // We give the option to send the user to the Request Page
-            
+            if let destinationIndex = rootSwipeController?.getRequestPageIndex(){
+                self.rootSwipeController?.switchToPage(destinationIndex);
+            }
             return;
         }
         
         let index = indexPath.row;
         self.selectedRequest = requests![index];
-        
+        return;
     }
 }
 
