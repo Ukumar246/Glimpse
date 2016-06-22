@@ -95,7 +95,7 @@ class StoryViewController: UIViewController, MKMapViewDelegate
         UIApplication.sharedApplication().statusBarStyle = .LightContent;
         
         if autoLoad == .On{
-            refreshTableView();
+            //refreshTableView();
         }
         
         autoLoad = .On;
@@ -108,6 +108,7 @@ class StoryViewController: UIViewController, MKMapViewDelegate
         self.interactor = Interactor();
         
         setupViews();
+        refreshTableView();
     }
 
     override func viewWillDisappear(animated: Bool) {
@@ -175,7 +176,6 @@ class StoryViewController: UIViewController, MKMapViewDelegate
         self.view.backgroundColor = chosenPattern;
     }
     
-    
     // MARK: - Database Operations
     /// Updates Post Feed
     /// - Notes:
@@ -217,7 +217,21 @@ class StoryViewController: UIViewController, MKMapViewDelegate
         
         query.orderByDescending("createdAt");
         query.skip = skipCount;
+        query.limit = 1;
         
+        query.findObjectsInBackgroundWithBlock { (newPosts:[PFObject]?, error:NSError?) in
+            
+            if (error == nil && newPosts != nil){
+                // We want to add this post in with an animation now
+                completion(success: true, newPost: newPosts![0])
+            }
+            else{
+                Helper.showQuickAlert("No More Posts Found", message: "", viewController: self);
+                completion(success: false, newPost: nil);
+            }
+        }
+        
+        /*
         query.getFirstObjectInBackgroundWithBlock({(newPost:PFObject?, error:NSError?) in
             
             if (error == nil && newPost != nil){
@@ -229,6 +243,7 @@ class StoryViewController: UIViewController, MKMapViewDelegate
                 completion(success: false, newPost: nil);
             }
         });
+         */
     }
     
     func getRegionalBox(inputRegion:Regions) -> (PFGeoPoint,PFGeoPoint) {
@@ -422,14 +437,7 @@ class StoryViewController: UIViewController, MKMapViewDelegate
         switch operation {
         case .Start:
             
-            if (Holder.loading == nil){
-                // Alloc Init
-                Holder.loading = AASquaresLoading(target: self.view, size: 40);
-            }
-            else{
-                // Stop Loading
-                Holder.loading!.stop();
-            }
+            Holder.loading = AASquaresLoading(target: self.view, size: 40);
             
             // Start Loading
             Holder.loading!.backgroundColor = UIColor.clearColor();
@@ -449,14 +457,19 @@ class StoryViewController: UIViewController, MKMapViewDelegate
     
     func showActionSheet(targetCell: UITableViewCell, indexPath: NSIndexPath){
         let actionsheet = UIAlertController(title: "", message: "", preferredStyle: .ActionSheet);
-        let skip = UIAlertAction(title: "Skip", style: .Default) { (action:UIAlertAction) in
+        let skip:UIAlertAction = UIAlertAction(title: "Skip", style: .Default) { (action:UIAlertAction) in
             
             print("Skip post ", indexPath.row);
             
             self.skipRequest(indexPath);
         }
+        let cancel:UIAlertAction = UIAlertAction(title: "Cancel", style: .Destructive) { (action:UIAlertAction) in
+            actionsheet.dismissViewControllerAnimated(true, completion: nil);
+        }
+        
         actionsheet.view.tintColor = Helper.getGlimpseOrangeColor();
         actionsheet.addAction(skip);
+        actionsheet.addAction(cancel);
         
         presentViewController(actionsheet, animated: true, completion: nil);
     }
@@ -481,20 +494,36 @@ class StoryViewController: UIViewController, MKMapViewDelegate
     
     func addNewRequest(skipIndex:Int, path:NSIndexPath){
         assert(posts != nil);
+        
+        toggleLoading(.Start);
         fetchNewRequest(skipIndex) { (success, newPost) in
+            
+            self.toggleLoading(.Stop);
             if (!success){
+                // We dont want our table view to be behind our data controller
+                self.tableView.reloadData();
                 return;
             }
             
             // The number of posts we skipped
             self.skipCount += 1;
             
+            let insertIndex = path.row;
+            
             // We want to add this new request with an animation and fade it in
             self.tempLock = true;
-            self.posts!.append(newPost!)
+            self.posts!.insert(newPost!, atIndex: insertIndex);
             self.tableView.beginUpdates()
             self.tableView.insertRowsAtIndexPaths([path], withRowAnimation: UITableViewRowAnimation.Fade);
             self.tableView.endUpdates();
+            
+            // should we call this? -- we do have manually be right
+            /*
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))   // 1 Sec later
+            dispatch_after(delayTime, dispatch_get_main_queue()) {
+                self.tableView.reloadData();
+            }
+            */
         }
     }
     
@@ -633,11 +662,7 @@ extension StoryViewController: UITableViewDataSource, UITableViewDelegate{
 }
 
 extension StoryViewController: UIScrollViewDelegate{
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        let offset:CGFloat = scrollView.contentOffset.y;
-        
-        print("Offset: \(offset)");
-    }
+    
 }
 
 

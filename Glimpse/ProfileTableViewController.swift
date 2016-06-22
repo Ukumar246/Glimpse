@@ -11,9 +11,13 @@ import Parse
 import ParseUI
 import SimpleCam
 import MessageUI
+import AASquaresLoading
+import EZSwipeController
 
 class ProfileTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UITextFieldDelegate, MFMessageComposeViewControllerDelegate
 {
+    /// Segue Handler for Swipe to Dismiss
+    var interactor:Interactor!
     
     // MARK: - Private Properties
     @IBOutlet weak var titleLabel: UILabel!
@@ -28,10 +32,43 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
     
     private var imagePicker:UIImagePickerController!
     
+    /// Collection View Data Controller 
+    /// The Requests Our User Has Made
+    private var requests:[PFObject]?{
+        didSet{
+            guard let nonNilRequests = requests else{
+                collectionView.reloadData();
+                return;
+            }
+            if nonNilRequests.count == 0{
+                requests = nil
+            }
+            
+            collectionView.reloadData();
+        }
+    }
+    
+    /// The Request<PFObject> the user has selected
+    private var selectedRequest:PFObject?{
+        didSet{
+            guard let _ = selectedRequest else{
+                return
+            }
+            performSegueWithIdentifier(SegueFullScreen, sender: nil);
+        }
+    }
+    
+    /// Auto Loader for view controller
+    /// Note: - turns on automatically when set off in following view controller appear cycle
+    //  Note: ** Turn this on when delaing with loading alerts where return from Segues occur**
+    var autoLoad:AutoLoad! = .On;
+    
+    /// Is there a user logged in at this point?
     private var userLoggedIn:Bool{
         return (PFUser.currentUser() == nil) ? false : true;
     }
     
+    /// Current user who is logged in
     private var user:PFUser{
         return PFUser.currentUser()!;
     }
@@ -39,12 +76,34 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
     // MARK: Constants
     private let loginSegue:String = "Segue_Login";
     private let collectionCellIdentifier:String = "requestCell";
+    private let SegueFullScreen:String = "Segue_FullScreenImage";
     
     // MARK: - Lifecycle
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated);
         // Status Bar
         UIApplication.sharedApplication().statusBarStyle = .Default;
+        
+        if userLoggedIn == false{
+            // Logout button needs to be changed
+            clearUserData();
+            changeLogoutButton();
+            
+            return;
+        }
+        else if (self.autoLoad == AutoLoad.Off){
+            autoLoad = .On;
+            return;
+        }
+        
+        // AT this point call user activity stuff they wont throw asserts
+        
+        // Do User Account Activity Stuff
+        toggleLoading(.Start);
+        fetchUserRequests { (finished) in
+            self.toggleLoading(.Stop);
+        };
+        
     }
     
     override func viewDidLoad() {
@@ -66,6 +125,9 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
             // Logout button needs to be changed
             return;
         }
+        
+        // AT this point call user activity stuff they wont throw asserts
+        self.interactor = Interactor();
         
         // Do User Account Activity Stuff
         fetchProfileImage();
@@ -95,9 +157,18 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
         
         headerView.sendSubviewToBack(backgroundImageView);
         
+        collectionView.indicatorStyle = .Black;
+        
         changeLogoutButton();
     }
 
+    func clearUserData(){
+        let defaultImage = UIImage(named: "Glimpse Orange")!;
+        backgroundImageView.image = nil;
+        profileImageView.image = defaultImage;
+        nameLabel.text = "Name";
+    }
+    
     //MARK: - Action
     func changeLogoutButton(){
         if userLoggedIn{
@@ -158,6 +229,33 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
         
         UIApplication.sharedApplication().openURL(url);
     }
+    
+    func toggleLoading(operation:LoadingOption){
+        struct Holder{
+            static var loading:AASquaresLoading?
+        }
+        
+        switch operation {
+            case .Start:
+                // Alloc Init
+                Holder.loading = AASquaresLoading(target: self.view, size: 40);
+                
+                // Start Loading
+                Holder.loading!.backgroundColor = UIColor.clearColor();
+                Holder.loading!.color = Helper.getGlimpseOrangeColor();
+                Holder.loading!.setSquareSize(120);
+                Holder.loading!.start();
+                
+                break;
+            case .Stop:
+                
+                Holder.loading?.stop();
+                
+                break;
+        }
+        return;
+    }
+
     
     // MARK: Tap Actions
     @IBAction func tappedImage(sender: UITapGestureRecognizer) {
@@ -246,38 +344,45 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
     
     //MARK: - Image Picker Delegate
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             
-            uploadProfileImage(pickedImage);
+            // Toggle Loading
+            // Turn OFF Auto Load otherwise our Loading Alert will be intercepted!
+            autoLoad = .Off;
+            toggleLoading(.Start);
+            
+            uploadProfileImage(pickedImage, completion: { (success) in
+                // Toggle Loading
+                self.toggleLoading(.Stop);
+                
+                if (!success){
+                    // Clear the imageView on fail
+                    self.profileImageView.image = nil;
+                }
+            })
             
             // Update UI
             profileImageView.image = pickedImage;
             backgroundImageView.image = pickedImage;
         }
         
-        dismissViewControllerAnimated(true, completion: nil)
     }
     
     //MARK: - TableView
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         print("Selected: ", indexPath.row);
-        /*
-        tableView.deselectRowAtIndexPath(indexPath, animated: true);
-        
-        let feedbackIndexPath = NSIndexPath(forRow: 0, inSection: 0);
-        
-        if indexPath == feedbackIndexPath{
-            share();
-        }
-        */
     }
     
     //MARK: - Database Operations
     /// Updates Profile Image 
     /// Note: Database Operation
-    ///       **Updates UIImage View Profile Image View**
-    func uploadProfileImage(newImage:UIImage) -> Void {
+    ///       **Toggle Loading And Update Data on Handler**
+    
+    func uploadProfileImage(newImage:UIImage, completion:(success:Bool) -> Void) -> Void {
         assert(PFUser.currentUser() != nil, "User must be logged in to update profile pic!");
         
         let imageData:NSData = UIImageJPEGRepresentation(newImage, 1.0)!;
@@ -290,18 +395,20 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
                 self.user.saveInBackgroundWithBlock({ (saved, error:NSError?) in
                     if (error == nil && saved)
                     {
+                        completion(success: true);
+                        
                         print("* Updated Profile Picture!");
                         Helper.showQuickAlert("Saved!", message: "", viewController: self);
                     }
                     else{
                         print("! Error Linking Photo to User Account");
-                        self.profileImageView.image = nil;
+                        completion(success: false);
                     }
                 });
             }
             else{
                 print("! Error Uploading Photo");
-                self.profileImageView.image = nil;
+                completion(success: false);
             }
         });
     }
@@ -323,6 +430,8 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
     
     /// Loads user profile image
     func fetchProfileImage() -> Void {
+        assert(userLoggedIn);
+        
         if let profilePic = user["picture"] as? PFFile{
             profileImageView.file = profilePic;
             backgroundImageView.file = profilePic;
@@ -334,10 +443,35 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
         }
     }
     
-    func fetchUserName() -> Void{
+    func fetchUserName() -> Void {
+        assert(userLoggedIn);
+        
         if let name = user["name"] as? String{
             nameLabel.text = name;
         }
+    }
+    
+    /// Fetches User's Requests
+    /// - Note: Activate Loading Alerts Outside
+    func fetchUserRequests(completion:(finished:Bool) -> Void) -> Void
+    {
+        assert(userLoggedIn, "User must be logged in!");
+        
+        let query = PFQuery(className: "Request");
+        query.whereKey("owner", equalTo: user)
+        query.findObjectsInBackgroundWithBlock { (results:[PFObject]?, error:NSError?) in
+            
+            completion(finished: true);
+            
+            if (results != nil && error == nil)
+            {
+                self.requests = results!
+            }
+            else{
+                self.requests = nil;
+            }
+        }
+        
     }
     
     func logout(completion:(finished:Bool) -> Void) -> Void{
@@ -363,10 +497,19 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
         performSegueWithIdentifier(loginSegue, sender: nil);
     }
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    //MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == SegueFullScreen)
+        {
+            assert(selectedRequest != nil, "Post must be selected to segue");
+            
+            let dvc = segue.destinationViewController as! FullScreenImageViewController
+            
+            // Animated Transition
+            dvc.transitioningDelegate = self;
+            dvc.interactor = interactor;
+            dvc.request = selectedRequest!
+        }
     }
 }
 
@@ -377,17 +520,70 @@ extension ProfileTableViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5;
+        if (requests == nil){
+            return 1;
+        }
+        
+        return requests!.count;
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(collectionCellIdentifier, forIndexPath: indexPath);
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(collectionCellIdentifier, forIndexPath: indexPath) as! ProfileRequestCell;
+        
+        if (requests == nil)
+        {
+            cell.requestLabel.text = "Dont Be Shy. Make A Request. They Will Live Here."
+            return cell;
+        }
+        
+        
+        let index = indexPath.row;
+        let request = requests![index];
+        
+        cell.requestLabel.text = request["request"] as? String;
         
         return cell;
     }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        if (requests == nil)
+        {
+            return CGSizeMake(180, 58);
+        }
+        else if (requests!.count < 2)
+        {
+            // The number of requests are odd!
+            return CGSizeMake(175, 58);
+        }
+        
+        return CGSizeMake(160, 58);
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if (requests == nil){
+            // We give the option to send the user to the Request Page
+            
+            return;
+        }
+        
+        let index = indexPath.row;
+        self.selectedRequest = requests![index];
+        
+    }
 }
 
+
+extension ProfileTableViewController: UIViewControllerTransitioningDelegate {
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissAnimator();
+    }
+    
+    func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil;
+    }
+}
 
 class ProfileRequestCell: UICollectionViewCell {
     @IBOutlet weak var requestLabel:UILabel!

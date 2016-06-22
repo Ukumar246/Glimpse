@@ -198,14 +198,8 @@ class CameraViewController: UIViewController, CACameraSessionDelegate {
         switch operation {
         case .Start:
             
-            if (Holder.loading == nil){
-                // Alloc Init
-                Holder.loading = AASquaresLoading(target: self.view, size: 40);
-            }
-            else{
-                // Stop Loading
-                Holder.loading!.stop();
-            }
+            // Alloc Init
+            Holder.loading = AASquaresLoading(target: self.view, size: 40);
             
             // Start Loading
             Holder.loading!.backgroundColor = UIColor.clearColor();

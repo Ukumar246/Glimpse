@@ -13,12 +13,13 @@ import Parse
 
 class RootViewController: EZSwipeController, CLLocationManagerDelegate, EZSwipeControllerDataSource {
 
-    //var pageViewController: UIPageViewController?
+    //MARK: Public API
+    var uniquename:String!;
 
     //MARK: Private API
     // Location
-    var locationManager:CLLocationManager!
-    var monitorLocation:CLLocationCoordinate2D?{
+    private var locationManager:CLLocationManager!
+    private var monitorLocation:CLLocationCoordinate2D?{
         didSet{
             print("* GeoFence Area Set.");
             //startMonitoringGeotification(locValue, radius: 100, identifier: "THOT");
@@ -29,13 +30,12 @@ class RootViewController: EZSwipeController, CLLocationManagerDelegate, EZSwipeC
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupLocationManager();
+        uniquename = "Karsh is a G";
         
         // Monitor Location Setup
         monitorLocation = nil;
     }
    
-    
     // MARK: - EZ Swipe View Controller
     override func setupView() {
         super.setupView()
@@ -59,9 +59,13 @@ class RootViewController: EZSwipeController, CLLocationManagerDelegate, EZSwipeC
     }
     
     func changedToPageIndex(index: Int) {
-        print("* Swiped to index", index);
+        print(":: Swiped to index", index);
     }
     
+    static func getMyName() -> String
+    {
+        return "I am EZ VC";
+    }
     
     // MARK: - Location Manager
     func setupLocationManager(){
@@ -114,7 +118,6 @@ class RootViewController: EZSwipeController, CLLocationManagerDelegate, EZSwipeC
         
         
     }
-    
     
     // MARK: - Notifications
     func triggerLocalNotification() -> Void {
