@@ -12,6 +12,7 @@ import Parse
 import MapKit
 import CoreLocation
 import AASquaresLoading
+import MGSwipeTableCell
 
 enum Regions {
     case North, Campus, South;
@@ -220,15 +221,22 @@ class StoryViewController: UIViewController, MKMapViewDelegate
         query.limit = 1;
         
         query.findObjectsInBackgroundWithBlock { (newPosts:[PFObject]?, error:NSError?) in
-            
-            if (error == nil && newPosts != nil){
-                // We want to add this post in with an animation now
-                completion(success: true, newPost: newPosts![0])
-            }
-            else{
-                Helper.showQuickAlert("No More Posts Found", message: "", viewController: self);
+            guard let nonNilPosts = newPosts where (error == nil) else{
+                
                 completion(success: false, newPost: nil);
+                return;
             }
+            
+            if (nonNilPosts.count <= 0)
+            {
+                
+                completion(success: false, newPost: nil);
+                return;
+            }
+            
+            // We want to add this post in with an animation now
+            completion(success: true, newPost: newPosts![0]);
+            
         }
         
         /*
@@ -501,6 +509,13 @@ class StoryViewController: UIViewController, MKMapViewDelegate
             self.toggleLoading(.Stop);
             if (!success){
                 // We dont want our table view to be behind our data controller
+                
+                // No more new requests were found!
+                if (self.posts!.count == 0)
+                {
+                    Helper.showQuickAlert("No more requests found.", message: "", viewController: self);
+                }
+                
                 self.tableView.reloadData();
                 return;
             }
@@ -556,7 +571,7 @@ extension StoryViewController: UIViewControllerTransitioningDelegate {
     }
 }
 
-extension StoryViewController: UITableViewDataSource, UITableViewDelegate{
+extension StoryViewController: UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate{
     
     // MARK: Configuration
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -601,6 +616,24 @@ extension StoryViewController: UITableViewDataSource, UITableViewDelegate{
         cell.tag = index;
         cell.addGestureRecognizer(lpgr);
         
+        cell.delegate = self // Receive callbacks via delegate
+        
+        //configure left buttons
+        let leftButton = MGSwipeButton(title: "Skip", backgroundColor: Helper.getGlimpseOrangeColor());
+        leftButton.tag = index;
+        
+        cell.leftButtons = [leftButton];
+        
+        cell.leftSwipeSettings.transition = MGSwipeTransition.Drag
+        cell.leftExpansion.fillOnTrigger = true;
+        cell.leftExpansion.threshold = 1.0;
+        cell.leftExpansion.buttonIndex = 0;
+        
+        /*
+        cell.rightExpansion.fillOnTrigger = true;
+        cell.rightExpansion.threshold = 1.0;
+        */
+        
         return cell;
     }
     
@@ -619,33 +652,31 @@ extension StoryViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     // MARK: Editing
-    /*
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func swipeTableCell(cell: MGSwipeTableCell!, tappedButtonAtIndex index: Int, direction: MGSwipeDirection, fromExpansion: Bool) -> Bool {
+        print("Button Pressed: ", index);
+        
+        self.skipRequest(NSIndexPath(forRow: index, inSection: 0));
         return true;
     }
     
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete", handler:{action, indexpath in
-            
-            
-        });
-        
-        return [deleteRowAction];
+    func swipeTableCell(cell: MGSwipeTableCell!, canSwipe direction: MGSwipeDirection) -> Bool {
+        return true;
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (editingStyle != .Delete){
-            return
+    func swipeTableCell(cell: MGSwipeTableCell!, swipeButtonsForDirection direction: MGSwipeDirection, swipeSettings: MGSwipeSettings!, expansionSettings: MGSwipeExpansionSettings!) -> [AnyObject]! {
+        
+        swipeSettings.transition = .Border;
+        swipeSettings.threshold = 1.5;
+        
+        if (direction == .LeftToRight)
+        {
+            let leftButtonArray:[MGSwipeButton] = [MGSwipeButton(title: "Skip", icon: nil, backgroundColor: Helper.getGlimpseOrangeColor())];
+            return leftButtonArray;
         }
         
-        let index = indexPath.row;
-        
-        print("Deleted Row ", index)
-        
-        self.posts!.removeAtIndex(index);
-        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Left);
+        return nil;
     }
-    */
+    
     
     func cellHeldDown(sender: UILongPressGestureRecognizer)
     {
@@ -678,7 +709,7 @@ class MapPin : NSObject, MKAnnotation {
     }
 }
 
-class RequestCell: UITableViewCell {
+class RequestCell: MGSwipeTableCell {
     @IBOutlet weak var requestLabel:UILabel!
 }
 

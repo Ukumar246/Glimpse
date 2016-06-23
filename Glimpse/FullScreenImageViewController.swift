@@ -28,6 +28,21 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
     /// Comments on this Request
     private var comments:[PFObject]?{
         didSet{
+            guard let nonNilComments = comments else{
+                commentsTableView.hidden = true;
+                commentsTableView.reloadData();
+                return
+            }
+            if (nonNilComments.count == 0){
+                comments = nil;
+                commentsTableView.hidden = true;
+                commentsTableView.reloadData();
+                return;
+            }
+            
+            // We have comments
+            commentsTableView.hidden = false;
+            
             commentsTableView.reloadData();
         }
     }
@@ -41,7 +56,9 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var commentsTableView: UITableView!
     @IBOutlet weak var commentBox: CommentBox!
+    @IBOutlet weak var emptyStateLabel: UILabel!
 
+    
     // MARK: Constants
     private let cellIdentifier:String = "commentCell";
     private let originalPoint:CGPoint = CGPointMake(0, 16);
@@ -70,8 +87,8 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
     
     func setupViews(){
         
+        // Table View Stuff
         commentsTableView.tableHeaderView = nil;
-        
         let yOffset:CGFloat = 25;
         commentsTableView.contentInset = UIEdgeInsetsMake(yOffset, 0, 0, 0);
         let startOffset = CGPointMake(0, -25);
@@ -79,10 +96,21 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
         
         let _:[String: AnyObject] = [NSForegroundColorAttributeName: Helper.getGlimpseOrangeColor()];
         
+        // Appearance Stuff
         //addBorder(commentBox.cameraButton);
     
         // We dont want keyboard notifications
         //NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FullScreenImageViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        
+        // Label Stuff
+        let postOwner:PFUser = request["owner"] as! PFUser;
+        if (postOwner == user)
+        {
+            emptyStateLabel.text = "Well done! We'll let you know when your post has been commented on.";
+        }
+        else{
+            emptyStateLabel.text = "Uh Oh! Take a Glimpse using the camera.";
+        }
         
     }
     

@@ -21,7 +21,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var glimpseButton: UIButton!
     
     // Constants
@@ -41,21 +40,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         scrollView.contentOffset = CGPointMake(0, 0);
         
         // Layer Setup
-        glimpseButton.layer.cornerRadius = CGRectGetWidth(glimpseButton.frame) / 2;
+        glimpseButton.layer.cornerRadius = Helper.getDefaultCornerRadius();
         glimpseButton.layer.borderColor = Helper.getGlimpseOrangeColor().CGColor;
         glimpseButton.layer.borderWidth = 2;
         
         addBottomBorder(emailTextField);
-        addBottomBorder(passwordTextField);
+        //addBottomBorder(passwordTextField);
 
         emailTextField.text = nil;
-        passwordTextField.text = nil;
+        //passwordTextField.text = nil;
         
         // Placeholders
         let attributes:[String : AnyObject] = [NSForegroundColorAttributeName : UIColor.whiteColor()];
         
         emailTextField.attributedPlaceholder = NSAttributedString(string: "email", attributes: attributes)
-        passwordTextField.attributedPlaceholder = NSAttributedString(string: "password", attributes: attributes);
+        //passwordTextField.attributedPlaceholder = NSAttributedString(string: "password", attributes: attributes);
         
         // Auto Load Email
         let (email, valid) = loadEmailTf();
@@ -126,7 +125,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         print("* Logging In..");
         
         let email = emailTextField.text;
-        let password = passwordTextField.text;
+        //let password = passwordTextField.text;
+        let password:String? = "sExyOkBL+kAR5h5jXsmXP7Z";
         
         if (email == nil || password == nil){
             return;

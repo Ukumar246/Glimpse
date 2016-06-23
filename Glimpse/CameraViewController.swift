@@ -66,7 +66,7 @@ class CameraViewController: UIViewController, CACameraSessionDelegate {
             }
             else if (state == .Camera){
                 rightBBi.hidden = true;
-                newTitle = "Point. Answer";
+                newTitle = "";
                 
                 // The Left BBi now functions as exit screen
                 leftBBi.removeTarget(nil, action: nil, forControlEvents: .AllEvents);

@@ -125,7 +125,7 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
         
         setupViews();
         
-        if userLoggedIn == false{
+        if (userLoggedIn == false){
             // Logout button needs to be changed
             return;
         }
@@ -167,10 +167,12 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
     }
 
     func clearUserData(){
-        let defaultImage = UIImage(named: "Glimpse Orange")!;
-        backgroundImageView.image = nil;
+        let defaultImage:UIImage = UIImage(named: "Empty User")!;
+        backgroundImageView.image = defaultImage;
         profileImageView.image = defaultImage;
         nameLabel.text = "Name";
+        
+        self.requests = nil;
     }
     
     //MARK: - Action
@@ -192,13 +194,13 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
     }
     
     @IBAction func logoutAction(sender: UIButton) {
-        
         // Avoid Double Tap
         sender.enabled = false;
         
         logout { (finished) in
             // Enable ReTap
             sender.enabled = true;
+            self.clearUserData();
         }
     }
 
@@ -492,6 +494,7 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
             }
             else{
                 print("! Error Logging out", error!.description);
+                Helper.showAlert("Error", message: error!.description, viewController: self);
             }
         }
     }
@@ -541,15 +544,22 @@ extension ProfileTableViewController: UICollectionViewDelegate, UICollectionView
         cell.layer.borderWidth = 2;
         cell.layer.masksToBounds = true;
         
-        if (requests == nil)
-        {
-            cell.requestLabel.text = "Dont Be Shy. Make A Request. They Will Live Here."
+        guard let nonNilRequest = requests where userLoggedIn else{
+            
+            var cellText:String!
+            if userLoggedIn == false{
+                cellText = "You're not logged in.";
+            }
+            else{
+                cellText = "Make a request. They will live here.";
+            }
+            cell.requestLabel.text = cellText
+            
             return cell;
         }
         
-        
         let index = indexPath.row;
-        let request = requests![index];
+        let request = nonNilRequest[index];
         
         cell.requestLabel.text = request["request"] as? String;
         
@@ -560,12 +570,10 @@ extension ProfileTableViewController: UICollectionViewDelegate, UICollectionView
         
         if (requests == nil)
         {
-            return CGSizeMake(180, 58);
+            return CGSizeMake(210, 58);
         }
-        else if (requests!.count < 2)
-        {
-            // The number of requests are odd!
-            return CGSizeMake(175, 58);
+        else if userLoggedIn == false{
+            return CGSizeMake(210, 58);
         }
         
         return CGSizeMake(160, 58);
@@ -574,6 +582,11 @@ extension ProfileTableViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
         if (requests == nil){
+            if userLoggedIn == false{
+                self.gotoLoginScreen();
+                
+                return;
+            }
             // We give the option to send the user to the Request Page
             if let destinationIndex = rootSwipeController?.getRequestPageIndex(){
                 self.rootSwipeController?.switchToPage(destinationIndex);

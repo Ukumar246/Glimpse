@@ -7,144 +7,161 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00C32A09DA9D121C2DB3ABDF2A5F07A4 /* SimpleCam-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5CBFD054BD64F46E333207E3FAA5F395 /* SimpleCam-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0613A1A606DD0910D0C84F8CFA065DAC /* Previous.png in Resources */ = {isa = PBXBuildFile; fileRef = 806EB8E88780DF2451AF4B268156FF81 /* Previous.png */; };
 		07AFF06C8B4AE2737036729F7373E8F6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		095187D19D92E711C84D41157070C767 /* CSStickyHeaderFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B40D2AB47B071BBF2C63367D67CDD5F1 /* CSStickyHeaderFlowLayout.m */; };
-		0FBB70CFCCCD2966FC13DCE0A284F898 /* Pods-Glimpse-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F45FDBAA30E38F400CC20614DE9CED58 /* Pods-Glimpse-dummy.m */; };
-		1283FF810941EED86E367EAE06B1DE2D /* CSStickyHeaderFlowLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 777C058868DF3589FD3358D59BC9030C /* CSStickyHeaderFlowLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1980ADE6F781F7C46E253BD3524E3274 /* SimpleCam-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3055B84AF41B65ECD34234BD3C9D0BD8 /* SimpleCam-dummy.m */; };
-		1DF28CFE1A73206970CD2D01D31169C6 /* SimpleCam.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB502B00B18A2991175214440F38533 /* SimpleCam.m */; };
-		268C17FB4A1B500FAE4A02E1F7D87D5C /* AASquaresLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91631C2C310A4F4126605F7B38C8A019 /* AASquaresLoading.swift */; };
+		095187D19D92E711C84D41157070C767 /* CSStickyHeaderFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F8C44B63020EEF1E08EEC7D9043FA11 /* CSStickyHeaderFlowLayout.m */; };
+		1283FF810941EED86E367EAE06B1DE2D /* CSStickyHeaderFlowLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = D294D9B22C3F1700EEF69A23C0C6CA32 /* CSStickyHeaderFlowLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		191EDA45FAEE6E06CCA797A095D0E57D /* SimpleCam.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AAA4D9BEE8F9C2D596FAB11FF377FE4 /* SimpleCam.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D54E6EC43B2B4250E1FE53B0C0A6662 /* MGSwipeTableCell-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 92C5B9EC4F41E87C35A0EEA8334C83CE /* MGSwipeTableCell-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		22D6C1E0812D500F7C87761DB87616AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		268C17FB4A1B500FAE4A02E1F7D87D5C /* AASquaresLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D949369829F24456CE8F0F4895C823C /* AASquaresLoading.swift */; };
+		3BECE98D686BBB30AA4300202C435567 /* Pods-Glimpse-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F45FDBAA30E38F400CC20614DE9CED58 /* Pods-Glimpse-dummy.m */; };
 		3C247C875321A4E9A2ABFEBE1C4DB42C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		426BA0161B6E0602E0160AC52BE27A45 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		42C2E583ECAC07035E4E87DDF2DF3CB7 /* EZSwipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374B730FBB9C454599A032A8CC96B895 /* EZSwipeController.swift */; };
-		46A912B7EEDBDC85270655A495D4CE9A /* Pods-Glimpse-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 63C86586FC3DE5040AF5DC2108D1E22F /* Pods-Glimpse-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		567BDEA0D15A2E9B281D33907F16899C /* CSStickyHeaderFlowLayoutAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 0DABD829EBB205B6C39792B5529008DE /* CSStickyHeaderFlowLayoutAttributes.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5768DCD828BCB3B8A372407BA137B249 /* AASquaresLoading-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A12042A4B775FC6042331C6F4BDAB3B5 /* AASquaresLoading-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		853F669AD4A5434DC068E0B1DBFA69D4 /* Download.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DB2E59A35E0CA81237921F3EEEEA0FF /* Download.png */; };
-		95478BD66E9C2E5DC19B9F3594FF89FB /* EZSwipeController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BA60B284605FC46F7EB142600286EE2F /* EZSwipeController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AC909F21BD5C748CD4372C0457CF3F1A /* CSStickyHeaderFlowLayoutAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 332EB184B4DE569147031F8D0E6EAF3C /* CSStickyHeaderFlowLayoutAttributes.m */; };
-		B5971F611DFCB1DBE9E29202C26D4163 /* AASquaresLoading-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C85AEF77EBA6ED3C2196BB54F800FD6 /* AASquaresLoading-dummy.m */; };
-		B88036DFF2AF57D024F9F32A5CA29F2A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		C266178B1554011E1429289C4C1B006D /* EZSwipeController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB59F58E4DC7EBE52A7DDAB4FEE2B7A /* EZSwipeController-dummy.m */; };
-		C45BE3629C753F32FD35EBA816CE874E /* CameraRotate.png in Resources */ = {isa = PBXBuildFile; fileRef = B40EBC98A7E763E5142BA57043B9C9F6 /* CameraRotate.png */; };
-		C468CB9F9A46CF79386785EC2223293D /* Previous.png in Resources */ = {isa = PBXBuildFile; fileRef = 39AE136717881C56B40A0D58D2A28A0D /* Previous.png */; };
-		C4ABDF207C548E58E309B2B34E433434 /* CSStickyHeaderFlowLayout-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DA6DF272AB3018F7127185E2FF4B8BA /* CSStickyHeaderFlowLayout-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C775FBB08DBA6936822E2BC00F18AF4C /* CSStickyHeaderFlowLayout-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE65840926AFEE0CCC801B546A8B93E /* CSStickyHeaderFlowLayout-dummy.m */; };
-		D1C4E1C6460BD78C4497B3F776D3A58F /* Lightening.png in Resources */ = {isa = PBXBuildFile; fileRef = 7497A676355BD2FD49625FE0EB3BF3A9 /* Lightening.png */; };
+		42C2E583ECAC07035E4E87DDF2DF3CB7 /* EZSwipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115080B30B5F9A1276D7E1EB9025DED9 /* EZSwipeController.swift */; };
+		44F8785C7389873C8364067E96801D10 /* Lightening.png in Resources */ = {isa = PBXBuildFile; fileRef = 8605EBF9571085410A0279A9DF22E882 /* Lightening.png */; };
+		4C19E6FED540CFD93BBCA1786F0F33E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		567BDEA0D15A2E9B281D33907F16899C /* CSStickyHeaderFlowLayoutAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CC13ED50F4920E7AF2D5ACEA6F4A29F /* CSStickyHeaderFlowLayoutAttributes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		569D057F4C7A6F69AEA4AB0BD6D9900E /* MGSwipeTableCell-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7582DDE3656B2A83D032952F6EEBB75F /* MGSwipeTableCell-dummy.m */; };
+		5768DCD828BCB3B8A372407BA137B249 /* AASquaresLoading-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 58C431ED8207CBAD245A7CE9AE40F65C /* AASquaresLoading-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		59394A7191A7423C8236EC3E427C00B9 /* CameraRotate.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E8FB27D75498FFDB6818EB8FE922EB4 /* CameraRotate.png */; };
+		63DC27806C23AFFC9B7115E5EEAB9CBF /* MGSwipeButton.h in Headers */ = {isa = PBXBuildFile; fileRef = A1BC501E6FD0411741F4E6106AA137BD /* MGSwipeButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		67558B72295110F846C2420C9540A52A /* MGSwipeTableCell.h in Headers */ = {isa = PBXBuildFile; fileRef = A7D729B110C4BB46ADD48531B55C30BF /* MGSwipeTableCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		836819858CA0C1CE0879C83BCDF635AE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		8FB6B4F0EE9EB2BB7C80F81F9207C55D /* SimpleCam-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A7A699A3FDF34271AE5B935259C16C0 /* SimpleCam-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		95478BD66E9C2E5DC19B9F3594FF89FB /* EZSwipeController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 55256296E47CF78A50EFE343BD4C4D54 /* EZSwipeController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		95E41293E05A8ABB9866D6F3AED0CA10 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5624D37C83F48B35BD5F36ADA91D3EC6 /* MGSwipeTableCell.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		AC909F21BD5C748CD4372C0457CF3F1A /* CSStickyHeaderFlowLayoutAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = E81C11498BE70B12C64E4E26DD00278C /* CSStickyHeaderFlowLayoutAttributes.m */; };
+		B5971F611DFCB1DBE9E29202C26D4163 /* AASquaresLoading-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCE07C4C2BCECC850BD1891E5027076 /* AASquaresLoading-dummy.m */; };
+		C0E323B5FBA4C1A720728264138F5984 /* Pods-Glimpse-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 63C86586FC3DE5040AF5DC2108D1E22F /* Pods-Glimpse-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C266178B1554011E1429289C4C1B006D /* EZSwipeController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC10AE1C5FE9D51ABF2D297B1C7B4D /* EZSwipeController-dummy.m */; };
+		C4ABDF207C548E58E309B2B34E433434 /* CSStickyHeaderFlowLayout-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 258EC1CFA3695ACF0061AC0B8B66C7A6 /* CSStickyHeaderFlowLayout-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C775FBB08DBA6936822E2BC00F18AF4C /* CSStickyHeaderFlowLayout-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C24833F85A9712BB91273140064BEA /* CSStickyHeaderFlowLayout-dummy.m */; };
+		C8FD669C32DE47E548CBB0153988C1E2 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 882449A6139E6DC4596E549615D24EAC /* MGSwipeButton.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		DD46F830B3F26426466FC75FD534C05F /* SimpleCam-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B740828C64142A487199009807E628 /* SimpleCam-dummy.m */; };
+		DDEA1A20590CAC5DB29561FEB9315A92 /* SimpleCam.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD236D7C4E6DE6690ACE5A107A42637 /* SimpleCam.m */; };
 		E0842862B97F8F11171DDAFC3161F1D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		FB8176366AD64F6F6BDA3CCF0FC7E367 /* SimpleCam.h in Headers */ = {isa = PBXBuildFile; fileRef = 8891FEC6A485F57344BF252A32BE157F /* SimpleCam.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F6D281FA16FADC8849359905230B6B81 /* Download.png in Resources */ = {isa = PBXBuildFile; fileRef = ED47AC94DE1D23CFB11B8CAA482B78B6 /* Download.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2CB15E5F3F937B58F3FA0BCECE168F70 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D168A90FC275B7C8B0DDF59974BBE8BE;
-			remoteInfo = EZSwipeController;
-		};
-		3B8A9F3F94CB3123F8A997091FC926CC /* PBXContainerItemProxy */ = {
+		2BB4CBC918DA2E365C9F5980DC9C3F4E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 30C445E6D8703D94CB06D42EB47820DE;
 			remoteInfo = CSStickyHeaderFlowLayout;
 		};
-		A4D05FBD15B8D8484E7969BB04F1ADBC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0054A5925DC2C2F5000EFB6715B31661;
-			remoteInfo = SimpleCam;
-		};
-		C021556FB0785378D4E955155F4F72F9 /* PBXContainerItemProxy */ = {
+		497B0402B84D87DF66987AF61960DCD1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 0E579C8B6EC88FD31F0C2B47C9058B48;
 			remoteInfo = AASquaresLoading;
 		};
+		9242ED0151E162E1E56F6E24850DE4B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D168A90FC275B7C8B0DDF59974BBE8BE;
+			remoteInfo = EZSwipeController;
+		};
+		B69D362C9F9E5D0A5E9B037AA03D53CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D350718E2DB7C9F10413E99AC835A4F4;
+			remoteInfo = SimpleCam;
+		};
+		BE2DD6A35801B1689204D8134569FE30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E1263BFF45F6446CF3DE29AE234C893;
+			remoteInfo = MGSwipeTableCell;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0DABD829EBB205B6C39792B5529008DE /* CSStickyHeaderFlowLayoutAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSStickyHeaderFlowLayoutAttributes.h; path = Classes/CSStickyHeaderFlowLayoutAttributes.h; sourceTree = "<group>"; };
-		15995C7764470DADC0808F33170AF99B /* CSStickyHeaderFlowLayout.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CSStickyHeaderFlowLayout.xcconfig; sourceTree = "<group>"; };
-		18113BA3020F5C0B43E90A0797B266CE /* CSStickyHeaderFlowLayout.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = CSStickyHeaderFlowLayout.modulemap; sourceTree = "<group>"; };
-		1F772070056B4F9F52B381DA57C5C999 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0629F268FACD8F55A4C9E2711B29F545 /* AASquaresLoading.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AASquaresLoading.xcconfig; sourceTree = "<group>"; };
+		080C45C29D53BDC2A70C53081476A020 /* SimpleCam.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SimpleCam.modulemap; sourceTree = "<group>"; };
+		0CC13ED50F4920E7AF2D5ACEA6F4A29F /* CSStickyHeaderFlowLayoutAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSStickyHeaderFlowLayoutAttributes.h; path = Classes/CSStickyHeaderFlowLayoutAttributes.h; sourceTree = "<group>"; };
+		115080B30B5F9A1276D7E1EB9025DED9 /* EZSwipeController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EZSwipeController.swift; sourceTree = "<group>"; };
+		12CF0EC92B0294EEDEC11CAD6C6F7EE0 /* AASquaresLoading.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AASquaresLoading.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		149F5823EB3A19FFB2FC2507F6B5089C /* EZSwipeController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = EZSwipeController.modulemap; sourceTree = "<group>"; };
+		19726FE9506CC34997D8C0F23421B962 /* CSStickyHeaderFlowLayout-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CSStickyHeaderFlowLayout-prefix.pch"; sourceTree = "<group>"; };
+		1EDC10AE1C5FE9D51ABF2D297B1C7B4D /* EZSwipeController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EZSwipeController-dummy.m"; sourceTree = "<group>"; };
 		22698B4A5FE30912278E9B8DAFB50D6E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2309D7FEA8A5827046E6AE1199F48497 /* CSStickyHeaderFlowLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CSStickyHeaderFlowLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		27B8BF7BBCE7526CFD1A4B683088720F /* CSStickyHeaderFlowLayout-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CSStickyHeaderFlowLayout-prefix.pch"; sourceTree = "<group>"; };
-		2C9A469E0DC75FBDC7E918E7957594F3 /* SimpleCam.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SimpleCam.xcconfig; sourceTree = "<group>"; };
-		2DB2E59A35E0CA81237921F3EEEEA0FF /* Download.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = Download.png; path = SimpleCam/SimpleCam/Icons/Download.png; sourceTree = "<group>"; };
-		3055B84AF41B65ECD34234BD3C9D0BD8 /* SimpleCam-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SimpleCam-dummy.m"; sourceTree = "<group>"; };
-		332EB184B4DE569147031F8D0E6EAF3C /* CSStickyHeaderFlowLayoutAttributes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSStickyHeaderFlowLayoutAttributes.m; path = Classes/CSStickyHeaderFlowLayoutAttributes.m; sourceTree = "<group>"; };
-		374B730FBB9C454599A032A8CC96B895 /* EZSwipeController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EZSwipeController.swift; sourceTree = "<group>"; };
-		39AE136717881C56B40A0D58D2A28A0D /* Previous.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = Previous.png; path = SimpleCam/SimpleCam/Icons/Previous.png; sourceTree = "<group>"; };
+		23944BC4D0E3EEFD6DD47538FEC188E4 /* EZSwipeController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EZSwipeController.xcconfig; sourceTree = "<group>"; };
+		258EC1CFA3695ACF0061AC0B8B66C7A6 /* CSStickyHeaderFlowLayout-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CSStickyHeaderFlowLayout-umbrella.h"; sourceTree = "<group>"; };
+		2E8FB27D75498FFDB6818EB8FE922EB4 /* CameraRotate.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = CameraRotate.png; path = SimpleCam/SimpleCam/Icons/CameraRotate.png; sourceTree = "<group>"; };
+		354DB4A240330FC5765B8CFD3E2217B1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A18589BA9717FC872FC30D371AD86F4 /* Pods-Glimpse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Glimpse.release.xcconfig"; sourceTree = "<group>"; };
-		3AE65840926AFEE0CCC801B546A8B93E /* CSStickyHeaderFlowLayout-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CSStickyHeaderFlowLayout-dummy.m"; sourceTree = "<group>"; };
-		40321944DBAA8C39703382266D4813CB /* SimpleCam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SimpleCam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3ACAB55C8A9614983930A5DFD80F7E92 /* SimpleCam-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SimpleCam-prefix.pch"; sourceTree = "<group>"; };
+		4188E4B7621196B66523FD977D64BC6C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44D11974C0055EA8A706B8EBB37FB030 /* MGSwipeTableCell.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MGSwipeTableCell.xcconfig; sourceTree = "<group>"; };
+		45CD621D316EDCB74E9C41F33EB3A7B3 /* CSStickyHeaderFlowLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CSStickyHeaderFlowLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4736309F4CFB2D1D86B33F2D05949AEA /* AASquaresLoading.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = AASquaresLoading.modulemap; sourceTree = "<group>"; };
+		4AAA4D9BEE8F9C2D596FAB11FF377FE4 /* SimpleCam.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SimpleCam.h; path = SimpleCam/SimpleCam/SimpleCam.h; sourceTree = "<group>"; };
+		4D949369829F24456CE8F0F4895C823C /* AASquaresLoading.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AASquaresLoading.swift; path = Source/AASquaresLoading.swift; sourceTree = "<group>"; };
 		4FDAE7388FA404CB2909F9D6C360C3E6 /* Pods-Glimpse-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Glimpse-frameworks.sh"; sourceTree = "<group>"; };
-		599B2A990C5A927533BCF1CD00F08216 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5CBFD054BD64F46E333207E3FAA5F395 /* SimpleCam-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SimpleCam-umbrella.h"; sourceTree = "<group>"; };
+		55256296E47CF78A50EFE343BD4C4D54 /* EZSwipeController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EZSwipeController-umbrella.h"; sourceTree = "<group>"; };
+		5624D37C83F48B35BD5F36ADA91D3EC6 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGSwipeTableCell.m; path = MGSwipeTableCell/MGSwipeTableCell.m; sourceTree = "<group>"; };
+		58C431ED8207CBAD245A7CE9AE40F65C /* AASquaresLoading-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AASquaresLoading-umbrella.h"; sourceTree = "<group>"; };
+		5AA7409A5F29A797CC0A40BE8D5956C7 /* EZSwipeController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EZSwipeController-prefix.pch"; sourceTree = "<group>"; };
+		622F06C7B7551F469B72309FC428CBDC /* SimpleCam.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SimpleCam.xcconfig; sourceTree = "<group>"; };
 		63C86586FC3DE5040AF5DC2108D1E22F /* Pods-Glimpse-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Glimpse-umbrella.h"; sourceTree = "<group>"; };
+		66DB0FB81EF6250A37F108E7C3F8C0BD /* Pods_Glimpse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glimpse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A7A699A3FDF34271AE5B935259C16C0 /* SimpleCam-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SimpleCam-umbrella.h"; sourceTree = "<group>"; };
 		6BA2B5F8AAFA6B144DC037824FAD5D80 /* Pods-Glimpse-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Glimpse-acknowledgements.plist"; sourceTree = "<group>"; };
-		6BB59F58E4DC7EBE52A7DDAB4FEE2B7A /* EZSwipeController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EZSwipeController-dummy.m"; sourceTree = "<group>"; };
-		6C85AEF77EBA6ED3C2196BB54F800FD6 /* AASquaresLoading-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AASquaresLoading-dummy.m"; sourceTree = "<group>"; };
-		7497A676355BD2FD49625FE0EB3BF3A9 /* Lightening.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = Lightening.png; path = SimpleCam/SimpleCam/Icons/Lightening.png; sourceTree = "<group>"; };
-		777C058868DF3589FD3358D59BC9030C /* CSStickyHeaderFlowLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSStickyHeaderFlowLayout.h; path = Classes/CSStickyHeaderFlowLayout.h; sourceTree = "<group>"; };
-		7AB502B00B18A2991175214440F38533 /* SimpleCam.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SimpleCam.m; path = SimpleCam/SimpleCam/SimpleCam.m; sourceTree = "<group>"; };
-		7DA6DF272AB3018F7127185E2FF4B8BA /* CSStickyHeaderFlowLayout-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CSStickyHeaderFlowLayout-umbrella.h"; sourceTree = "<group>"; };
+		6DCE07C4C2BCECC850BD1891E5027076 /* AASquaresLoading-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AASquaresLoading-dummy.m"; sourceTree = "<group>"; };
+		7582DDE3656B2A83D032952F6EEBB75F /* MGSwipeTableCell-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MGSwipeTableCell-dummy.m"; sourceTree = "<group>"; };
+		7C818FF29A5166FE1EC775E7BC8DA199 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7F8C44B63020EEF1E08EEC7D9043FA11 /* CSStickyHeaderFlowLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSStickyHeaderFlowLayout.m; path = Classes/CSStickyHeaderFlowLayout.m; sourceTree = "<group>"; };
+		806EB8E88780DF2451AF4B268156FF81 /* Previous.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = Previous.png; path = SimpleCam/SimpleCam/Icons/Previous.png; sourceTree = "<group>"; };
 		811A99A024C97B872AC97BC2165317EB /* Pods-Glimpse-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Glimpse-resources.sh"; sourceTree = "<group>"; };
-		857492F433D6E66AF0BA66E08FDDC92A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8891FEC6A485F57344BF252A32BE157F /* SimpleCam.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SimpleCam.h; path = SimpleCam/SimpleCam/SimpleCam.h; sourceTree = "<group>"; };
-		8AFEBA591F1FC19CFD03F336E8A506AE /* EZSwipeController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EZSwipeController-prefix.pch"; sourceTree = "<group>"; };
-		91631C2C310A4F4126605F7B38C8A019 /* AASquaresLoading.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AASquaresLoading.swift; path = Source/AASquaresLoading.swift; sourceTree = "<group>"; };
-		921A7728FE1C8B8E9A918AC7253747F9 /* Pods_Glimpse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glimpse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		92A61F7338AF3906D1C9996728721083 /* EZSwipeController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EZSwipeController.xcconfig; sourceTree = "<group>"; };
+		8605EBF9571085410A0279A9DF22E882 /* Lightening.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = Lightening.png; path = SimpleCam/SimpleCam/Icons/Lightening.png; sourceTree = "<group>"; };
+		882449A6139E6DC4596E549615D24EAC /* MGSwipeButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGSwipeButton.m; path = MGSwipeTableCell/MGSwipeButton.m; sourceTree = "<group>"; };
+		8DD236D7C4E6DE6690ACE5A107A42637 /* SimpleCam.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SimpleCam.m; path = SimpleCam/SimpleCam/SimpleCam.m; sourceTree = "<group>"; };
+		92C5B9EC4F41E87C35A0EEA8334C83CE /* MGSwipeTableCell-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MGSwipeTableCell-umbrella.h"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A12042A4B775FC6042331C6F4BDAB3B5 /* AASquaresLoading-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AASquaresLoading-umbrella.h"; sourceTree = "<group>"; };
-		AC8298831C83705AE9FAB011FC32C0AF /* SimpleCam-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SimpleCam-prefix.pch"; sourceTree = "<group>"; };
-		B40D2AB47B071BBF2C63367D67CDD5F1 /* CSStickyHeaderFlowLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSStickyHeaderFlowLayout.m; path = Classes/CSStickyHeaderFlowLayout.m; sourceTree = "<group>"; };
-		B40EBC98A7E763E5142BA57043B9C9F6 /* CameraRotate.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = CameraRotate.png; path = SimpleCam/SimpleCam/Icons/CameraRotate.png; sourceTree = "<group>"; };
-		BA60B284605FC46F7EB142600286EE2F /* EZSwipeController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EZSwipeController-umbrella.h"; sourceTree = "<group>"; };
+		99C24833F85A9712BB91273140064BEA /* CSStickyHeaderFlowLayout-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CSStickyHeaderFlowLayout-dummy.m"; sourceTree = "<group>"; };
+		A1BC501E6FD0411741F4E6106AA137BD /* MGSwipeButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGSwipeButton.h; path = MGSwipeTableCell/MGSwipeButton.h; sourceTree = "<group>"; };
+		A7D729B110C4BB46ADD48531B55C30BF /* MGSwipeTableCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGSwipeTableCell.h; path = MGSwipeTableCell/MGSwipeTableCell.h; sourceTree = "<group>"; };
+		B68789120B07C6F3517984076331EA26 /* CSStickyHeaderFlowLayout.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CSStickyHeaderFlowLayout.xcconfig; sourceTree = "<group>"; };
 		BD8A2721F250D0625997BC8028D8F054 /* Pods-Glimpse-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Glimpse-acknowledgements.markdown"; sourceTree = "<group>"; };
-		C941475FC5D0718EE641018ABE9F4BEC /* SimpleCam.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SimpleCam.modulemap; sourceTree = "<group>"; };
+		C9B740828C64142A487199009807E628 /* SimpleCam-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SimpleCam-dummy.m"; sourceTree = "<group>"; };
 		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		DAD691CBC762B1E2AAC7C3E5F8390AEE /* AASquaresLoading.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AASquaresLoading.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DCB1F0C33DE36A49AD10E76E894BCF41 /* EZSwipeController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = EZSwipeController.modulemap; sourceTree = "<group>"; };
-		DE27577F8DF2BD1EB59BE9C306CF4637 /* AASquaresLoading.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AASquaresLoading.xcconfig; sourceTree = "<group>"; };
+		D0FCE3A7F04FE00A2692B14678CE7E4A /* AASquaresLoading-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AASquaresLoading-prefix.pch"; sourceTree = "<group>"; };
+		D1DB44288B5312DDF2B37569FFF5337D /* MGSwipeTableCell-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MGSwipeTableCell-prefix.pch"; sourceTree = "<group>"; };
+		D294D9B22C3F1700EEF69A23C0C6CA32 /* CSStickyHeaderFlowLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSStickyHeaderFlowLayout.h; path = Classes/CSStickyHeaderFlowLayout.h; sourceTree = "<group>"; };
+		D3CDBDFDF0E0B6C8C9FB02285916D76A /* SimpleCam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SimpleCam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D64EB95ECC7971FD29CAA3710C4442E6 /* CSStickyHeaderFlowLayout.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = CSStickyHeaderFlowLayout.modulemap; sourceTree = "<group>"; };
+		DEE1A25597216044163C5009EF7F8035 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DFCF6ACD9797F75AD366405B1F60B2F7 /* EZSwipeController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EZSwipeController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E26447681956CA15E220C9A84F6B375A /* Pods-Glimpse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Glimpse.debug.xcconfig"; sourceTree = "<group>"; };
 		E448C5CA7C7BC5B68B3F63D2DDD29761 /* Pods-Glimpse.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Glimpse.modulemap"; sourceTree = "<group>"; };
+		E4FFE64171FA612FDE0D4047C5B9C503 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E81C11498BE70B12C64E4E26DD00278C /* CSStickyHeaderFlowLayoutAttributes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSStickyHeaderFlowLayoutAttributes.m; path = Classes/CSStickyHeaderFlowLayoutAttributes.m; sourceTree = "<group>"; };
+		ED47AC94DE1D23CFB11B8CAA482B78B6 /* Download.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = Download.png; path = SimpleCam/SimpleCam/Icons/Download.png; sourceTree = "<group>"; };
+		EF1CF8BC2B1E5D4805956E4D482F92C3 /* MGSwipeTableCell.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = MGSwipeTableCell.modulemap; sourceTree = "<group>"; };
 		F45FDBAA30E38F400CC20614DE9CED58 /* Pods-Glimpse-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Glimpse-dummy.m"; sourceTree = "<group>"; };
-		F597EDDA63D6463C473DF13050E03502 /* EZSwipeController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EZSwipeController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F752806E731007A3A96341FBC400EFCC /* AASquaresLoading-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AASquaresLoading-prefix.pch"; sourceTree = "<group>"; };
-		FAD5886FC7E971A70E259289AF724004 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FCD12C3A44FC7F1F5CEAE58DEABB687E /* AASquaresLoading.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = AASquaresLoading.modulemap; sourceTree = "<group>"; };
+		F903D2EB902EDDB673CB11DE0EE167D1 /* MGSwipeTableCell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MGSwipeTableCell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1CEA7DD328B0CF351B019010620B9D9F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				836819858CA0C1CE0879C83BCDF635AE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4295ABDE8F0DFBECB65E87B403670BFB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				3C247C875321A4E9A2ABFEBE1C4DB42C /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4463F4818AA6833F139A5588D0B9D3A7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B88036DFF2AF57D024F9F32A5CA29F2A /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		87B8819791DF88DCAA0E9A1DDA109B2C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				426BA0161B6E0602E0160AC52BE27A45 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +173,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AC0271E88F65B17975F56915CAAD607F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C19E6FED540CFD93BBCA1786F0F33E8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BBCCF9F79793F43520017E6EC9742A13 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -164,19 +189,40 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F914CE64389ED89FB7F826144E101B51 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22D6C1E0812D500F7C87761DB87616AA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		02232A6CDA777348BC0B1381641B3BB2 /* Products */ = {
+		0595E036879560730BD36FB8CA26B69E /* SimpleCam */ = {
 			isa = PBXGroup;
 			children = (
-				DAD691CBC762B1E2AAC7C3E5F8390AEE /* AASquaresLoading.framework */,
-				2309D7FEA8A5827046E6AE1199F48497 /* CSStickyHeaderFlowLayout.framework */,
-				F597EDDA63D6463C473DF13050E03502 /* EZSwipeController.framework */,
-				921A7728FE1C8B8E9A918AC7253747F9 /* Pods_Glimpse.framework */,
-				40321944DBAA8C39703382266D4813CB /* SimpleCam.framework */,
+				4AAA4D9BEE8F9C2D596FAB11FF377FE4 /* SimpleCam.h */,
+				8DD236D7C4E6DE6690ACE5A107A42637 /* SimpleCam.m */,
+				3F87026608AF30F59354C1CC594AA346 /* Resources */,
+				97F52DA3318D50EAAB7D183E7A03D331 /* Support Files */,
 			);
-			name = Products;
+			path = SimpleCam;
+			sourceTree = "<group>";
+		};
+		10DD57F03A73A1811845B3F413E0659E /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D64EB95ECC7971FD29CAA3710C4442E6 /* CSStickyHeaderFlowLayout.modulemap */,
+				B68789120B07C6F3517984076331EA26 /* CSStickyHeaderFlowLayout.xcconfig */,
+				99C24833F85A9712BB91273140064BEA /* CSStickyHeaderFlowLayout-dummy.m */,
+				19726FE9506CC34997D8C0F23421B962 /* CSStickyHeaderFlowLayout-prefix.pch */,
+				258EC1CFA3695ACF0061AC0B8B66C7A6 /* CSStickyHeaderFlowLayout-umbrella.h */,
+				E4FFE64171FA612FDE0D4047C5B9C503 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/CSStickyHeaderFlowLayout";
 			sourceTree = "<group>";
 		};
 		201C7372DD0AA52284E155B6BB586719 /* Pods-Glimpse */ = {
@@ -205,55 +251,27 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		59138F9E7E4B7508014166DF8CFB9503 /* CSStickyHeaderFlowLayout */ = {
+		3F87026608AF30F59354C1CC594AA346 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				777C058868DF3589FD3358D59BC9030C /* CSStickyHeaderFlowLayout.h */,
-				B40D2AB47B071BBF2C63367D67CDD5F1 /* CSStickyHeaderFlowLayout.m */,
-				0DABD829EBB205B6C39792B5529008DE /* CSStickyHeaderFlowLayoutAttributes.h */,
-				332EB184B4DE569147031F8D0E6EAF3C /* CSStickyHeaderFlowLayoutAttributes.m */,
-				659E3DB1F6A893739378A3B081B18448 /* Support Files */,
-			);
-			path = CSStickyHeaderFlowLayout;
-			sourceTree = "<group>";
-		};
-		659E3DB1F6A893739378A3B081B18448 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				18113BA3020F5C0B43E90A0797B266CE /* CSStickyHeaderFlowLayout.modulemap */,
-				15995C7764470DADC0808F33170AF99B /* CSStickyHeaderFlowLayout.xcconfig */,
-				3AE65840926AFEE0CCC801B546A8B93E /* CSStickyHeaderFlowLayout-dummy.m */,
-				27B8BF7BBCE7526CFD1A4B683088720F /* CSStickyHeaderFlowLayout-prefix.pch */,
-				7DA6DF272AB3018F7127185E2FF4B8BA /* CSStickyHeaderFlowLayout-umbrella.h */,
-				857492F433D6E66AF0BA66E08FDDC92A /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/CSStickyHeaderFlowLayout";
-			sourceTree = "<group>";
-		};
-		67E9ECE0AD1C365839EFC3A35C4DDD35 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				FAD5886FC7E971A70E259289AF724004 /* Info.plist */,
-				C941475FC5D0718EE641018ABE9F4BEC /* SimpleCam.modulemap */,
-				2C9A469E0DC75FBDC7E918E7957594F3 /* SimpleCam.xcconfig */,
-				3055B84AF41B65ECD34234BD3C9D0BD8 /* SimpleCam-dummy.m */,
-				AC8298831C83705AE9FAB011FC32C0AF /* SimpleCam-prefix.pch */,
-				5CBFD054BD64F46E333207E3FAA5F395 /* SimpleCam-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/SimpleCam";
-			sourceTree = "<group>";
-		};
-		6BCE31EB9E9FE216AFDAF7609CA0FDFC /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				B40EBC98A7E763E5142BA57043B9C9F6 /* CameraRotate.png */,
-				2DB2E59A35E0CA81237921F3EEEEA0FF /* Download.png */,
-				7497A676355BD2FD49625FE0EB3BF3A9 /* Lightening.png */,
-				39AE136717881C56B40A0D58D2A28A0D /* Previous.png */,
+				2E8FB27D75498FFDB6818EB8FE922EB4 /* CameraRotate.png */,
+				ED47AC94DE1D23CFB11B8CAA482B78B6 /* Download.png */,
+				8605EBF9571085410A0279A9DF22E882 /* Lightening.png */,
+				806EB8E88780DF2451AF4B268156FF81 /* Previous.png */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		4469F6037A370AA74B303B4917C440BA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FB5EB18299B53F879AE72559AFA3BB89 /* AASquaresLoading */,
+				F0C601E0CD11EA9683679A6EF0A435C8 /* CSStickyHeaderFlowLayout */,
+				CDF0F870EE946F4D92B3E2240AA4E312 /* EZSwipeController */,
+				B59436DF834D461DFA9338ED3BAE21E2 /* MGSwipeTableCell */,
+				0595E036879560730BD36FB8CA26B69E /* SimpleCam */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -261,46 +279,49 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				82F7237725D2C7FAD3B84E914EE72260 /* Pods */,
-				02232A6CDA777348BC0B1381641B3BB2 /* Products */,
+				4469F6037A370AA74B303B4917C440BA /* Pods */,
+				9A0C54567F1A266D537CD0D141C3F884 /* Products */,
 				C5EFCE7E52B594DFDCE36935241BC35B /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		82F7237725D2C7FAD3B84E914EE72260 /* Pods */ = {
+		97F52DA3318D50EAAB7D183E7A03D331 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				E1D1B7AAB417E4F1FAA32138B841F95F /* AASquaresLoading */,
-				59138F9E7E4B7508014166DF8CFB9503 /* CSStickyHeaderFlowLayout */,
-				E1074E9B54442F422A6C33B5A8439377 /* EZSwipeController */,
-				96C339AFDC54AA1D1A10D8033E8243BB /* SimpleCam */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		929459ABE48DD33CD781951D4441D4CF /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				FCD12C3A44FC7F1F5CEAE58DEABB687E /* AASquaresLoading.modulemap */,
-				DE27577F8DF2BD1EB59BE9C306CF4637 /* AASquaresLoading.xcconfig */,
-				6C85AEF77EBA6ED3C2196BB54F800FD6 /* AASquaresLoading-dummy.m */,
-				F752806E731007A3A96341FBC400EFCC /* AASquaresLoading-prefix.pch */,
-				A12042A4B775FC6042331C6F4BDAB3B5 /* AASquaresLoading-umbrella.h */,
-				599B2A990C5A927533BCF1CD00F08216 /* Info.plist */,
+				DEE1A25597216044163C5009EF7F8035 /* Info.plist */,
+				080C45C29D53BDC2A70C53081476A020 /* SimpleCam.modulemap */,
+				622F06C7B7551F469B72309FC428CBDC /* SimpleCam.xcconfig */,
+				C9B740828C64142A487199009807E628 /* SimpleCam-dummy.m */,
+				3ACAB55C8A9614983930A5DFD80F7E92 /* SimpleCam-prefix.pch */,
+				6A7A699A3FDF34271AE5B935259C16C0 /* SimpleCam-umbrella.h */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/AASquaresLoading";
+			path = "../Target Support Files/SimpleCam";
 			sourceTree = "<group>";
 		};
-		96C339AFDC54AA1D1A10D8033E8243BB /* SimpleCam */ = {
+		9A0C54567F1A266D537CD0D141C3F884 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8891FEC6A485F57344BF252A32BE157F /* SimpleCam.h */,
-				7AB502B00B18A2991175214440F38533 /* SimpleCam.m */,
-				6BCE31EB9E9FE216AFDAF7609CA0FDFC /* Resources */,
-				67E9ECE0AD1C365839EFC3A35C4DDD35 /* Support Files */,
+				12CF0EC92B0294EEDEC11CAD6C6F7EE0 /* AASquaresLoading.framework */,
+				45CD621D316EDCB74E9C41F33EB3A7B3 /* CSStickyHeaderFlowLayout.framework */,
+				DFCF6ACD9797F75AD366405B1F60B2F7 /* EZSwipeController.framework */,
+				F903D2EB902EDDB673CB11DE0EE167D1 /* MGSwipeTableCell.framework */,
+				66DB0FB81EF6250A37F108E7C3F8C0BD /* Pods_Glimpse.framework */,
+				D3CDBDFDF0E0B6C8C9FB02285916D76A /* SimpleCam.framework */,
 			);
-			path = SimpleCam;
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B59436DF834D461DFA9338ED3BAE21E2 /* MGSwipeTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				A1BC501E6FD0411741F4E6106AA137BD /* MGSwipeButton.h */,
+				882449A6139E6DC4596E549615D24EAC /* MGSwipeButton.m */,
+				A7D729B110C4BB46ADD48531B55C30BF /* MGSwipeTableCell.h */,
+				5624D37C83F48B35BD5F36ADA91D3EC6 /* MGSwipeTableCell.m */,
+				E56E3E5A79B41001C5E96090DEA6E7DD /* Support Files */,
+			);
+			path = MGSwipeTableCell;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -319,41 +340,99 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		E1074E9B54442F422A6C33B5A8439377 /* EZSwipeController */ = {
+		CDF0F870EE946F4D92B3E2240AA4E312 /* EZSwipeController */ = {
 			isa = PBXGroup;
 			children = (
-				374B730FBB9C454599A032A8CC96B895 /* EZSwipeController.swift */,
-				FB5FF9181AC32FA49CE78BADA60851F0 /* Support Files */,
+				115080B30B5F9A1276D7E1EB9025DED9 /* EZSwipeController.swift */,
+				DE362E6A68F3ADA2B6DADCFABDCA7442 /* Support Files */,
 			);
 			path = EZSwipeController;
 			sourceTree = "<group>";
 		};
-		E1D1B7AAB417E4F1FAA32138B841F95F /* AASquaresLoading */ = {
+		DE362E6A68F3ADA2B6DADCFABDCA7442 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				91631C2C310A4F4126605F7B38C8A019 /* AASquaresLoading.swift */,
-				929459ABE48DD33CD781951D4441D4CF /* Support Files */,
-			);
-			path = AASquaresLoading;
-			sourceTree = "<group>";
-		};
-		FB5FF9181AC32FA49CE78BADA60851F0 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				DCB1F0C33DE36A49AD10E76E894BCF41 /* EZSwipeController.modulemap */,
-				92A61F7338AF3906D1C9996728721083 /* EZSwipeController.xcconfig */,
-				6BB59F58E4DC7EBE52A7DDAB4FEE2B7A /* EZSwipeController-dummy.m */,
-				8AFEBA591F1FC19CFD03F336E8A506AE /* EZSwipeController-prefix.pch */,
-				BA60B284605FC46F7EB142600286EE2F /* EZSwipeController-umbrella.h */,
-				1F772070056B4F9F52B381DA57C5C999 /* Info.plist */,
+				149F5823EB3A19FFB2FC2507F6B5089C /* EZSwipeController.modulemap */,
+				23944BC4D0E3EEFD6DD47538FEC188E4 /* EZSwipeController.xcconfig */,
+				1EDC10AE1C5FE9D51ABF2D297B1C7B4D /* EZSwipeController-dummy.m */,
+				5AA7409A5F29A797CC0A40BE8D5956C7 /* EZSwipeController-prefix.pch */,
+				55256296E47CF78A50EFE343BD4C4D54 /* EZSwipeController-umbrella.h */,
+				354DB4A240330FC5765B8CFD3E2217B1 /* Info.plist */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/EZSwipeController";
 			sourceTree = "<group>";
 		};
+		E56E3E5A79B41001C5E96090DEA6E7DD /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				4188E4B7621196B66523FD977D64BC6C /* Info.plist */,
+				EF1CF8BC2B1E5D4805956E4D482F92C3 /* MGSwipeTableCell.modulemap */,
+				44D11974C0055EA8A706B8EBB37FB030 /* MGSwipeTableCell.xcconfig */,
+				7582DDE3656B2A83D032952F6EEBB75F /* MGSwipeTableCell-dummy.m */,
+				D1DB44288B5312DDF2B37569FFF5337D /* MGSwipeTableCell-prefix.pch */,
+				92C5B9EC4F41E87C35A0EEA8334C83CE /* MGSwipeTableCell-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/MGSwipeTableCell";
+			sourceTree = "<group>";
+		};
+		F0C601E0CD11EA9683679A6EF0A435C8 /* CSStickyHeaderFlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				D294D9B22C3F1700EEF69A23C0C6CA32 /* CSStickyHeaderFlowLayout.h */,
+				7F8C44B63020EEF1E08EEC7D9043FA11 /* CSStickyHeaderFlowLayout.m */,
+				0CC13ED50F4920E7AF2D5ACEA6F4A29F /* CSStickyHeaderFlowLayoutAttributes.h */,
+				E81C11498BE70B12C64E4E26DD00278C /* CSStickyHeaderFlowLayoutAttributes.m */,
+				10DD57F03A73A1811845B3F413E0659E /* Support Files */,
+			);
+			path = CSStickyHeaderFlowLayout;
+			sourceTree = "<group>";
+		};
+		F13930917F07F42A0D3E55C021FD3F3A /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				4736309F4CFB2D1D86B33F2D05949AEA /* AASquaresLoading.modulemap */,
+				0629F268FACD8F55A4C9E2711B29F545 /* AASquaresLoading.xcconfig */,
+				6DCE07C4C2BCECC850BD1891E5027076 /* AASquaresLoading-dummy.m */,
+				D0FCE3A7F04FE00A2692B14678CE7E4A /* AASquaresLoading-prefix.pch */,
+				58C431ED8207CBAD245A7CE9AE40F65C /* AASquaresLoading-umbrella.h */,
+				7C818FF29A5166FE1EC775E7BC8DA199 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/AASquaresLoading";
+			sourceTree = "<group>";
+		};
+		FB5EB18299B53F879AE72559AFA3BB89 /* AASquaresLoading */ = {
+			isa = PBXGroup;
+			children = (
+				4D949369829F24456CE8F0F4895C823C /* AASquaresLoading.swift */,
+				F13930917F07F42A0D3E55C021FD3F3A /* Support Files */,
+			);
+			path = AASquaresLoading;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		1E754E9D399930F33BC210A07296168D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63DC27806C23AFFC9B7115E5EEAB9CBF /* MGSwipeButton.h in Headers */,
+				1D54E6EC43B2B4250E1FE53B0C0A6662 /* MGSwipeTableCell-umbrella.h in Headers */,
+				67558B72295110F846C2420C9540A52A /* MGSwipeTableCell.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		290F24B0F48F1BCB2C8814C1DE0EA2EA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0E323B5FBA4C1A720728264138F5984 /* Pods-Glimpse-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6E685717BBA85E62A7837B82C3050DF6 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -372,20 +451,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B25D1DA2926B4CA68BF51F0B90339908 /* Headers */ = {
+		F6C3234C6E883D6E74AB9239A00BE615 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46A912B7EEDBDC85270655A495D4CE9A /* Pods-Glimpse-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B827057721F2FCB759FBBD0BD495D1C1 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00C32A09DA9D121C2DB3ABDF2A5F07A4 /* SimpleCam-umbrella.h in Headers */,
-				FB8176366AD64F6F6BDA3CCF0FC7E367 /* SimpleCam.h in Headers */,
+				8FB6B4F0EE9EB2BB7C80F81F9207C55D /* SimpleCam-umbrella.h in Headers */,
+				191EDA45FAEE6E06CCA797A095D0E57D /* SimpleCam.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,24 +471,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		0054A5925DC2C2F5000EFB6715B31661 /* SimpleCam */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = ECC3DF61A39E5296CB5ECFBAA14C8712 /* Build configuration list for PBXNativeTarget "SimpleCam" */;
-			buildPhases = (
-				4B86D68DAD921DE71013E66516097F90 /* Sources */,
-				4463F4818AA6833F139A5588D0B9D3A7 /* Frameworks */,
-				B827057721F2FCB759FBBD0BD495D1C1 /* Headers */,
-				07AF83FF63F63CD9CC1F25AE8E6459C9 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SimpleCam;
-			productName = SimpleCam;
-			productReference = 40321944DBAA8C39703382266D4813CB /* SimpleCam.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		0E579C8B6EC88FD31F0C2B47C9058B48 /* AASquaresLoading */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BFBFE3DE50EEDD42B2CC58CF2F499BCE /* Build configuration list for PBXNativeTarget "AASquaresLoading" */;
@@ -432,7 +485,7 @@
 			);
 			name = AASquaresLoading;
 			productName = AASquaresLoading;
-			productReference = DAD691CBC762B1E2AAC7C3E5F8390AEE /* AASquaresLoading.framework */;
+			productReference = 12CF0EC92B0294EEDEC11CAD6C6F7EE0 /* AASquaresLoading.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		30C445E6D8703D94CB06D42EB47820DE /* CSStickyHeaderFlowLayout */ = {
@@ -449,7 +502,24 @@
 			);
 			name = CSStickyHeaderFlowLayout;
 			productName = CSStickyHeaderFlowLayout;
-			productReference = 2309D7FEA8A5827046E6AE1199F48497 /* CSStickyHeaderFlowLayout.framework */;
+			productReference = 45CD621D316EDCB74E9C41F33EB3A7B3 /* CSStickyHeaderFlowLayout.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		4E1263BFF45F6446CF3DE29AE234C893 /* MGSwipeTableCell */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B05C24F339BF84D6E16E6538A947C90 /* Build configuration list for PBXNativeTarget "MGSwipeTableCell" */;
+			buildPhases = (
+				C8C13026DC462129E945B064D7D89D95 /* Sources */,
+				AC0271E88F65B17975F56915CAAD607F /* Frameworks */,
+				1E754E9D399930F33BC210A07296168D /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MGSwipeTableCell;
+			productName = MGSwipeTableCell;
+			productReference = F903D2EB902EDDB673CB11DE0EE167D1 /* MGSwipeTableCell.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		D168A90FC275B7C8B0DDF59974BBE8BE /* EZSwipeController */ = {
@@ -466,28 +536,47 @@
 			);
 			name = EZSwipeController;
 			productName = EZSwipeController;
-			productReference = F597EDDA63D6463C473DF13050E03502 /* EZSwipeController.framework */;
+			productReference = DFCF6ACD9797F75AD366405B1F60B2F7 /* EZSwipeController.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		EB3F768CE7B298A63A16AE75689FCAFB /* Pods-Glimpse */ = {
+		D350718E2DB7C9F10413E99AC835A4F4 /* SimpleCam */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D1E616E9657B905F0024DB13105163B0 /* Build configuration list for PBXNativeTarget "Pods-Glimpse" */;
+			buildConfigurationList = 1765802E06BA5A2D319DE4BE18FC7125 /* Build configuration list for PBXNativeTarget "SimpleCam" */;
 			buildPhases = (
-				F9724DD747C6E10266810D446B8E8867 /* Sources */,
-				87B8819791DF88DCAA0E9A1DDA109B2C /* Frameworks */,
-				B25D1DA2926B4CA68BF51F0B90339908 /* Headers */,
+				480161A36F11C4BF47805053C6348989 /* Sources */,
+				F914CE64389ED89FB7F826144E101B51 /* Frameworks */,
+				F6C3234C6E883D6E74AB9239A00BE615 /* Headers */,
+				19A0D229E68BCE40279D34EC2E0296E5 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				6DA6FA8D83242C3C6400D048EE3A358E /* PBXTargetDependency */,
-				03AE7CD8041D3966542FCF58506E48EC /* PBXTargetDependency */,
-				6DFB3A4B79093DCBC3AB697717AF9E41 /* PBXTargetDependency */,
-				931FB8EC19C186F718318F872789F03B /* PBXTargetDependency */,
+			);
+			name = SimpleCam;
+			productName = SimpleCam;
+			productReference = D3CDBDFDF0E0B6C8C9FB02285916D76A /* SimpleCam.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E23CD032BEADE31F7DBFEC22B1AA663F /* Pods-Glimpse */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 091EC183F10D2F772DF2A3BD264DB12C /* Build configuration list for PBXNativeTarget "Pods-Glimpse" */;
+			buildPhases = (
+				CDD733C418695699C9900022AB9B1DAB /* Sources */,
+				1CEA7DD328B0CF351B019010620B9D9F /* Frameworks */,
+				290F24B0F48F1BCB2C8814C1DE0EA2EA /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B6F563B6822AF8B47180E219A509D495 /* PBXTargetDependency */,
+				5EAB43573ABB60DA43F5D96BE9411959 /* PBXTargetDependency */,
+				5AD752F02BC719B156EB853B3DB25C0B /* PBXTargetDependency */,
+				14C31954F981701F1F33F24CEAC01403 /* PBXTargetDependency */,
+				B8F76016D239EA95EC8D981C83C0F6B9 /* PBXTargetDependency */,
 			);
 			name = "Pods-Glimpse";
 			productName = "Pods-Glimpse";
-			productReference = 921A7728FE1C8B8E9A918AC7253747F9 /* Pods_Glimpse.framework */;
+			productReference = 66DB0FB81EF6250A37F108E7C3F8C0BD /* Pods_Glimpse.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -507,28 +596,29 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 02232A6CDA777348BC0B1381641B3BB2 /* Products */;
+			productRefGroup = 9A0C54567F1A266D537CD0D141C3F884 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				0E579C8B6EC88FD31F0C2B47C9058B48 /* AASquaresLoading */,
 				30C445E6D8703D94CB06D42EB47820DE /* CSStickyHeaderFlowLayout */,
 				D168A90FC275B7C8B0DDF59974BBE8BE /* EZSwipeController */,
-				EB3F768CE7B298A63A16AE75689FCAFB /* Pods-Glimpse */,
-				0054A5925DC2C2F5000EFB6715B31661 /* SimpleCam */,
+				4E1263BFF45F6446CF3DE29AE234C893 /* MGSwipeTableCell */,
+				E23CD032BEADE31F7DBFEC22B1AA663F /* Pods-Glimpse */,
+				D350718E2DB7C9F10413E99AC835A4F4 /* SimpleCam */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		07AF83FF63F63CD9CC1F25AE8E6459C9 /* Resources */ = {
+		19A0D229E68BCE40279D34EC2E0296E5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C45BE3629C753F32FD35EBA816CE874E /* CameraRotate.png in Resources */,
-				853F669AD4A5434DC068E0B1DBFA69D4 /* Download.png in Resources */,
-				D1C4E1C6460BD78C4497B3F776D3A58F /* Lightening.png in Resources */,
-				C468CB9F9A46CF79386785EC2223293D /* Previous.png in Resources */,
+				59394A7191A7423C8236EC3E427C00B9 /* CameraRotate.png in Resources */,
+				F6D281FA16FADC8849359905230B6B81 /* Download.png in Resources */,
+				44F8785C7389873C8364067E96801D10 /* Lightening.png in Resources */,
+				0613A1A606DD0910D0C84F8CFA065DAC /* Previous.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,12 +643,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4B86D68DAD921DE71013E66516097F90 /* Sources */ = {
+		480161A36F11C4BF47805053C6348989 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1980ADE6F781F7C46E253BD3524E3274 /* SimpleCam-dummy.m in Sources */,
-				1DF28CFE1A73206970CD2D01D31169C6 /* SimpleCam.m in Sources */,
+				DD46F830B3F26426466FC75FD534C05F /* SimpleCam-dummy.m in Sources */,
+				DDEA1A20590CAC5DB29561FEB9315A92 /* SimpleCam.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,73 +662,60 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F9724DD747C6E10266810D446B8E8867 /* Sources */ = {
+		C8C13026DC462129E945B064D7D89D95 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0FBB70CFCCCD2966FC13DCE0A284F898 /* Pods-Glimpse-dummy.m in Sources */,
+				C8FD669C32DE47E548CBB0153988C1E2 /* MGSwipeButton.m in Sources */,
+				569D057F4C7A6F69AEA4AB0BD6D9900E /* MGSwipeTableCell-dummy.m in Sources */,
+				95E41293E05A8ABB9866D6F3AED0CA10 /* MGSwipeTableCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDD733C418695699C9900022AB9B1DAB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BECE98D686BBB30AA4300202C435567 /* Pods-Glimpse-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		03AE7CD8041D3966542FCF58506E48EC /* PBXTargetDependency */ = {
+		14C31954F981701F1F33F24CEAC01403 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = CSStickyHeaderFlowLayout;
-			target = 30C445E6D8703D94CB06D42EB47820DE /* CSStickyHeaderFlowLayout */;
-			targetProxy = 3B8A9F3F94CB3123F8A997091FC926CC /* PBXContainerItemProxy */;
+			name = MGSwipeTableCell;
+			target = 4E1263BFF45F6446CF3DE29AE234C893 /* MGSwipeTableCell */;
+			targetProxy = BE2DD6A35801B1689204D8134569FE30 /* PBXContainerItemProxy */;
 		};
-		6DA6FA8D83242C3C6400D048EE3A358E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = AASquaresLoading;
-			target = 0E579C8B6EC88FD31F0C2B47C9058B48 /* AASquaresLoading */;
-			targetProxy = C021556FB0785378D4E955155F4F72F9 /* PBXContainerItemProxy */;
-		};
-		6DFB3A4B79093DCBC3AB697717AF9E41 /* PBXTargetDependency */ = {
+		5AD752F02BC719B156EB853B3DB25C0B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = EZSwipeController;
 			target = D168A90FC275B7C8B0DDF59974BBE8BE /* EZSwipeController */;
-			targetProxy = 2CB15E5F3F937B58F3FA0BCECE168F70 /* PBXContainerItemProxy */;
+			targetProxy = 9242ED0151E162E1E56F6E24850DE4B4 /* PBXContainerItemProxy */;
 		};
-		931FB8EC19C186F718318F872789F03B /* PBXTargetDependency */ = {
+		5EAB43573ABB60DA43F5D96BE9411959 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CSStickyHeaderFlowLayout;
+			target = 30C445E6D8703D94CB06D42EB47820DE /* CSStickyHeaderFlowLayout */;
+			targetProxy = 2BB4CBC918DA2E365C9F5980DC9C3F4E /* PBXContainerItemProxy */;
+		};
+		B6F563B6822AF8B47180E219A509D495 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AASquaresLoading;
+			target = 0E579C8B6EC88FD31F0C2B47C9058B48 /* AASquaresLoading */;
+			targetProxy = 497B0402B84D87DF66987AF61960DCD1 /* PBXContainerItemProxy */;
+		};
+		B8F76016D239EA95EC8D981C83C0F6B9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SimpleCam;
-			target = 0054A5925DC2C2F5000EFB6715B31661 /* SimpleCam */;
-			targetProxy = A4D05FBD15B8D8484E7969BB04F1ADBC /* PBXContainerItemProxy */;
+			target = D350718E2DB7C9F10413E99AC835A4F4 /* SimpleCam */;
+			targetProxy = B69D362C9F9E5D0A5E9B037AA03D53CE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		06F56207AF76E1CF56E2D4AA1509825B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C9A469E0DC75FBDC7E918E7957594F3 /* SimpleCam.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SimpleCam/SimpleCam-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SimpleCam/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SimpleCam/SimpleCam.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = SimpleCam;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		3FA451D268613890FA8A5A03801E11D5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -674,6 +751,35 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5670F5018932B50D3C486E33DF48CDE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44D11974C0055EA8A706B8EBB37FB030 /* MGSwipeTableCell.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MGSwipeTableCell/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = MGSwipeTableCell;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -721,7 +827,7 @@
 		};
 		5F8CDFDA62D83508F8AE1EA5C2F72623 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 15995C7764470DADC0808F33170AF99B /* CSStickyHeaderFlowLayout.xcconfig */;
+			baseConfigurationReference = B68789120B07C6F3517984076331EA26 /* CSStickyHeaderFlowLayout.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -750,7 +856,7 @@
 		};
 		61CF88B318D1BAEF1EADF462DD9225FB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 15995C7764470DADC0808F33170AF99B /* CSStickyHeaderFlowLayout.xcconfig */;
+			baseConfigurationReference = B68789120B07C6F3517984076331EA26 /* CSStickyHeaderFlowLayout.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -777,125 +883,7 @@
 			};
 			name = Debug;
 		};
-		83BC341B38AB142567C057A2A7EF02FC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DE27577F8DF2BD1EB59BE9C306CF4637 /* AASquaresLoading.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/AASquaresLoading/AASquaresLoading-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/AASquaresLoading/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/AASquaresLoading/AASquaresLoading.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = AASquaresLoading;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		8F9FBEFE76B213ABFE712A085FAA6195 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 92A61F7338AF3906D1C9996728721083 /* EZSwipeController.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/EZSwipeController/EZSwipeController-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/EZSwipeController/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/EZSwipeController/EZSwipeController.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = EZSwipeController;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		93519B9BB2E93ADA7A9A730FFA39B70B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 92A61F7338AF3906D1C9996728721083 /* EZSwipeController.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/EZSwipeController/EZSwipeController-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/EZSwipeController/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/EZSwipeController/EZSwipeController.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = EZSwipeController;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		B61E1536C43371DBE210CD7F782111FB /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DE27577F8DF2BD1EB59BE9C306CF4637 /* AASquaresLoading.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/AASquaresLoading/AASquaresLoading-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/AASquaresLoading/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/AASquaresLoading/AASquaresLoading.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = AASquaresLoading;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		B806AE16E08E0372FDDB5078BB8DA1DE /* Release */ = {
+		7B56EAC8B62E7F8609FAC4D886E8E86E /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3A18589BA9717FC872FC30D371AD86F4 /* Pods-Glimpse.release.xcconfig */;
 			buildSettings = {
@@ -928,9 +916,156 @@
 			};
 			name = Release;
 		};
-		E7C6ADFADDA621C52B8F9047E3E34F13 /* Debug */ = {
+		83BC341B38AB142567C057A2A7EF02FC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C9A469E0DC75FBDC7E918E7957594F3 /* SimpleCam.xcconfig */;
+			baseConfigurationReference = 0629F268FACD8F55A4C9E2711B29F545 /* AASquaresLoading.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/AASquaresLoading/AASquaresLoading-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AASquaresLoading/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/AASquaresLoading/AASquaresLoading.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = AASquaresLoading;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8F9FBEFE76B213ABFE712A085FAA6195 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23944BC4D0E3EEFD6DD47538FEC188E4 /* EZSwipeController.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/EZSwipeController/EZSwipeController-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/EZSwipeController/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/EZSwipeController/EZSwipeController.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = EZSwipeController;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		91765CFF2DD78CD751C1A42E13C808D1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 622F06C7B7551F469B72309FC428CBDC /* SimpleCam.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SimpleCam/SimpleCam-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SimpleCam/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SimpleCam/SimpleCam.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = SimpleCam;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		93519B9BB2E93ADA7A9A730FFA39B70B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23944BC4D0E3EEFD6DD47538FEC188E4 /* EZSwipeController.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/EZSwipeController/EZSwipeController-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/EZSwipeController/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/EZSwipeController/EZSwipeController.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = EZSwipeController;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B61E1536C43371DBE210CD7F782111FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0629F268FACD8F55A4C9E2711B29F545 /* AASquaresLoading.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/AASquaresLoading/AASquaresLoading-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AASquaresLoading/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/AASquaresLoading/AASquaresLoading.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = AASquaresLoading;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DE8C15DA1CCD42557DE3AB2F4529064A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 622F06C7B7551F469B72309FC428CBDC /* SimpleCam.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -957,7 +1092,36 @@
 			};
 			name = Debug;
 		};
-		FE289475C2F9C5B758B46E24D55FDC63 /* Debug */ = {
+		F30C15F9C5ABC29F826EB0BF627A0FA4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44D11974C0055EA8A706B8EBB37FB030 /* MGSwipeTableCell.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MGSwipeTableCell/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = MGSwipeTableCell;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		FAECE4045323CEFE2138C4B63711E19E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E26447681956CA15E220C9A84F6B375A /* Pods-Glimpse.debug.xcconfig */;
 			buildSettings = {
@@ -994,6 +1158,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		091EC183F10D2F772DF2A3BD264DB12C /* Build configuration list for PBXNativeTarget "Pods-Glimpse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAECE4045323CEFE2138C4B63711E19E /* Debug */,
+				7B56EAC8B62E7F8609FAC4D886E8E86E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1765802E06BA5A2D319DE4BE18FC7125 /* Build configuration list for PBXNativeTarget "SimpleCam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE8C15DA1CCD42557DE3AB2F4529064A /* Debug */,
+				91765CFF2DD78CD751C1A42E13C808D1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		286D5D9226AB77D04486AA3DFEC5B4E5 /* Build configuration list for PBXNativeTarget "EZSwipeController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1012,6 +1194,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		7B05C24F339BF84D6E16E6538A947C90 /* Build configuration list for PBXNativeTarget "MGSwipeTableCell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F30C15F9C5ABC29F826EB0BF627A0FA4 /* Debug */,
+				5670F5018932B50D3C486E33DF48CDE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BFBFE3DE50EEDD42B2CC58CF2F499BCE /* Build configuration list for PBXNativeTarget "AASquaresLoading" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1021,29 +1212,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D1E616E9657B905F0024DB13105163B0 /* Build configuration list for PBXNativeTarget "Pods-Glimpse" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FE289475C2F9C5B758B46E24D55FDC63 /* Debug */,
-				B806AE16E08E0372FDDB5078BB8DA1DE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		D7A7F2F6EF8FD3D96A9D6A4A4E8884BC /* Build configuration list for PBXNativeTarget "CSStickyHeaderFlowLayout" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				61CF88B318D1BAEF1EADF462DD9225FB /* Debug */,
 				5F8CDFDA62D83508F8AE1EA5C2F72623 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		ECC3DF61A39E5296CB5ECFBAA14C8712 /* Build configuration list for PBXNativeTarget "SimpleCam" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E7C6ADFADDA621C52B8F9047E3E34F13 /* Debug */,
-				06F56207AF76E1CF56E2D4AA1509825B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -121,7 +121,8 @@ class CaptureViewController: UIViewController, UITextFieldDelegate
     }
     
     // Adds Bottom Border to Passed Tf
-    func addBottomBorder(textField:UITextField) -> Void {
+    func addBottomBorder(textField:UITextField) -> Void
+    {
         let border = CALayer()
         let width = CGFloat(2.0)
         border.borderColor = Helper.getGlimpseOrangeColor().CGColor;
@@ -236,7 +237,7 @@ class CaptureViewController: UIViewController, UITextFieldDelegate
             if success{
                 print("* Post Uploaded Successfully!");
                 // Alert then start camera again
-                Helper.showQuickAlert("Posted!", message: ":)", viewController: self);
+                Helper.showQuickAlert("Posted!", message: "😀", viewController: self);
             }
             else{
                 print("! Error Posting: ", error!.description);

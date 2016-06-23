@@ -31,23 +31,13 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Glimpse" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vvW-l4-Q3u">
-                                                            <rect key="frame" x="0.0" y="50" width="359" height="111"/>
+                                                            <rect key="frame" x="0.0" y="84" width="359" height="111"/>
                                                             <fontDescription key="fontDescription" name="SinhalaSangamMN" family="Sinhala Sangam MN" pointSize="48"/>
                                                             <color key="textColor" red="1" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5iC-Zq-uhO">
-                                                            <rect key="frame" x="73" y="245" width="212" height="35"/>
-                                                            <color key="textColor" red="1" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <fontDescription key="fontDescription" name="SinhalaSangamMN" family="Sinhala Sangam MN" pointSize="15"/>
-                                                            <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="done" secureTextEntry="YES"/>
-                                                            <connections>
-                                                                <action selector="editingBegan:" destination="FV4-nI-xOd" eventType="editingDidBegin" id="iF0-xY-EZm"/>
-                                                                <outlet property="delegate" destination="FV4-nI-xOd" id="o7U-JO-C9m"/>
-                                                            </connections>
-                                                        </textField>
                                                         <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aKS-5B-fel">
-                                                            <rect key="frame" x="73" y="189" width="212" height="35"/>
+                                                            <rect key="frame" x="74" y="226" width="212" height="35"/>
                                                             <color key="textColor" red="1" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <fontDescription key="fontDescription" name="SinhalaSangamMN" family="Sinhala Sangam MN" pointSize="15"/>
                                                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" keyboardAppearance="light" returnKeyType="next"/>
@@ -56,21 +46,21 @@
                                                                 <outlet property="delegate" destination="FV4-nI-xOd" id="n8f-ba-leC"/>
                                                             </connections>
                                                         </textField>
-                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="euf-aL-p5a">
-                                                            <rect key="frame" x="140" y="309" width="80" height="80"/>
-                                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <fontDescription key="fontDescription" name="SinhalaSangamMN" family="Sinhala Sangam MN" pointSize="18"/>
-                                                            <state key="normal" title="Login"/>
-                                                            <connections>
-                                                                <action selector="loginAction:" destination="FV4-nI-xOd" eventType="touchUpInside" id="wVj-Bo-7LM"/>
-                                                            </connections>
-                                                        </button>
                                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6g5-Zv-w5s" userLabel="Dismiss Button">
                                                             <rect key="frame" x="8" y="8" width="34" height="34"/>
                                                             <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
                                                             <state key="normal" image="Exit"/>
                                                             <connections>
                                                                 <action selector="dismissViewController:" destination="FV4-nI-xOd" eventType="touchUpInside" id="71f-PC-tQj"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="euf-aL-p5a">
+                                                            <rect key="frame" x="117" y="301" width="126" height="36"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <fontDescription key="fontDescription" name="SinhalaSangamMN" family="Sinhala Sangam MN" pointSize="18"/>
+                                                            <state key="normal" title="Login"/>
+                                                            <connections>
+                                                                <action selector="loginAction:" destination="FV4-nI-xOd" eventType="touchUpInside" id="wVj-Bo-7LM"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -119,7 +109,6 @@
                     <connections>
                         <outlet property="emailTextField" destination="aKS-5B-fel" id="IEN-uj-Nju"/>
                         <outlet property="glimpseButton" destination="euf-aL-p5a" id="YGK-q0-F1I"/>
-                        <outlet property="passwordTextField" destination="5iC-Zq-uhO" id="FhJ-aW-3am"/>
                         <outlet property="scrollView" destination="93t-wr-wAy" id="LvH-UO-FFS"/>
                         <outlet property="visualEffectView" destination="23K-so-8Ot" id="r4D-oB-xCR"/>
                         <segue destination="703-4V-yAM" kind="presentation" identifier="segue_LoginVC_RootVC" id="VoL-22-QFK"/>
@@ -187,7 +176,6 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="XNh-im-6m6"/>
                                         </constraints>
-                                        <color key="textColor" red="1" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="SinhalaSangamMN" family="Sinhala Sangam MN" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="light" returnKeyType="done"/>
                                         <connections>
@@ -242,7 +230,7 @@
         <scene sceneID="YcR-YZ-sEQ">
             <objects>
                 <tableViewController storyboardIdentifier="ProfileViewController" id="bfL-Q1-x2G" customClass="ProfileTableViewController" customModule="Glimpse" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="grouped" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="OPu-47-Jt4">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="grouped" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="OPu-47-Jt4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.99761284719999999" green="0.99761284719999999" blue="0.99761284719999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -253,19 +241,31 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="315"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Empty User" translatesAutoresizingMaskIntoConstraints="NO" id="JXH-qY-HpU" customClass="PFImageView">
+                                    <rect key="frame" x="22" y="25" width="330" height="284"/>
+                                    <color key="tintColor" red="1" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </imageView>
                                 <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AD2-FL-Ga4">
                                     <rect key="frame" x="22" y="25" width="330" height="284"/>
                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="uhY-b4-T7A">
                                         <rect key="frame" x="0.0" y="0.0" width="330" height="284"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
+                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Empty User" translatesAutoresizingMaskIntoConstraints="NO" id="puy-ok-RWQ" customClass="PFImageView">
+                                                <rect key="frame" x="65" y="42" width="200" height="200"/>
+                                                <color key="tintColor" red="1" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="Wrc-UE-O3j" appends="YES" id="RTd-BG-5kU"/>
+                                                    <outletCollection property="gestureRecognizers" destination="nD8-6Z-WMs" appends="YES" id="u53-TG-xLV"/>
+                                                </connections>
+                                            </imageView>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lca-zZ-XjL">
                                                 <rect key="frame" x="65" y="242" width="200" height="33"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="33" id="LIu-bN-hOL"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SinhalaSangamMN" family="Sinhala Sangam MN" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="1" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="0sV-xl-GCJ" appends="YES" id="MSf-Sb-7y5"/>
@@ -274,18 +274,9 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKU-rq-Jqh">
                                                 <rect key="frame" x="65" y="8" width="200" height="34"/>
                                                 <fontDescription key="fontDescription" name="SinhalaSangamMN" family="Sinhala Sangam MN" pointSize="22"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="1" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Glimpse Transperant" translatesAutoresizingMaskIntoConstraints="NO" id="puy-ok-RWQ" customClass="PFImageView">
-                                                <rect key="frame" x="65" y="42" width="200" height="200"/>
-                                                <color key="backgroundColor" red="1" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="tintColor" red="1" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <connections>
-                                                    <outletCollection property="gestureRecognizers" destination="Wrc-UE-O3j" appends="YES" id="RTd-BG-5kU"/>
-                                                    <outletCollection property="gestureRecognizers" destination="nD8-6Z-WMs" appends="YES" id="u53-TG-xLV"/>
-                                                </connections>
-                                            </imageView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="kKU-rq-Jqh" firstAttribute="centerX" secondItem="uhY-b4-T7A" secondAttribute="centerX" id="5es-AZ-7W5"/>
@@ -303,11 +294,6 @@
                                     </view>
                                     <blurEffect style="light"/>
                                 </visualEffectView>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Toronto" translatesAutoresizingMaskIntoConstraints="NO" id="JXH-qY-HpU" customClass="PFImageView">
-                                    <rect key="frame" x="22" y="25" width="330" height="284"/>
-                                    <color key="backgroundColor" red="1" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="tintColor" red="1" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </imageView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -322,11 +308,11 @@
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="qk1-Tj-gZe">
-                            <rect key="frame" x="0.0" y="596.5" width="375" height="111"/>
+                            <rect key="frame" x="0.0" y="529.5" width="375" height="111"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Pq-sP-qhE">
-                                    <rect key="frame" x="86" y="0.0" width="35" height="35"/>
+                                    <rect key="frame" x="80" y="8" width="40" height="40"/>
                                     <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                     <state key="normal" image="Instagram"/>
                                     <connections>
@@ -334,7 +320,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="99Z-mJ-Mys">
-                                    <rect key="frame" x="199" y="0.0" width="35" height="35"/>
+                                    <rect key="frame" x="193" y="8" width="40" height="40"/>
                                     <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                     <state key="normal" image="Facebook"/>
                                     <connections>
@@ -342,7 +328,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FqU-n1-TzF">
-                                    <rect key="frame" x="260" y="0.0" width="35" height="35"/>
+                                    <rect key="frame" x="254" y="8" width="40" height="40"/>
                                     <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                     <state key="normal" image="Globe"/>
                                     <connections>
@@ -350,27 +336,15 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4xI-NB-2OR">
-                                    <rect key="frame" x="141" y="0.0" width="35" height="35"/>
+                                    <rect key="frame" x="135" y="8" width="40" height="40"/>
                                     <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                     <state key="normal" image="Twitter"/>
                                     <connections>
                                         <action selector="share:" destination="bfL-Q1-x2G" eventType="touchUpInside" id="rig-VP-m59"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4j-NE-k7x">
-                                    <rect key="frame" x="140" y="40" width="94" height="31"/>
-                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <fontDescription key="fontDescription" name="SinhalaSangamMN" family="Sinhala Sangam MN" pointSize="15"/>
-                                    <color key="tintColor" red="1" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <state key="normal" title="Feedback">
-                                        <color key="titleColor" red="1" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="logoutAction:" destination="bfL-Q1-x2G" eventType="touchUpInside" id="8Wh-BG-8j7"/>
-                                    </connections>
-                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="82O-Yk-FMc">
-                                    <rect key="frame" x="86" y="70" width="202" height="41"/>
+                                    <rect key="frame" x="104" y="66" width="167" height="34"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="fontDescription" name="SinhalaSangamMN" family="Sinhala Sangam MN" pointSize="18"/>
                                     <color key="tintColor" red="1" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -387,15 +361,15 @@
                         <sections>
                             <tableViewSection headerTitle="My Posts" id="kT9-kB-wDx">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="214" id="H6e-1j-sUm">
-                                        <rect key="frame" x="0.0" y="364.5" width="375" height="214"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="147" id="H6e-1j-sUm">
+                                        <rect key="frame" x="0.0" y="364.5" width="375" height="147"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H6e-1j-sUm" id="TZb-bZ-5HZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="213.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="146.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2iM-ug-Jdn">
-                                                    <rect key="frame" x="22" y="8" width="331" height="198"/>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2iM-ug-Jdn">
+                                                    <rect key="frame" x="22" y="8" width="331" height="132"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jHR-4J-156">
                                                         <size key="itemSize" width="160" height="58"/>
@@ -567,12 +541,6 @@
                                                     </connections>
                                                 </collectionView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="2iM-ug-Jdn" firstAttribute="leading" secondItem="TZb-bZ-5HZ" secondAttribute="leadingMargin" constant="14" id="KG7-hP-s0h"/>
-                                                <constraint firstItem="2iM-ug-Jdn" firstAttribute="centerY" secondItem="TZb-bZ-5HZ" secondAttribute="centerY" id="KLn-Ic-4hp"/>
-                                                <constraint firstItem="2iM-ug-Jdn" firstAttribute="centerX" secondItem="TZb-bZ-5HZ" secondAttribute="centerX" id="UFR-pt-DK5"/>
-                                                <constraint firstItem="2iM-ug-Jdn" firstAttribute="top" secondItem="TZb-bZ-5HZ" secondAttribute="topMargin" id="gN8-rf-k6z"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
@@ -640,7 +608,7 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="223" sectionHeaderHeight="1" sectionFooterHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="jio-HI-TkV">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="223" sectionHeaderHeight="1" sectionFooterHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="jio-HI-TkV">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="1" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -648,13 +616,13 @@
                                 <color key="sectionIndexBackgroundColor" red="0.91764705879999997" green="0.32156862749999998" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="simpleCellIdentifier" rowHeight="223" id="vcf-TF-ZN0" customClass="RequestCell" customModule="Glimpse" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="49.5" width="375" height="223"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="223"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vcf-TF-ZN0" id="VLG-5c-lhe">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="222.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="223"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Post Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dei-Da-iwl">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetuer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dei-Da-iwl">
                                                     <rect key="frame" x="8" y="93" width="359" height="35"/>
                                                     <fontDescription key="fontDescription" name="SinhalaSangamMN" family="Sinhala Sangam MN" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -662,6 +630,12 @@
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="dei-Da-iwl" firstAttribute="top" secondItem="VLG-5c-lhe" secondAttribute="topMargin" constant="85" id="evu-CP-gVB"/>
+                                                <constraint firstItem="dei-Da-iwl" firstAttribute="leading" secondItem="VLG-5c-lhe" secondAttribute="leadingMargin" id="h4Q-wv-o4D"/>
+                                                <constraint firstItem="dei-Da-iwl" firstAttribute="trailing" secondItem="VLG-5c-lhe" secondAttribute="trailingMargin" id="vVq-7V-kGy"/>
+                                                <constraint firstItem="dei-Da-iwl" firstAttribute="centerY" secondItem="VLG-5c-lhe" secondAttribute="centerY" id="x54-MI-hQb"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" red="0.91764705879999997" green="0.32156862749999998" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -678,6 +652,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.99761284719999999" green="0.99761284719999999" blue="0.99761284719999999" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.91764705879999997" green="0.32156862749999998" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="jio-HI-TkV" firstAttribute="bottom" secondItem="CQz-7C-Anb" secondAttribute="top" id="PGj-nU-VnM"/>
+                            <constraint firstItem="jio-HI-TkV" firstAttribute="leading" secondItem="Vd0-Ys-P6q" secondAttribute="leading" id="S32-A1-FFa"/>
+                            <constraint firstAttribute="trailing" secondItem="jio-HI-TkV" secondAttribute="trailing" id="juQ-SV-FI2"/>
+                            <constraint firstItem="jio-HI-TkV" firstAttribute="top" secondItem="DBH-9G-NAk" secondAttribute="bottom" id="rDm-PK-xua"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="t68-Zo-e8e">
                         <nil key="title"/>
@@ -685,7 +665,7 @@
                             <rect key="frame" x="88.5" y="5.5" width="198" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Story" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EyD-sj-m68">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EyD-sj-m68">
                                     <rect key="frame" x="0.0" y="0.0" width="198" height="33"/>
                                     <fontDescription key="fontDescription" name="SinhalaSangamMN" family="Sinhala Sangam MN" pointSize="22"/>
                                     <color key="textColor" red="0.99761284719999999" green="0.99761284719999999" blue="0.99761284719999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -795,9 +775,15 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxM-EV-232">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Uh Oh! Take a Glimpse using the camera." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwF-ft-l8Z">
+                                        <rect key="frame" x="81" y="180" width="212" height="105"/>
+                                        <fontDescription key="fontDescription" name="SinhalaSangamMN" family="Sinhala Sangam MN" pointSize="17"/>
+                                        <color key="textColor" red="0.81176470590000005" green="0.81176470590000005" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" allowsSelectionDuringEditing="YES" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="387" sectionHeaderHeight="1" sectionFooterHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="Nbt-YA-Pfd">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="separatorColor" red="1" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                                         <prototypes>
@@ -808,7 +794,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="386.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Toronto" translatesAutoresizingMaskIntoConstraints="NO" id="RPH-mJ-6gv" customClass="PFImageView">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RPH-mJ-6gv" customClass="PFImageView">
                                                             <rect key="frame" x="15" y="17" width="345" height="352"/>
                                                         </imageView>
                                                     </subviews>
@@ -918,6 +904,7 @@
                     <connections>
                         <outlet property="commentBox" destination="k9n-q3-fcc" id="0zG-TJ-7mO"/>
                         <outlet property="commentsTableView" destination="Nbt-YA-Pfd" id="BOQ-tq-YjO"/>
+                        <outlet property="emptyStateLabel" destination="fwF-ft-l8Z" id="GfM-o3-PoZ"/>
                         <outlet property="requestLabel" destination="OWT-xm-Adv" id="22r-O4-ThS"/>
                         <outlet property="scrollView" destination="JxM-EV-232" id="I5e-h9-0wG"/>
                     </connections>
@@ -955,7 +942,7 @@
                                             <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                             <state key="normal" image="Back"/>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Point. Answer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mby-sO-qUW">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mby-sO-qUW">
                                             <rect key="frame" x="54" y="20" width="266" height="42"/>
                                             <fontDescription key="fontDescription" name="SinhalaSangamMN" family="Sinhala Sangam MN" pointSize="16"/>
                                             <nil key="highlightedColor"/>
@@ -1047,16 +1034,16 @@
         <image name="Back" width="50" height="50"/>
         <image name="Camera Filled" width="100" height="100"/>
         <image name="Checkmark" width="50" height="50"/>
+        <image name="Empty User" width="450" height="450"/>
         <image name="Exit" width="50" height="50"/>
         <image name="Facebook" width="50" height="50"/>
-        <image name="Glimpse Transperant" width="700" height="600"/>
         <image name="Globe" width="104" height="104"/>
         <image name="Instagram" width="50" height="50"/>
         <image name="Toronto" width="1701" height="1129"/>
         <image name="Twitter" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kmB-Qp-Adh"/>
         <segue reference="j32-8G-0mo"/>
+        <segue reference="kmB-Qp-Adh"/>
     </inferredMetricsTieBreakers>
 </document>
