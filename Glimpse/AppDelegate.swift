@@ -145,10 +145,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         let installation = PFInstallation.currentInstallation()
         installation.setDeviceTokenFromData(deviceToken)                            // Set Device Token
-        
+    
         // Add to Master Channel
         installation.addUniqueObject("global", forKey: "channels");
         installation.saveEventually();
+        
+        print("Registered for Push 📱 ", installation.objectId);
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {

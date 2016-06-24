@@ -28,15 +28,19 @@ class StoryViewController: UIViewController, MKMapViewDelegate
     
     // MARK: Storyboard Outlet
     @IBOutlet weak var tableView: UITableView!
-    //@IBOutlet weak var collectionView: UICollectionView!
+    
     //@IBOutlet var headerContentView: UIView!
     @IBOutlet var mapView: MKMapView!
     //@IBOutlet var headerSegment: UISegmentedControl!
     
+    // Navigation Bar Stuff:
     @IBOutlet var navigationView: UIView!
     @IBOutlet var navigationTitleLabel: UILabel!
     @IBOutlet var navigationRefresh: UIActivityIndicatorView!
  
+    /// Empty State Label
+    @IBOutlet var emptyStateView: EmptyStateView!
+    
     /// Segue Handler for Swipe to Dismiss
     var interactor:Interactor!
     
@@ -74,20 +78,44 @@ class StoryViewController: UIViewController, MKMapViewDelegate
     /// Universal Data Model for Displaying All Fetched Posts
     private var posts:[PFObject]?{
         didSet{
-            if (posts != nil && !tempLock){
-                tableView.reloadData();
+            print(posts);
+            if (posts == nil || posts!.isEmpty)
+            {
+                //posts = nil;
+                
+                // No Posts So Unhide the Empty State View
+                emptyStateView.hidden = false;
+                tableView.hidden = true;
+                
+                if (tempLock == false){
+                    // Temp lock must be off to reload
+                    tableView.reloadData();
+                }
+                // Auto turn off the lock
+                tempLock = false;
+                selectedRequest = nil;
             }
-            else{
-                // There are no posts
+            else
+            {
+                if (tempLock == false){
+                    // Temp lock must be off to reload
+                    tableView.reloadData();
+                }
+                
+                emptyStateView.hidden = true;
+                tableView.hidden = false;
+                
+                // Auto turn off the lock
+                tempLock = false;
+                selectedRequest = nil;
             }
-            
-            // Auto turn off the lock
-            tempLock = false;
-            
-            selectedRequest = nil;
         }
     }
     
+    /// User Logged in?
+    var userLoggedIn:Bool{
+        return (PFUser.currentUser() == nil) ? false : true;
+    }
     
     // MARK: - LifeCycle
     override func viewDidAppear(animated: Bool) {
@@ -128,9 +156,30 @@ class StoryViewController: UIViewController, MKMapViewDelegate
         tableView.tableHeaderView = nil;
         tableView.contentInset = UIEdgeInsetsMake(-33, 0, -33, 0);
         
-        
         //autoChangeBackgroundColors();
-        setBackgroundPattern(0);
+        //setBackgroundPattern(0);
+        
+        // Add Empty State View
+        view.addSubview(emptyStateView);
+        view.sendSubviewToBack(emptyStateView);
+        // Center
+        emptyStateView.center = view.center;
+        let emptyBtn = emptyStateView.emptyStateButton;
+        emptyBtn.titleLabel?.textAlignment = .Center;
+        
+        addGlimpseBorder(emptyBtn);
+        emptyStateView.hidden = true;
+        emptyBtn.addTarget(self, action: #selector(StoryViewController.emptyStateButtonAction(_:)), forControlEvents: .TouchUpInside);
+    }
+    
+    func addGlimpseBorder(passedView:UIView)
+    {
+        passedView.layer.cornerRadius = Helper.getDefaultCornerRadius();
+        //passedView.layer.borderWidth = 2;
+        //passedView.layer.borderColor = Helper.getGlimpseOrangeColor().CGColor;
+        passedView.layer.masksToBounds = true;
+        
+        //passedView.clipsToBounds = true;
     }
     
     func setBackgroundPattern(number:Int){
@@ -227,7 +276,7 @@ class StoryViewController: UIViewController, MKMapViewDelegate
                 return;
             }
             
-            if (nonNilPosts.count <= 0)
+            if (nonNilPosts.isEmpty)
             {
                 
                 completion(success: false, newPost: nil);
@@ -238,22 +287,20 @@ class StoryViewController: UIViewController, MKMapViewDelegate
             completion(success: true, newPost: newPosts![0]);
             
         }
-        
-        /*
-        query.getFirstObjectInBackgroundWithBlock({(newPost:PFObject?, error:NSError?) in
-            
-            if (error == nil && newPost != nil){
-                // We want to add this post in with an animation now
-                completion(success: true, newPost: newPost!)
-            }
-            else{
-                Helper.showQuickAlert("No More Posts Found", message: "", viewController: self);
-                completion(success: false, newPost: nil);
-            }
-        });
-         */
     }
     
+    
+    func refreshTableView() -> Void {
+        self.navigationRefresh.startAnimating();
+        self.toggleLoading(.Start);
+        
+        fetchRequests { (finished) in
+            self.navigationRefresh.stopAnimating();
+            self.toggleLoading(.Stop);
+        }
+    }
+    
+    /*
     func getRegionalBox(inputRegion:Regions) -> (PFGeoPoint,PFGeoPoint) {
         
         // Box 1
@@ -285,16 +332,6 @@ class StoryViewController: UIViewController, MKMapViewDelegate
         let SWQ3 = PFGeoPoint(latitude: SWQ3_Lat, longitude: SWQ3_Lon);
         
         return (NEQ3, SWQ3);
-    }
-    
-    func refreshTableView() -> Void {
-        self.navigationRefresh.startAnimating();
-        self.toggleLoading(.Start);
-        
-        fetchRequests { (finished) in
-            self.navigationRefresh.stopAnimating();
-            self.toggleLoading(.Stop);
-        }
     }
     
     // MARK: - Map
@@ -427,11 +464,15 @@ class StoryViewController: UIViewController, MKMapViewDelegate
             return aRenderer;
         }
     }
+    */
     
     // MARK: - Actions
+    
+    /*
     @IBAction func mapAcessoryButtonTapped(sender: UIButton) {
         centerMap();
     }
+    */
     
     @IBAction func refreshBarButtonItem(sender: UIBarButtonItem) {
         refreshTableView();
@@ -511,12 +552,6 @@ class StoryViewController: UIViewController, MKMapViewDelegate
                 // We dont want our table view to be behind our data controller
                 
                 // No more new requests were found!
-                if (self.posts!.count == 0)
-                {
-                    Helper.showQuickAlert("No more requests found.", message: "", viewController: self);
-                }
-                
-                self.tableView.reloadData();
                 return;
             }
             
@@ -531,15 +566,20 @@ class StoryViewController: UIViewController, MKMapViewDelegate
             self.tableView.beginUpdates()
             self.tableView.insertRowsAtIndexPaths([path], withRowAnimation: UITableViewRowAnimation.Fade);
             self.tableView.endUpdates();
-            
-            // should we call this? -- we do have manually be right
-            /*
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))   // 1 Sec later
-            dispatch_after(delayTime, dispatch_get_main_queue()) {
-                self.tableView.reloadData();
-            }
-            */
         }
+    }
+    
+    @IBAction func emptyStateButtonAction(sender: UIButton) {
+        print("Empty State Action.");
+        
+        let newTitle = "Awesome!\nYou will be the first one to know.";
+        sender.titleLabel?.lineBreakMode = .ByWordWrapping;
+        sender.titleLabel?.textAlignment = .Center;
+        sender.setTitle(newTitle, forState: .Normal);
+        
+        sender.enabled = false;
+        
+        return;
     }
     
     //MARK: - Navigation
@@ -626,7 +666,7 @@ extension StoryViewController: UITableViewDataSource, UITableViewDelegate, MGSwi
         
         cell.leftSwipeSettings.transition = MGSwipeTransition.Drag
         cell.leftExpansion.fillOnTrigger = true;
-        cell.leftExpansion.threshold = 1.0;
+        cell.leftExpansion.threshold = 0.9;
         cell.leftExpansion.buttonIndex = 0;
         
         /*
@@ -646,6 +686,11 @@ extension StoryViewController: UITableViewDataSource, UITableViewDelegate, MGSwi
         tableView.deselectRowAtIndexPath(indexPath, animated: true);
         
         assert(posts != nil, "Posts must exist in data struc at point of call");
+        if userLoggedIn == false{
+            print("No user logged in to see this request");
+            return;
+        }
+        
         
         let index:Int = indexPath.row;
         selectedRequest = posts![index];
@@ -653,12 +698,13 @@ extension StoryViewController: UITableViewDataSource, UITableViewDelegate, MGSwi
     
     // MARK: Editing
     func swipeTableCell(cell: MGSwipeTableCell!, tappedButtonAtIndex index: Int, direction: MGSwipeDirection, fromExpansion: Bool) -> Bool {
-        print("Button Pressed: ", index);
-        
-        self.skipRequest(NSIndexPath(forRow: index, inSection: 0));
+        // NOTE: Index here refers to the button Index Positon NOT Rows!!
+        let row:Int = cell.tag;
+        self.skipRequest(NSIndexPath(forRow: row, inSection: 0));
         return true;
     }
     
+    /*
     func swipeTableCell(cell: MGSwipeTableCell!, canSwipe direction: MGSwipeDirection) -> Bool {
         return true;
     }
@@ -676,7 +722,7 @@ extension StoryViewController: UITableViewDataSource, UITableViewDelegate, MGSwi
         
         return nil;
     }
-    
+    */
     
     func cellHeldDown(sender: UILongPressGestureRecognizer)
     {
@@ -696,7 +742,6 @@ extension StoryViewController: UIScrollViewDelegate{
     
 }
 
-
 class MapPin : NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var title: String?
@@ -711,5 +756,10 @@ class MapPin : NSObject, MKAnnotation {
 
 class RequestCell: MGSwipeTableCell {
     @IBOutlet weak var requestLabel:UILabel!
+}
+
+class EmptyStateView: UIView {
+    @IBOutlet var emptyStateLabel:UILabel!
+    @IBOutlet var emptyStateButton:UIButton!
 }
 

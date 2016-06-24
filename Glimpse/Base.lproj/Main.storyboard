@@ -616,26 +616,20 @@
                                 <color key="sectionIndexBackgroundColor" red="0.91764705879999997" green="0.32156862749999998" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="simpleCellIdentifier" rowHeight="223" id="vcf-TF-ZN0" customClass="RequestCell" customModule="Glimpse" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="375" height="223"/>
+                                        <rect key="frame" x="0.0" y="49.5" width="375" height="223"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vcf-TF-ZN0" id="VLG-5c-lhe">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="223"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="222.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetuer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dei-Da-iwl">
-                                                    <rect key="frame" x="8" y="93" width="359" height="35"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lorem ipsum dolor sit amet, consectetuer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dei-Da-iwl">
+                                                    <rect key="frame" x="8" y="84" width="359" height="53"/>
                                                     <fontDescription key="fontDescription" name="SinhalaSangamMN" family="Sinhala Sangam MN" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstItem="dei-Da-iwl" firstAttribute="top" secondItem="VLG-5c-lhe" secondAttribute="topMargin" constant="85" id="evu-CP-gVB"/>
-                                                <constraint firstItem="dei-Da-iwl" firstAttribute="leading" secondItem="VLG-5c-lhe" secondAttribute="leadingMargin" id="h4Q-wv-o4D"/>
-                                                <constraint firstItem="dei-Da-iwl" firstAttribute="trailing" secondItem="VLG-5c-lhe" secondAttribute="trailingMargin" id="vVq-7V-kGy"/>
-                                                <constraint firstItem="dei-Da-iwl" firstAttribute="centerY" secondItem="VLG-5c-lhe" secondAttribute="centerY" id="x54-MI-hQb"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" red="0.91764705879999997" green="0.32156862749999998" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -693,6 +687,7 @@
                         </view>
                     </navigationItem>
                     <connections>
+                        <outlet property="emptyStateView" destination="nbG-DV-B2e" id="0DA-ez-Zky"/>
                         <outlet property="navigationRefresh" destination="L2F-Z4-t5T" id="E5J-xm-Jba"/>
                         <outlet property="navigationTitleLabel" destination="EyD-sj-m68" id="7bE-hs-2Mm"/>
                         <outlet property="navigationView" destination="2FP-n8-ZCZ" id="wNA-c9-Hox"/>
@@ -701,6 +696,31 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J1p-zs-KlC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="nbG-DV-B2e" userLabel="Empty State View" customClass="EmptyStateView" customModule="Glimpse" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="368" height="265"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Oh no! Looks like requests are not here yet, check back soon!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LJp-mj-RDW">
+                            <rect key="frame" x="6" y="8" width="356" height="52"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.81176470590000005" green="0.81176470590000005" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXO-LR-e4m">
+                            <rect key="frame" x="68" y="73" width="229" height="64"/>
+                            <color key="backgroundColor" red="1" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="Notify me when they come in">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" red="1" green="0.5568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <outlet property="emptyStateButton" destination="bXO-LR-e4m" id="xy1-wL-8pF"/>
+                        <outlet property="emptyStateLabel" destination="LJp-mj-RDW" id="Nwu-hq-IcI"/>
+                    </connections>
+                </view>
                 <view contentMode="scaleToFill" id="3aK-0g-sB6" userLabel="Header Content View">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="372"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -917,7 +937,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1842.5" y="-251.5"/>
+            <point key="canvasLocation" x="1864.5" y="-1078.5"/>
         </scene>
         <!--Camera View Controller-->
         <scene sceneID="CBW-Ke-9vK">
@@ -1006,7 +1026,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j8G-vq-A1t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2358.5" y="-252.5"/>
+            <point key="canvasLocation" x="1864.5" y="-243.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xwd-U7-BI4">
@@ -1044,6 +1064,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="j32-8G-0mo"/>
-        <segue reference="kmB-Qp-Adh"/>
+        <segue reference="vof-g9-7N8"/>
     </inferredMetricsTieBreakers>
 </document>
