@@ -72,13 +72,10 @@ class StoryViewController: UIViewController, MKMapViewDelegate
     /// - Note: if in a loop keep turning it on bc it auto turns on after 1 cycle
     private var tempLock:Bool = false;
     
-    /// How many times have we skipped yet?
-    private var skipCount:Int = 0;
-    
     /// Universal Data Model for Displaying All Fetched Posts
     private var posts:[PFObject]?{
         didSet{
-            print(posts);
+            print("Found ", posts?.count, " Posts.");
             if (posts == nil || posts!.isEmpty)
             {
                 //posts = nil;
@@ -108,6 +105,15 @@ class StoryViewController: UIViewController, MKMapViewDelegate
                 // Auto turn off the lock
                 tempLock = false;
                 selectedRequest = nil;
+                
+                // Extract Indexes 
+                var postIndexes:[Int] = [Int]();
+                for request in posts!{
+                    let requestIndex = request["index"] as! Int;
+                    postIndexes.append(requestIndex);
+                }
+                
+                self.setCurrentRequestIndex(postIndexes);
             }
         }
     }
@@ -115,6 +121,11 @@ class StoryViewController: UIViewController, MKMapViewDelegate
     /// User Logged in?
     var userLoggedIn:Bool{
         return (PFUser.currentUser() == nil) ? false : true;
+    }
+    
+    /// User who is logged in
+    var user:PFUser{
+        return PFUser.currentUser()!;
     }
     
     // MARK: - LifeCycle
@@ -234,63 +245,204 @@ class StoryViewController: UIViewController, MKMapViewDelegate
     {
         print("> Fetching Random Posts..");
         
+        // Count
+        let countQuery = PFQuery(className:"Request")
+
+        countQuery.countObjectsInBackgroundWithBlock {
+            (count: Int32, error: NSError?) -> Void in
+            if (error == nil) {
+                print("Current Request Count: ", count);
+                
+                self.fetchRandomPosts(count, internalCompletion: completion, resultCompletion: nil, limit: 3);
+            }
+            else{
+                print("Count Failed!");
+                completion(finished: false);
+            }
+        }
+        
+    }
+    
+    /// __WARNING:__ Helper function DO NOT CALL; **CALL fetchRequests**
+    private func fetchRandomPosts(maxCount:Int32, internalCompletion:((status:Bool) -> Void)?, resultCompletion:((status:Bool, foundPost:PFObject?) -> Void)?, limit:Int)
+    {
+        assert(maxCount > 0, "maxCount must be positive");
+        // Generate 3 Random Numbers
+        
+        let totalCount: Int = limit;
+        var randomNumArray: [Int] = []
+        var i = 0
+        while randomNumArray.count < totalCount {
+            i += 1;
+            let rand = Int(arc4random_uniform(UInt32(maxCount))) + 1;      // 1 - Count Range
+            for(var ii = 0; ii < totalCount; ii += 1){
+                if (randomNumArray.contains(rand) == false){
+                    randomNumArray.append(rand)
+                }
+            }
+        }
+    
+        assert(randomNumArray.count == limit);
+        
+        // Now Query these 3 Random Posts
         let query = PFQuery(className: "Request");
+        
+        query.limit = limit;
         query.includeKey("user");
         query.includeKey("followers");
+        // Exlude our user's requests
+        if (userLoggedIn){
+            query.whereKey("owner", notEqualTo: self.user);
+        }
         
-        query.orderByDescending("createdAt");
-        query.limit = 3;
+        let currentRequestIndex:[Int] = user["currentRequests"] as! [Int];
+        let skippedRequestIndex:[Int] = user["skippedRequests"] as! [Int];
+        
+        if currentRequestIndex.isEmpty{
+            // If the user is new we do random posts:
+            query.whereKey("index", containedIn: randomNumArray);
+            
+            // EXCEPT for the ones he has skipped before
+            //query.whereKey("index", notContainedIn: skippedRequestIndex);
+        }
+        else{
+            // We just give the user what he saw before
+            query.whereKey("index", containedIn: currentRequestIndex);
+            
+            // EXCEPT for the ones he has skipped before
+            //query.whereKey("index", notContainedIn: skippedRequestIndex);
+        }
         
         query.findObjectsInBackgroundWithBlock {(newPosts:[PFObject]?, error:NSError?) in
             
-            completion(finished: true);
+            if (internalCompletion != nil){
+                internalCompletion!(status: true);
+            }
+            else if (resultCompletion != nil){
+                
+                // We were called to ony get one request!
+                if (error == nil && newPosts != nil && newPosts!.count == 1){
+                    print("New post found ", newPosts![0].objectId);
+                    resultCompletion!(status: true, foundPost: newPosts![0]);
+                }
+                else{
+                    print("No new posts found!");
+                    resultCompletion!(status: false, foundPost: nil);
+                }
+                return;
+            }
             
+            // We have been called to update the entire feed (first load call)
             if error == nil && newPosts != nil{
                 self.posts = newPosts;
-                self.skipCount = newPosts!.count;
             }
             else{
                 Helper.showQuickAlert("No Posts Found", message: "", viewController: self);
                 self.posts = nil;
             }
         }
+        
     }
     
-    /// Fetches 1 new request (for skip usage)
-    func fetchNewRequest(skipCount:Int, completion:(success:Bool, newPost:PFObject?) -> Void) -> Void
+    
+    /// Fetches 1 new request **Safe Call**
+    private func fetchNewRequest(completion:(success:Bool, newPost:PFObject?) -> Void) -> Void
     {
-        print("> Fetching Random Post Skip: ", skipCount);
+        print("> Fetching Random Request ");
         
-        let query = PFQuery(className: "Request");
-        query.includeKey("user");
-        query.includeKey("followers");
+        // Count
+        let countQuery = PFQuery(className:"Request")
         
-        query.orderByDescending("createdAt");
-        query.skip = skipCount;
-        query.limit = 1;
-        
-        query.findObjectsInBackgroundWithBlock { (newPosts:[PFObject]?, error:NSError?) in
-            guard let nonNilPosts = newPosts where (error == nil) else{
+        countQuery.countObjectsInBackgroundWithBlock {
+            (count: Int32, error: NSError?) -> Void in
+            if (error == nil) {
+                print("Current Request Count: ", count);
                 
-                completion(success: false, newPost: nil);
-                return;
+                self.fetchRandomPosts(count, internalCompletion: nil, resultCompletion: completion, limit: 1);
             }
-            
-            if (nonNilPosts.isEmpty)
-            {
-                
+            else{
+                print("Count Failed!");
                 completion(success: false, newPost: nil);
-                return;
             }
-            
-            // We want to add this post in with an animation now
-            completion(success: true, newPost: newPosts![0]);
-            
         }
     }
     
     
-    func refreshTableView() -> Void {
+    private func skipRequest(path:NSIndexPath)
+    {
+        assert(posts != nil);
+        
+        let index = path.row;
+        
+        // we dont want foced reload of table view
+        tempLock = true;
+        let skipPost: PFObject = self.posts![index];
+        self.posts!.removeAtIndex(index);
+        
+        // Remove Cell Logic
+        self.tableView.beginUpdates()
+        self.tableView.deleteRowsAtIndexPaths([path], withRowAnimation: .Right);
+        self.tableView.endUpdates();
+        
+        // Save it on our DB
+        addSkipIndex(skipPost["index"] as! Int);
+        
+        addNewRequest(path);
+    }
+    
+    private func addNewRequest(path:NSIndexPath){
+        assert(posts != nil);
+        
+        toggleLoading(.Start);
+        fetchNewRequest{ (success, newPost) in
+            
+            self.toggleLoading(.Stop);
+            if (!success){
+                // We dont want our table view to be behind our data controller
+                self.tableView.reloadData();
+                // No more new requests were found!
+                return;
+            }
+            
+            // The number of posts we skipped
+            let insertIndex = path.row;
+            
+            // We want to add this new request with an animation and fade it in
+            self.tempLock = true;
+            self.posts!.insert(newPost!, atIndex: insertIndex);
+            self.tableView.beginUpdates()
+            self.tableView.insertRowsAtIndexPaths([path], withRowAnimation: UITableViewRowAnimation.Fade);
+            self.tableView.endUpdates();
+            
+            // We manually reload tv to update cell index
+            self.tableView.reloadData();
+        }
+    }
+    
+    private func addSkipIndex(indexList:Int)
+    {
+        assert(userLoggedIn);
+        
+        // We add to the array of skipped user indexes
+        user.addUniqueObject(indexList, forKey: "skippedRequests");
+        
+        // We remove this index from the current Request Index 
+        //let currentRequestsIndex = user["currentRequests"] as! [Int];
+        user.removeObject(indexList, forKey: "currentRequests");
+        
+        user.saveInBackground();
+        
+    }
+    
+    private func setCurrentRequestIndex(indexList:[Int]){
+        assert(userLoggedIn);
+        
+        // This are the requests we are on
+        user["currentRequests"] = indexList;
+        user.saveInBackground();
+    }
+    
+    private func refreshTableView() -> Void {
         self.navigationRefresh.startAnimating();
         self.toggleLoading(.Start);
         
@@ -299,180 +451,6 @@ class StoryViewController: UIViewController, MKMapViewDelegate
             self.toggleLoading(.Stop);
         }
     }
-    
-    /*
-    func getRegionalBox(inputRegion:Regions) -> (PFGeoPoint,PFGeoPoint) {
-        
-        // Box 1
-        let (NEQ1_Lat, NEQ1_Lon) = (43.77456454892858, -79.32231903076172);
-        let (SWQ1_Lat, SWQ1_Lon) = (43.67622159755976, -79.4957184791565);
-        
-        let NEQ1 = PFGeoPoint(latitude: NEQ1_Lat, longitude: NEQ1_Lon);
-        let SWQ1 = PFGeoPoint(latitude: SWQ1_Lat, longitude: SWQ1_Lon);
-        
-        if inputRegion == .North{
-            return (NEQ1, SWQ1);
-        }
-        
-        // Box 2
-        let (NEQ2_Lat, NEQ2_Lon) = (43.67504211589516, -79.3778944015503);
-        let (SWQ2_Lat, SWQ2_Lon) = (43.6471934083222, -79.40394401550293);
-        
-        let NEQ2 = PFGeoPoint(latitude: NEQ2_Lat, longitude: NEQ2_Lon);
-        let SWQ2 = PFGeoPoint(latitude: SWQ2_Lat, longitude: SWQ2_Lon);
-     
-        if inputRegion == .Campus{
-            return (NEQ2, SWQ2);
-        }
-        
-        let (NEQ3_Lat, NEQ3_Lon) = (43.64706919340517, -79.37049150466919);
-        let (SWQ3_Lat, SWQ3_Lon) = (43.630111446719226, -79.42467212677002)
-        
-        let NEQ3 = PFGeoPoint(latitude: NEQ3_Lat, longitude: NEQ3_Lon);
-        let SWQ3 = PFGeoPoint(latitude: SWQ3_Lat, longitude: SWQ3_Lon);
-        
-        return (NEQ3, SWQ3);
-    }
-    
-    // MARK: - Map
-    func centerMap() -> Void {
-        // MAP
-        let torontoLat = 43.66575385777062;
-        let torntoLon = -79.39910531044006;
-        let torontoCordinate:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: torontoLat, longitude: torntoLon);
-        let torontoRegion = mapView.regionThatFits(MKCoordinateRegionMakeWithDistance(torontoCordinate, 2500, 2500));
-        
-        mapView.setRegion(torontoRegion, animated: true);
-    }
-    
-    func centerMapOnRegion(region:Regions) -> Void {
-        // MAP
-        
-        /*          Centers
-         35 Cortland Ave, Toronto, ON M4R 1T7, Canada
-         Latitude: 43.724467 | Longitude: -79.402657
-         Centre of Q1
-         
-         
-         129 College St, Toronto, ON M5T 1P5, Canada
-         Latitude: 43.6598 | Longitude: -79.39064
-         Centre of Q2
-         
-         
-         433-441 Lake Shore Blvd W, Toronto, ON M5V, Canada
-         Latitude: 43.638001 | Longitude: -79.394932
-         Centre of Q3
-        */
-        
-        var regionCenter:CLLocationCoordinate2D!
-        var latDistance:CLLocationDistance!
-        var lonDistnace:CLLocationDistance!
-        
-        if region == .North{
-            regionCenter = CLLocationCoordinate2D(latitude: 43.724467, longitude: -79.402657);
-            latDistance = 14000;
-            lonDistnace = 16500;
-        }
-        else if region == .Campus{
-            regionCenter = CLLocationCoordinate2D(latitude: 43.6598, longitude: -79.39064);
-            latDistance = 3500;
-            lonDistnace = 2200;
-        }
-        else{
-            regionCenter = CLLocationCoordinate2D(latitude: 43.638001, longitude: -79.394932);
-            latDistance = 2000;
-            lonDistnace = 5500;
-        }
-        
-        let torontoRegion = mapView.regionThatFits(MKCoordinateRegionMakeWithDistance(regionCenter, latDistance, lonDistnace));
-        
-        
-        mapView.setRegion(torontoRegion, animated: true);
-    }
-    
-    func annotatePostsOnMap(postArray:[PFObject]) -> Void {
-        var annotations:Array = [MKAnnotation]();
-    
-        removeAllMapAnnotations();
-        
-        print("* Annotating posts..");
-        for post in postArray{
-            if let location = post["location"] as? PFGeoPoint{
-                var postComment = post["comment"] as? String;
-                if postComment == nil{
-                    postComment = "No Comment";
-                }
-                
-                let cordinate = CLLocationCoordinate2DMake(location.latitude, location.longitude);
-                let annotation = MapPin(coordinate: cordinate, title: postComment!, subtitle: "");
-                
-                annotations.append(annotation);
-            }
-        }
-        
-        mapView.addAnnotations(annotations);
-    }
-    
-    func removeAllMapAnnotations() -> Void {
-        
-        let annotationsToRemove = mapView.annotations.filter { $0 !== mapView.userLocation }
-        mapView.removeAnnotations( annotationsToRemove );
-    }
-    
-    func addOverlayOnMap(displayRegion:Regions) -> Void{
-        
-        // Remove All OverLay
-        let currentOverlays = mapView.overlays;
-        mapView.removeOverlays(currentOverlays);
-        
-        // Remove Annotations
-        removeAllMapAnnotations();
-        
-        let (NE, SW) = getRegionalBox(displayRegion);      // Default Parse Query Format
-        let NW = CLLocationCoordinate2DMake(NE.latitude, SW.longitude);             // Top Left     -NW
-        let SE = CLLocationCoordinate2DMake(SW.latitude, NE.longitude);             // Bottom Right -SE
-        
-        var points:[CLLocationCoordinate2D] = [];
-        
-        points.append(CLLocationCoordinate2DMake(NE.latitude, NE.longitude));       // NE
-        points.append(SE);       // SE
-        points.append(CLLocationCoordinate2DMake(SW.latitude, SW.longitude));       // SW
-        points.append(NW);       // NW
-        
-        let polygon = MKPolygon(coordinates: &points, count: 4);
-        polygon.title = "\(displayRegion)";
-        
-        mapView.addOverlay(polygon);
-    }
-    
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer
-    {
-        if (overlay.isKindOfClass(MKPolygon.self))
-        {
-            let polygonOverlay = overlay as! MKPolygon;
-            let aRenderer = MKPolygonRenderer(polygon: polygonOverlay);
-            
-            let backgroundColor:UIColor = view.backgroundColor!
-            aRenderer.fillColor = backgroundColor.colorWithAlphaComponent(0.2);
-            aRenderer.strokeColor = backgroundColor.colorWithAlphaComponent(0.7);
-            aRenderer.lineWidth = 3;
-            
-            return aRenderer;
-        }
-        else{
-            let aRenderer = MKPolygonRenderer(polygon: overlay as! MKPolygon);
-            return aRenderer;
-        }
-    }
-    */
-    
-    // MARK: - Actions
-    
-    /*
-    @IBAction func mapAcessoryButtonTapped(sender: UIButton) {
-        centerMap();
-    }
-    */
     
     @IBAction func refreshBarButtonItem(sender: UIBarButtonItem) {
         refreshTableView();
@@ -522,53 +500,7 @@ class StoryViewController: UIViewController, MKMapViewDelegate
         
         presentViewController(actionsheet, animated: true, completion: nil);
     }
-    
-    func skipRequest(path:NSIndexPath)
-    {
-        assert(posts != nil);
 
-        let index = path.row;
-            
-        // we dont want foced reload of table view
-        tempLock = true;
-        self.posts!.removeAtIndex(index);
-        
-        // Remove Cell Logic
-        self.tableView.beginUpdates()
-        self.tableView.deleteRowsAtIndexPaths([path], withRowAnimation: .Right);
-        self.tableView.endUpdates();
-        
-        addNewRequest(skipCount, path: path);
-    }
-    
-    func addNewRequest(skipIndex:Int, path:NSIndexPath){
-        assert(posts != nil);
-        
-        toggleLoading(.Start);
-        fetchNewRequest(skipIndex) { (success, newPost) in
-            
-            self.toggleLoading(.Stop);
-            if (!success){
-                // We dont want our table view to be behind our data controller
-                
-                // No more new requests were found!
-                return;
-            }
-            
-            // The number of posts we skipped
-            self.skipCount += 1;
-            
-            let insertIndex = path.row;
-            
-            // We want to add this new request with an animation and fade it in
-            self.tempLock = true;
-            self.posts!.insert(newPost!, atIndex: insertIndex);
-            self.tableView.beginUpdates()
-            self.tableView.insertRowsAtIndexPaths([path], withRowAnimation: UITableViewRowAnimation.Fade);
-            self.tableView.endUpdates();
-        }
-    }
-    
     @IBAction func emptyStateButtonAction(sender: UIButton) {
         print("Empty State Action.");
         
@@ -700,6 +632,7 @@ extension StoryViewController: UITableViewDataSource, UITableViewDelegate, MGSwi
     func swipeTableCell(cell: MGSwipeTableCell!, tappedButtonAtIndex index: Int, direction: MGSwipeDirection, fromExpansion: Bool) -> Bool {
         // NOTE: Index here refers to the button Index Positon NOT Rows!!
         let row:Int = cell.tag;
+        print("Skip Request Index: ", row);
         self.skipRequest(NSIndexPath(forRow: row, inSection: 0));
         return true;
     }

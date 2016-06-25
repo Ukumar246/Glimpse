@@ -172,7 +172,7 @@ class FullScreenImageViewController: UIViewController, UIGestureRecognizerDelega
         let downwardMovementPercent = fminf(downwardMovement, 1.0)
         let progress = CGFloat(downwardMovementPercent)
         
-        guard let interactor = interactor else { return }
+        guard let interactor = interactor else { return; }
         
         switch sender.state {
         case .Began:
@@ -413,7 +413,29 @@ extension FullScreenImageViewController: UITableViewDataSource, UITableViewDeleg
         
         let photoFile = comment["photo"] as! PFFile
         cell.imageComment.file = photoFile;
-        cell.imageComment.loadInBackground();
+        
+        cell.emptyStateLabel.hidden = true;
+        
+        if (cell.loadingSquare == nil){
+            cell.loadingSquare = AASquaresLoading(target: cell.contentView, size: 50);
+        }
+        else if (cell.imageComment.image != nil){
+            cell.loadingSquare?.stop();
+        }
+        
+        cell.loadingSquare?.backgroundColor = UIColor.clearColor();
+        cell.loadingSquare?.setSquareSize(50);
+        cell.loadingSquare?.color = Helper.getGlimpseOrangeColor();
+        cell.loadingSquare?.start();
+        cell.imageComment.loadInBackground { (loadedImage:UIImage?, error:NSError?) in
+            cell.loadingSquare?.stop();
+            cell.loadingSquare = nil;
+            
+            if (error != nil || loadedImage == nil){
+                // Show the error on UI Label
+                cell.emptyStateLabel.hidden = false;
+            }
+        }
         
         return cell;
     }
@@ -454,6 +476,8 @@ extension FullScreenImageViewController: UITableViewDataSource, UITableViewDeleg
 class CommentCell: UITableViewCell {
     //@IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageComment: PFImageView!
+    @IBOutlet weak var emptyStateLabel: UILabel!
+    var loadingSquare:AASquaresLoading?
     
 }
 

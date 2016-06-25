@@ -44,8 +44,8 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
                 collectionView.reloadData();
                 return;
             }
-            if nonNilRequests.count == 0{
-                requests = nil
+            if (nonNilRequests.isEmpty){
+                requests = nil;
             }
             
             collectionView.reloadData();
@@ -81,6 +81,8 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
     private let loginSegue:String = "Segue_Login";
     private let collectionCellIdentifier:String = "requestCell";
     private let SegueFullScreen:String = "Segue_FullScreenImage";
+    private let extendedCellSize:CGSize = CGSizeMake(210, 58);
+    private let defaultCellSize:CGSize = CGSizeMake(160, 58);
     
     // MARK: - Lifecycle
     override func viewDidAppear(animated: Bool) {
@@ -244,7 +246,14 @@ class ProfileTableViewController: UITableViewController, UIImagePickerController
         switch operation {
             case .Start:
                 // Alloc Init
-                Holder.loading = AASquaresLoading(target: self.view, size: 40);
+                
+                if (Holder.loading == nil){
+                    Holder.loading = AASquaresLoading(target: self.view, size: 40);
+                }
+                else {
+                    Holder.loading?.stop();
+                    Holder.loading = AASquaresLoading(target: self.view, size: 40);
+                }
                 
                 // Start Loading
                 Holder.loading!.backgroundColor = UIColor.clearColor();
@@ -568,15 +577,15 @@ extension ProfileTableViewController: UICollectionViewDelegate, UICollectionView
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        if (requests == nil)
+        if (requests == nil || userLoggedIn == false)
         {
-            return CGSizeMake(210, 58);
-        }
-        else if userLoggedIn == false{
-            return CGSizeMake(210, 58);
+            let topSpace:CGFloat = (collectionView.frame.height - extendedCellSize.height) / 2;
+            collectionView.contentInset = UIEdgeInsets(top: topSpace, left: 0, bottom: topSpace, right: 0);
+            return extendedCellSize;
         }
         
-        return CGSizeMake(160, 58);
+        collectionView.contentInset = UIEdgeInsetsZero;
+        return defaultCellSize;
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)

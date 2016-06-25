@@ -36,6 +36,7 @@
 		3788250F1CF4D79F00898C02 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3788250E1CF4D79F00898C02 /* CoreLocation.framework */; };
 		379B72531D134F9900DCC1B2 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379B72521D134F9900DCC1B2 /* CameraViewController.swift */; };
 		379CBD861CF4FA68002B3172 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379CBD851CF4FA68002B3172 /* Helper.swift */; };
+		37B8FD931D1CC7C300C235A6 /* DemoRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B8FD921D1CC7C300C235A6 /* DemoRequestsViewController.swift */; };
 		37D81B971CFA6A09008155DC /* FullScreenImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D81B961CFA6A09008155DC /* FullScreenImageViewController.swift */; };
 		37EB5E681CF63595006F9935 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37EB5E671CF63595006F9935 /* AVFoundation.framework */; };
 		37EB5E871CF6363D006F9935 /* CameraDismissButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EB5E6E1CF6363D006F9935 /* CameraDismissButton.m */; };
@@ -87,6 +88,7 @@
 		3788250E1CF4D79F00898C02 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		379B72521D134F9900DCC1B2 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		379CBD851CF4FA68002B3172 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		37B8FD921D1CC7C300C235A6 /* DemoRequestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoRequestsViewController.swift; sourceTree = "<group>"; };
 		37D81B961CFA6A09008155DC /* FullScreenImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenImageViewController.swift; sourceTree = "<group>"; };
 		37EB5E671CF63595006F9935 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		37EB5E6D1CF6363D006F9935 /* CameraDismissButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraDismissButton.h; sourceTree = "<group>"; };
@@ -201,14 +203,23 @@
 			path = Glimpse;
 			sourceTree = "<group>";
 		};
-		37EB5E691CF6360C006F9935 /* View Controllers */ = {
+		37B8FD911D1CC77B00C235A6 /* Main Screens */ = {
 			isa = PBXGroup;
 			children = (
 				376E89631CECDF57009B78D5 /* RootViewController.swift */,
 				376E89651CECDF57009B78D5 /* CaptureViewController.swift */,
-				373D868D1CF793AE008FC7D6 /* LoginViewController.swift */,
 				373D868F1CF7CFDD008FC7D6 /* ProfileTableViewController.swift */,
 				373D86911CF7D44C008FC7D6 /* StoryViewController.swift */,
+			);
+			name = "Main Screens";
+			sourceTree = "<group>";
+		};
+		37EB5E691CF6360C006F9935 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				37FE39C41D1CD5000071A133 /* Demo */,
+				37B8FD911D1CC77B00C235A6 /* Main Screens */,
+				373D868D1CF793AE008FC7D6 /* LoginViewController.swift */,
 				37D81B961CFA6A09008155DC /* FullScreenImageViewController.swift */,
 				373D86931CF8C811008FC7D6 /* StickyHeader.xib */,
 				37461FCA1CFFD0C000AD49CA /* DismissAnimator.swift */,
@@ -286,6 +297,14 @@
 			);
 			name = CustomizableCamera;
 			path = Glimpse/CustomizableCamera;
+			sourceTree = "<group>";
+		};
+		37FE39C41D1CD5000071A133 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				37B8FD921D1CC7C300C235A6 /* DemoRequestsViewController.swift */,
+			);
+			name = Demo;
 			sourceTree = "<group>";
 		};
 		F864E15339885F92BF95A81F /* Pods */ = {
@@ -451,6 +470,7 @@
 				37461FCB1CFFD0C000AD49CA /* DismissAnimator.swift in Sources */,
 				376E89621CECDF57009B78D5 /* AppDelegate.swift in Sources */,
 				373D86921CF7D44C008FC7D6 /* StoryViewController.swift in Sources */,
+				37B8FD931D1CC7C300C235A6 /* DemoRequestsViewController.swift in Sources */,
 				37D81B971CFA6A09008155DC /* FullScreenImageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
