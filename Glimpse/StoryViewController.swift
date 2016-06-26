@@ -22,6 +22,15 @@ enum AutoLoad {
     case On, Off;
 }
 
+enum FetchType {
+    /// It is our first time fetching the data
+    case New;
+    /// We are simply loading old data
+    case Load;
+    /// **Persistance** We are fetching some new data with possible old data
+    case Skip;
+}
+
 class StoryViewController: UIViewController, MKMapViewDelegate
 {
     // MARK: - Private API
@@ -52,8 +61,8 @@ class StoryViewController: UIViewController, MKMapViewDelegate
     // Constants
     /// reuse identifer for the storyboard cell
     private let CellIdentifier:String = "simpleCellIdentifier";
-    
     private let SegueFullScreen:String = "Segue_FullScreenImage";
+    private let MAX_POSTS:Int = 3;
     
     /// Selected Post 
     /// Note: - It is a reference to self.posts[PFObject]
@@ -94,9 +103,18 @@ class StoryViewController: UIViewController, MKMapViewDelegate
             }
             else
             {
-                if (tempLock == false){
+                if (tempLock == false)
+                {
                     // Temp lock must be off to reload
                     tableView.reloadData();
+                    
+                    // Extract Indexes
+                    var postIndexes:[Int] = [Int]();
+                    for request in posts!{
+                        let requestIndex = request["index"] as! Int;
+                        postIndexes.append(requestIndex);
+                    }
+                    self.setCurrentRequestIndex(postIndexes);
                 }
                 
                 emptyStateView.hidden = true;
@@ -105,15 +123,6 @@ class StoryViewController: UIViewController, MKMapViewDelegate
                 // Auto turn off the lock
                 tempLock = false;
                 selectedRequest = nil;
-                
-                // Extract Indexes 
-                var postIndexes:[Int] = [Int]();
-                for request in posts!{
-                    let requestIndex = request["index"] as! Int;
-                    postIndexes.append(requestIndex);
-                }
-                
-                self.setCurrentRequestIndex(postIndexes);
             }
         }
     }
@@ -253,7 +262,7 @@ class StoryViewController: UIViewController, MKMapViewDelegate
             if (error == nil) {
                 print("Current Request Count: ", count);
                 
-                self.fetchRandomPosts(count, internalCompletion: completion, resultCompletion: nil, limit: 3);
+                self.fetchRandomPosts(count, simpleCompletion: completion, resultCompletion: nil, limit: self.MAX_POSTS);
             }
             else{
                 print("Count Failed!");
@@ -264,27 +273,11 @@ class StoryViewController: UIViewController, MKMapViewDelegate
     }
     
     /// __WARNING:__ Helper function DO NOT CALL; **CALL fetchRequests**
-    private func fetchRandomPosts(maxCount:Int32, internalCompletion:((status:Bool) -> Void)?, resultCompletion:((status:Bool, foundPost:PFObject?) -> Void)?, limit:Int)
+    private func fetchRandomPosts(maxCount:Int32, simpleCompletion:((status:Bool) -> Void)?, resultCompletion:((status:Bool, foundPost:PFObject?) -> Void)?, limit:Int)
     {
         assert(maxCount > 0, "maxCount must be positive");
-        // Generate 3 Random Numbers
         
-        let totalCount: Int = limit;
-        var randomNumArray: [Int] = []
-        var i = 0
-        while randomNumArray.count < totalCount {
-            i += 1;
-            let rand = Int(arc4random_uniform(UInt32(maxCount))) + 1;      // 1 - Count Range
-            for(var ii = 0; ii < totalCount; ii += 1){
-                if (randomNumArray.contains(rand) == false){
-                    randomNumArray.append(rand)
-                }
-            }
-        }
-    
-        assert(randomNumArray.count == limit);
-        
-        // Now Query these 3 Random Posts
+        // Now Query these limit # of Random Posts
         let query = PFQuery(className: "Request");
         
         query.limit = limit;
@@ -298,29 +291,99 @@ class StoryViewController: UIViewController, MKMapViewDelegate
         let currentRequestIndex:[Int] = user["currentRequests"] as! [Int];
         let skippedRequestIndex:[Int] = user["skippedRequests"] as! [Int];
         
-        if currentRequestIndex.isEmpty{
-            // If the user is new we do random posts:
-            query.whereKey("index", containedIn: randomNumArray);
-            
-            // EXCEPT for the ones he has skipped before
-            //query.whereKey("index", notContainedIn: skippedRequestIndex);
+        // Set Mode
+        var mode:FetchType!
+        if (limit == MAX_POSTS)
+        {
+            // We are loading all posts
+            if (currentRequestIndex.isEmpty)
+            {
+                // Either we skipped it all or we are new 
+                if (skippedRequestIndex.count == Int(maxCount)){
+                    mode = FetchType.Load;
+                }
+                else{
+                    // Brand new load -- we have no persistance
+                    mode = FetchType.New;
+                }
+            }
+            else{
+                // simply loading data
+                mode = FetchType.Load;
+            }
+        /*      Follow this logic for first fetch   -- Persistance: 1 of 2      */
         }
-        else{
-            // We just give the user what he saw before
-            query.whereKey("index", containedIn: currentRequestIndex);
+        else {
+            assert(limit == 1, "Unknown limit. Must be MAX or 1 (skip)");
             
-            // EXCEPT for the ones he has skipped before
-            //query.whereKey("index", notContainedIn: skippedRequestIndex);
+            // We are skipping
+            mode = FetchType.Skip;
         }
         
+        
+        switch (mode!)
+        {
+            case .New:
+                // If the user is new we do random posts:
+                
+                // Get (3) random numbers and no preferences to avoid.
+                let randomNumbers:[Int] = getUniqueRandomNumbers(limit, maxRandomElement: UInt32(maxCount), avoidNumbers: []);
+                query.whereKey("index", containedIn: randomNumbers);
+                
+                break;
+            
+            case .Load:
+                // We just give the user what he saw before
+                query.whereKey("index", containedIn: currentRequestIndex);
+                
+                // EXCEPT for the ones he has skipped before
+                query.whereKey("index", notContainedIn: skippedRequestIndex);
+                
+                break;
+                
+            case .Skip:
+                /*      Follow this logic for skip fetch   -- Persistance: 2 of 2      */
+                // At this point the currentRequestIndex is set & void of the skipped post
+                
+                // Step 1: Get a new random post WHICH is not been skipped yet
+                let newIndex:[Int] = getUniqueRandomNumbers(1, maxRandomElement: UInt32(maxCount), avoidNumbers: skippedRequestIndex);
+                assert(newIndex.count == 1, "Asked for one new random number");
+                // Step 2: Append the new post on to the current list of posts -- NO NO NO NO
+                //let newIndicies:[Int] = currentRequestIndex + newIndex;
+                
+                // We give the user what he saw before
+                // PLUS a new random post WHICH he has not skipped yet.
+                let newRequestIndex: Int = newIndex[0];
+                query.whereKey("index", equalTo: newRequestIndex);
+            
+                print("New Request Index: ", newRequestIndex);
+                break;
+        }
+        
+        
+        // Execute
         query.findObjectsInBackgroundWithBlock {(newPosts:[PFObject]?, error:NSError?) in
             
-            if (internalCompletion != nil){
-                internalCompletion!(status: true);
-            }
-            else if (resultCompletion != nil){
+            // Completion Handlers
+            if (simpleCompletion != nil)
+            {
+                simpleCompletion!(status: true);
                 
-                // We were called to ony get one request!
+                // We have been called to update the entire feed (first load call)
+                // In simple completion we handle the reuslts
+                if error == nil && newPosts != nil{
+                    // Set Posts.
+                    self.posts = newPosts;
+                }
+                else{
+                    Helper.showQuickAlert("No Posts Found", message: "", viewController: self);
+                    // Set Posts.
+                    self.posts = nil;
+                }
+            }
+            else if (resultCompletion != nil)
+            {
+                // In result completion model we send the caller the results to take care of
                 if (error == nil && newPosts != nil && newPosts!.count == 1){
                     print("New post found ", newPosts![0].objectId);
                     resultCompletion!(status: true, foundPost: newPosts![0]);
@@ -331,19 +394,9 @@ class StoryViewController: UIViewController, MKMapViewDelegate
                 }
                 return;
             }
-            
-            // We have been called to update the entire feed (first load call)
-            if error == nil && newPosts != nil{
-                self.posts = newPosts;
-            }
-            else{
-                Helper.showQuickAlert("No Posts Found", message: "", viewController: self);
-                self.posts = nil;
-            }
         }
         
     }
-    
     
     /// Fetches 1 new request **Safe Call**
     private func fetchNewRequest(completion:(success:Bool, newPost:PFObject?) -> Void) -> Void
@@ -358,7 +411,7 @@ class StoryViewController: UIViewController, MKMapViewDelegate
             if (error == nil) {
                 print("Current Request Count: ", count);
                 
-                self.fetchRandomPosts(count, internalCompletion: nil, resultCompletion: completion, limit: 1);
+                self.fetchRandomPosts(count, simpleCompletion: nil, resultCompletion: completion, limit: 1);
             }
             else{
                 print("Count Failed!");
@@ -367,25 +420,26 @@ class StoryViewController: UIViewController, MKMapViewDelegate
         }
     }
     
-    
     private func skipRequest(path:NSIndexPath)
     {
-        assert(posts != nil);
+        assert(posts != nil, "Cannot Unwrap the main data model");
+        assert(userLoggedIn, "User Data is used in Skip Process!");
         
         let index = path.row;
         
         // we dont want foced reload of table view
         tempLock = true;
         let skipPost: PFObject = self.posts![index];
-        self.posts!.removeAtIndex(index);
+        // Set Posts.
+        self.posts!.removeAtIndex(index);               // -- Note: this will call all setter functions
         
         // Remove Cell Logic
         self.tableView.beginUpdates()
         self.tableView.deleteRowsAtIndexPaths([path], withRowAnimation: .Right);
         self.tableView.endUpdates();
         
-        // Save it on our DB
-        addSkipIndex(skipPost["index"] as! Int);
+        // Save the list of posts we skipped onto DB.
+        addSkipRequestIndex(skipPost["index"] as! Int);
         
         addNewRequest(path);
     }
@@ -394,6 +448,8 @@ class StoryViewController: UIViewController, MKMapViewDelegate
         assert(posts != nil);
         
         toggleLoading(.Start);
+        
+        // Now when we go to fetch a new request we must honor skipped posts, and the current list existing posts
         fetchNewRequest{ (success, newPost) in
             
             self.toggleLoading(.Stop);
@@ -409,6 +465,7 @@ class StoryViewController: UIViewController, MKMapViewDelegate
             
             // We want to add this new request with an animation and fade it in
             self.tempLock = true;
+            // Set Posts.
             self.posts!.insert(newPost!, atIndex: insertIndex);
             self.tableView.beginUpdates()
             self.tableView.insertRowsAtIndexPaths([path], withRowAnimation: UITableViewRowAnimation.Fade);
@@ -416,22 +473,40 @@ class StoryViewController: UIViewController, MKMapViewDelegate
             
             // We manually reload tv to update cell index
             self.tableView.reloadData();
+            // We also overid the save opertion bundled with auto Setters
+            self.addCurrentRequestIndex(newPost!["index"] as! Int);
         }
     }
     
-    private func addSkipIndex(indexList:Int)
+    private func addSkipRequestIndex(index:Int)
     {
         assert(userLoggedIn);
         
         // We add to the array of skipped user indexes
-        user.addUniqueObject(indexList, forKey: "skippedRequests");
+        user.addUniqueObject(index, forKey: "skippedRequests");
         
         // We remove this index from the current Request Index 
         //let currentRequestsIndex = user["currentRequests"] as! [Int];
-        user.removeObject(indexList, forKey: "currentRequests");
+        user.removeObject(index, forKey: "currentRequests");
+        
+        // Print.
+        print("Updated Skip Indexes: ", user["skippedRequests"] as! [Int]);
+        print("Updated Current Indexes: ", user["currentRequests"] as! [Int]);
         
         user.saveInBackground();
         
+    }
+    
+    private func addCurrentRequestIndex(index:Int)
+    {
+        assert(userLoggedIn);
+        
+        // We add to the array of skipped user indexes
+        user.addUniqueObject(index, forKey: "currentRequests");
+        
+        print("Updated Current Indexes: ", user["currentRequests"] as! [Int]);
+        
+        user.saveInBackground();
     }
     
     private func setCurrentRequestIndex(indexList:[Int]){
@@ -439,9 +514,48 @@ class StoryViewController: UIViewController, MKMapViewDelegate
         
         // This are the requests we are on
         user["currentRequests"] = indexList;
+        
+        // Print.
+        print("Updated Current Indexes: ", user["currentRequests"] as! [Int]);
+        
         user.saveInBackground();
     }
     
+    
+    
+    // MARK: Helpers
+    
+    /// Fetches an array of random numbers
+    /// - parameter limit: the number of unique random numbers.
+    /// - parameter maxRandomElement: the biggest allowed random number that can exist on the list.
+    /// - parameter avoidNumbers: dont use this numbers in the return list
+    private func getUniqueRandomNumbers(limit:Int, maxRandomElement:UInt32, avoidNumbers:[Int]) -> [Int]
+    {
+        // the user skipped all posts?
+        assert(avoidNumbers.count < Int(maxRandomElement), "List of numbers to avoid must be less than MAX posts");
+        
+        // Generate limit # of Random Numbers
+        let totalCount: Int = limit;
+        var randomNumArray: [Int] = [Int]();
+        var i = 0;
+        while randomNumArray.count < totalCount {
+            i += 1;
+            let rand:Int = Int(arc4random_uniform(maxRandomElement)) + 1;      //Range: 1 - Count Range
+            for(var ii = 0; ii < totalCount; ii += 1){
+                
+                // Must be unique and not on the avoid list
+                if (randomNumArray.contains(rand) == false && avoidNumbers.contains(rand) == false)
+                {
+                    randomNumArray.append(rand)
+                }
+            }
+        }
+        assert(randomNumArray.count == limit);
+        
+        return randomNumArray;
+    }
+    
+    //MARK: - Actions
     private func refreshTableView() -> Void {
         self.navigationRefresh.startAnimating();
         self.toggleLoading(.Start);
